@@ -15,6 +15,6 @@ namespace Assets._Project._Scripts.World
 
         #endregion
 
-        public List<ChunkComponent> Chunks = new();
+        public List<Chunk> Chunks = new();
     }
 }

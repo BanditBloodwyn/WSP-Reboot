@@ -10,38 +10,19 @@ namespace Assets._Project._Scripts.World.Generation
 {
     public static class ChunkBuilder
     {
-        public static ChunkComponent Build(int xCoord, int yCoord, WorldCreationParameters parameters, Material tileMaterial)
+        public static Chunk Build(int xCoord, int yCoord, WorldCreationParameters parameters, Material tileMaterial)
         {
-            ChunkComponent chunkComponent = CreateChunk(xCoord, yCoord, parameters);
+            Chunk chunk = new Chunk();
+            chunk.ID = yCoord * parameters.ChunkSize + xCoord;
+            chunk.Coordinates = new(xCoord, yCoord);
+            chunk.Size = parameters.ChunkSize;
 
-            World.Instance.Chunks.Add(chunkComponent);
+            World.Instance.Chunks.Add(chunk);
 
-            return chunkComponent;
+            return chunk;
         }
 
-        private static ChunkComponent CreateChunk(int xCoord, int yCoord, WorldCreationParameters parameters)
-        {
-            GameObject chunk = new();
-            chunk.transform.position = new(xCoord * parameters.ChunkSize, 0, yCoord * parameters.ChunkSize);
-
-            ChunkComponent chunkComponent = CreateChunkComponent(chunk, xCoord, yCoord, parameters);
-
-            return chunkComponent;
-        }
-
-        private static ChunkComponent CreateChunkComponent(GameObject chunkObject, int xCoord, int yCoord, WorldCreationParameters parameters)
-        {
-            ChunkComponent chunkComponent = chunkObject.AddComponent<ChunkComponent>();
-            chunkComponent.ID = yCoord * parameters.ChunkSize + xCoord;
-            chunkComponent.Coordinates = new(xCoord, yCoord);
-            chunkComponent.Size = parameters.ChunkSize;
-
-            chunkObject.name = $"Chunk{chunkComponent.ID}";
-
-            return chunkComponent;
-        }
-
-        public static Entity[] BuildTiles(ChunkComponent chunk, WorldCreationParameters parameters)
+        public static Entity[] BuildTiles(Chunk chunk, WorldCreationParameters parameters)
         {
             EntityManager entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
 
@@ -65,7 +46,7 @@ namespace Assets._Project._Scripts.World.Generation
             return entities.ToArray();
         }
 
-        public static Mesh CreateChunkMesh(ChunkComponent chunk)
+        public static Mesh CreateChunkMesh(Chunk chunk)
         {
             EntityManager entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
 
@@ -77,7 +58,7 @@ namespace Assets._Project._Scripts.World.Generation
                 tilePositions.Add(tileAspect.Position);
             }
 
-            return GenerateMeshFromVoxelPositions(tilePositions.ToArray(), chunk.Size, new float2(chunk.transform.localPosition.x, chunk.transform.localPosition.z));
+            return GenerateMeshFromVoxelPositions(tilePositions.ToArray(), chunk.Size, new float2(chunk.Size * chunk.Coordinates.x, chunk.Size * chunk.Coordinates.y));
         }
 
         public static Mesh GenerateMeshFromVoxelPositions(float3[] positions, int chunkSize, float2 chunkOffset)

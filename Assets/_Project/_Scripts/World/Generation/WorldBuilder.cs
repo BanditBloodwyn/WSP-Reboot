@@ -1,3 +1,4 @@
+using Assets._Project._Scripts.World.Components;
 using Assets._Project._Scripts.World.ECS.Components;
 using Sirenix.OdinInspector;
 using Unity.Collections;
@@ -42,9 +43,9 @@ namespace Assets._Project._Scripts.World.Generation
             if (!_drawGizmos)
                 return;
 
-            foreach (ChunkComponent chunk in World.Instance.Chunks)
+            foreach (Chunk chunk in World.Instance.Chunks)
             {
-                Gizmos.DrawWireCube(chunk.transform.localPosition, new Vector3(chunk.Size, 0, chunk.Size));
+                Gizmos.DrawWireCube(new Vector3(chunk.Size * chunk.Coordinates.x, 0, chunk.Size * chunk.Coordinates.y), new Vector3(chunk.Size, 0, chunk.Size));
             }
 
             EntityQuery entityQuery = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntityQuery(typeof(LocalTransform));
