@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Assets._Project._Scripts.World.Components;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.World.Generation
@@ -9,7 +8,7 @@ namespace Assets._Project._Scripts.World.Generation
     {
         public static void Build(WorldCreationParameters parameters, Transform chunkParent, Material tileMaterial)
         {
-            List<Chunk> chunks = new List<Chunk>();
+            List<Chunk> chunks = new();
 
             for (int x = 0; x < parameters.WorldSize; x++)
             {
@@ -20,7 +19,7 @@ namespace Assets._Project._Scripts.World.Generation
                 }
             }
 
-            List<Chunk> filledChunks = new List<Chunk>();
+            List<Chunk> filledChunks = new();
 
             foreach (Chunk chunk in chunks)
             {
@@ -34,18 +33,22 @@ namespace Assets._Project._Scripts.World.Generation
 
             foreach (Chunk chunk in filledChunks)
             {
-                GameObject chunkObject = new GameObject($"Chunk{chunk.ID}");
-                chunkObject.transform.position = new(chunk.Coordinates.x * chunk.Size, 0, chunk.Coordinates.y * chunk.Size);
+                GameObject chunkObject = new($"Chunk{chunk.ID}");
+                chunkObject.transform.position = new Vector3(chunk.Coordinates.x * chunk.Size, 0, chunk.Coordinates.y * chunk.Size);
                 chunkObject.transform.parent = chunkParent;
 
-                MeshFilter meshFilter = chunkObject.gameObject.AddComponent<MeshFilter>();
+                MeshFilter meshFilter = chunkObject.AddComponent<MeshFilter>();
                 meshFilter.sharedMesh = chunk.Mesh;
 
-                MeshRenderer renderer = chunkObject.gameObject.AddComponent<MeshRenderer>();
+                MeshRenderer renderer = chunkObject.AddComponent<MeshRenderer>();
                 renderer.sharedMaterial = tileMaterial;
 
-                MeshCollider collider = chunkObject.gameObject.AddComponent<MeshCollider>();
+                MeshCollider collider = chunkObject.AddComponent<MeshCollider>();
                 collider.sharedMesh = meshFilter.sharedMesh;
+
+                ChunkComponent chunkComponent = chunkObject.AddComponent<ChunkComponent>();
+                chunkComponent.Tiles = chunk.Tiles;
+                chunkComponent.ID = chunk.ID;
             }
         }
     }

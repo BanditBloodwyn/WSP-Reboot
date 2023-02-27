@@ -68,7 +68,7 @@ namespace Assets._Project._Scripts.World.Generation
             List<Vector2> uv = new List<Vector2>();
 
             Dictionary<float2, float3> dictionary = positions.ToDictionary(
-                static pos => new float2(pos.x, pos.z), 
+                static pos => new float2(pos.x, pos.z),
                 static pos => pos);
 
             for (int x = -chunkSize / 2; x < chunkSize / 2; x++)
@@ -86,22 +86,20 @@ namespace Assets._Project._Scripts.World.Generation
                     int[,] Faces =
                     {
                         { 0, 1, 2, 3, 0, 1, 0, 0, 0 }, //top
-                        { 7, 6, 5, 4, 0, -1, 0, 1, 0 }, //bottom
                         { 2, 1, 5, 6, 0, 0, 1, 1, 1 }, //right
                         { 0, 3, 7, 4, 0, 0, -1, 1, 1 }, //left
                         { 3, 2, 6, 7, 1, 0, 0, 1, 1 }, //front
                         { 1, 0, 4, 5, -1, 0, 0, 1, 1 } //back
                     };
 
-                    for (int o = 0; o < 6; o++)
-                        AddQuad(o, Verticies.Count);
-
-                    void AddQuad(int facenum, int v)
+                    for (int facenum = 0; facenum < 5; facenum++)
                     {
+                        int v = Verticies.Count;
+                    
                         // Add Mesh
                         for (int i = 0; i < 4; i++)
                         {
-                            if(dictionary.TryGetValue(new float2(x, z) + chunkOffset, out float3 tilePosition)) 
+                            if (dictionary.TryGetValue(new float2(x, z) + chunkOffset, out float3 tilePosition))
                                 Verticies.Add(new Vector3(x, tilePosition.y, z) + VertPos[Faces[facenum, i]] / 2f);
                         }
                         triangles.AddRange(new List<int> { v, v + 1, v + 2, v, v + 2, v + 3 });
@@ -111,9 +109,9 @@ namespace Assets._Project._Scripts.World.Generation
 
                         uv.AddRange(new List<Vector2>
                         {
-                            bottomleft + new Vector2(0, 0.5f), 
-                            bottomleft + new Vector2(0.5f, 0.5f), 
-                            bottomleft + new Vector2(0.5f, 0), 
+                            bottomleft + new Vector2(0, 0.5f),
+                            bottomleft + new Vector2(0.5f, 0.5f),
+                            bottomleft + new Vector2(0.5f, 0),
                             bottomleft
                         });
                     }
@@ -127,6 +125,9 @@ namespace Assets._Project._Scripts.World.Generation
                 uv = uv.ToArray()
             };
             mesh.RecalculateNormals();
+            mesh.RecalculateBounds();
+            mesh.RecalculateTangents();
+
             return mesh;
         }
     }
