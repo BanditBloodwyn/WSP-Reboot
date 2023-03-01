@@ -81,7 +81,7 @@ namespace Assets._Project._Scripts.World.Generation
                 DestroyImmediate(child.gameObject);
             }
 
-            EntityQuery entityQuery = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntityQuery(typeof(ChunkAssignmentComponent));
+            EntityQuery entityQuery = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntityQuery(typeof(ChunkAssignmentComponentData));
             foreach (Entity tile in entityQuery.ToEntityArray(Allocator.Temp))
             {
                 Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager.DestroyEntity(tile);

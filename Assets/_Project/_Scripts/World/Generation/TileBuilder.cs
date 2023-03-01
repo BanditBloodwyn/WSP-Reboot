@@ -17,8 +17,8 @@ namespace Assets._Project._Scripts.World.Generation
             entityManager.AddComponent<LocalTransform>(tile);
             entityManager.SetComponentData(tile, new LocalTransform {Position = new float3(x, height, y) });
 
-            entityManager.AddComponent<ChunkAssignmentComponent>(tile);
-            entityManager.SetComponentData(tile, new ChunkAssignmentComponent {ChunkID = chunkID});
+            entityManager.AddComponent<ChunkAssignmentComponentData>(tile);
+            entityManager.SetComponentData(tile, new ChunkAssignmentComponentData {ChunkID = chunkID});
             return tile;
         }
 

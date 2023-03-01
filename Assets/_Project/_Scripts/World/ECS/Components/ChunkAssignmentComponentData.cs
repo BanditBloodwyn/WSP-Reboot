@@ -2,8 +2,8 @@
 
 namespace Assets._Project._Scripts.World.ECS.Components
 {
-    public struct ChunkComponent : IComponentData
+    public struct ChunkAssignmentComponentData : IComponentData
     {
-        public long ID;
+        public long ChunkID;
     }
 }

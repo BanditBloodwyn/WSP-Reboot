@@ -11,7 +11,7 @@ namespace Assets._Project._Scripts.World.ECS.Aspects
 
         private readonly TransformAspect _transformAspect;
 
-        private readonly RefRO<ChunkAssignmentComponent> _chunkAssignment;
+        private readonly RefRO<ChunkAssignmentComponentData> _chunkAssignment;
 
         public float3 Position => _transformAspect.LocalPosition;
     }
