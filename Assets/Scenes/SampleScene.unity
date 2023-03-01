@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17511088, g: 0.21907231, b: 0.30137166, a: 1}
+  m_IndirectSpecularColor: {r: 0.17278276, g: 0.21591198, b: 0.29784822, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -404,7 +404,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -461,14 +461,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
-  m_LocalRotation: {x: 0.55772847, y: 0.19122726, z: -0.13389875, w: 0.79651886}
+  m_LocalRotation: {x: 0.69651043, y: 0.16289595, z: -0.16721736, w: 0.6785105}
   m_LocalPosition: {x: 0, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2139356211}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 70, y: 27, z: 0}
+  m_LocalEulerAnglesHint: {x: 91.5, y: 27, z: 0}
 --- !u!114 &410087042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,11 +758,28 @@ MonoBehaviour:
   _chunkParent: {fileID: 574594724}
   _worldCreationParameters:
     Seed: 0
-    WorldSize: 18
-    ChunkSize: 18
+    WorldSize: 28
+    ChunkSize: 28
     NoiseFilters:
     - rid: 1440263964428599299
     - rid: 1440263964428599301
+    vegetationZoneHeights:
+    - VegetationZone: 0
+      MaximumHeight: 0
+    - VegetationZone: 1
+      MaximumHeight: 20
+    - VegetationZone: 2
+      MaximumHeight: 40
+    - VegetationZone: 3
+      MaximumHeight: 55
+    - VegetationZone: 4
+      MaximumHeight: 70
+    - VegetationZone: 5
+      MaximumHeight: 80
+    - VegetationZone: 6
+      MaximumHeight: 90
+    - VegetationZone: 7
+      MaximumHeight: 100
   _tileMaterial: {fileID: 2100000, guid: 16c81ca37932fb94082c49f92581abbe, type: 2}
   references:
     version: 2
@@ -772,32 +789,32 @@ MonoBehaviour:
         asm: Assembly-CSharp}
       data:
         _numberOfLayers: 5
-        _strength: 1.35
-        _minValue: 0.6
+        _strength: 1.81
+        _minValue: 1.27
         _maxValue: 100
         _center:
           x: 0
           y: 0
           z: 0
-        _baseRoughness: 0.003
-        _roughness: 4
+        _baseRoughness: 0.002
+        _roughness: 6.86
         _persistance: 0.2
     - rid: 1440263964428599301
       type: {class: RigidNoiseFilter, ns: Assets._Project._Scripts.World.Generation.Math.NoiseFilters,
         asm: Assembly-CSharp}
       data:
-        _numberOfLayers: 2
-        _strength: 10
-        _minValue: 7
+        _numberOfLayers: 6
+        _strength: 8.89
+        _minValue: 0
         _maxValue: 100
         _center:
           x: 0
-          y: 50
+          y: 0
           z: 0
-        _baseRoughness: 0.003
-        _roughness: 2.01
-        _persistance: 1.77
-        _weightMultiplier: 8
+        _baseRoughness: 0.005
+        _roughness: 0.17
+        _persistance: 9.83
+        _weightMultiplier: 0.11
 --- !u!1 &1224687513
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,6 @@ using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
 using UnityEngine.Assertions;
-using ChunkComponent = Assets._Project._Scripts.World.Components.ChunkComponent;
 
 namespace Assets._Project._Scripts.World.Generation
 {

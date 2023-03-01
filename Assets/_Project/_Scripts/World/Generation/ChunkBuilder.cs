@@ -22,9 +22,12 @@ namespace Assets._Project._Scripts.World.Generation
             return chunk;
         }
 
-        public static Entity[] BuildTiles(Chunk chunk, WorldCreationParameters parameters)
+        public static Entity[] BuildTiles(Chunk chunk, WorldCreationParameters parameters, out float minHeight, out float maxHeight)
         {
             EntityManager entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
+
+            maxHeight = float.NegativeInfinity;
+            minHeight = float.PositiveInfinity;
 
             List<Entity> entities = new();
 
@@ -37,7 +40,13 @@ namespace Assets._Project._Scripts.World.Generation
                         x + chunk.Size * chunk.Coordinates.x - chunk.Size / 2,
                         y + chunk.Size * chunk.Coordinates.y - chunk.Size / 2,
                         chunk.Coordinates.y * chunk.Size + chunk.Coordinates.x,
-                        parameters);
+                        parameters,
+                        out float height);
+
+                    if(height > maxHeight)
+                        maxHeight = height;
+                    if(height < minHeight)
+                        minHeight = height;
 
                     entities.Add(tile);
                 }
@@ -77,8 +86,8 @@ namespace Assets._Project._Scripts.World.Generation
                 {
                     Vector3[] VertPos =
                     {
-                        new(-1, 1, -1), new(-1, 1, 1),
-                        new(1, 1, 1), new(1, 1, -1),
+                        new(-1, 0, -1), new(-1, 0, 1),
+                        new(1, 0, 1), new(1, 0, -1),
                         new(-1, -5, -1), new(-1, -5, 1),
                         new(1, -5, 1), new(1, -5, -1),
                     };

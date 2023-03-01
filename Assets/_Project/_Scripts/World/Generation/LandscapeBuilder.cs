@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Assets._Project._Scripts.World.Components;
+using Assets._Project._Scripts.World.Data;
+using Assets._Project._Scripts.World.Generation.Helper;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.World.Generation
@@ -10,6 +13,7 @@ namespace Assets._Project._Scripts.World.Generation
         {
             List<Chunk> chunks = new();
 
+            // Create chunk data
             for (int x = 0; x < parameters.WorldSize; x++)
             {
                 for (int y = 0; y < parameters.WorldSize; y++)
@@ -19,18 +23,30 @@ namespace Assets._Project._Scripts.World.Generation
                 }
             }
 
+            // Fill chunks with tiles
             List<Chunk> filledChunks = new();
+            float maximumHeight = float.NegativeInfinity;
+            float minimumHeight = float.PositiveInfinity;
 
             foreach (Chunk chunk in chunks)
             {
                 Chunk currentChunk = chunk;
 
-                currentChunk.Tiles = ChunkBuilder.BuildTiles(currentChunk, parameters);
+                currentChunk.Tiles = ChunkBuilder.BuildTiles(currentChunk, parameters, out float minHeight, out float maxHeight);
                 currentChunk.Mesh = ChunkBuilder.CreateChunkMesh(currentChunk);
+
+                if (maxHeight > maximumHeight)
+                    maximumHeight = maxHeight;
+                if (minHeight < minimumHeight)
+                    minimumHeight = minHeight;
 
                 filledChunks.Add(currentChunk);
             }
 
+            // Adjust material settings
+            MaterialAdjuster.AdjustMaterialSettings(parameters, tileMaterial, maximumHeight, minimumHeight);
+
+            // Create chunk GameObjects
             foreach (Chunk chunk in filledChunks)
             {
                 GameObject chunkObject = new($"Chunk{chunk.ID}");

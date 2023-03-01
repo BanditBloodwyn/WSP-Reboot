@@ -1,4 +1,5 @@
 ﻿using System;
+using Assets._Project._Scripts.World.Data;
 using Assets._Project._Scripts.World.Generation.Math.NoiseFilters;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -20,5 +21,7 @@ namespace Assets._Project._Scripts.World.Generation
 
         [SerializeReference]
         public INoiseFilter[] NoiseFilters;
+
+        public VegetationZoneHeight[] vegetationZoneHeights;
     }
 }

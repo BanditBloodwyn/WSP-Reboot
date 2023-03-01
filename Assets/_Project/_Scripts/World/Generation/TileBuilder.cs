@@ -8,11 +8,11 @@ namespace Assets._Project._Scripts.World.Generation
 {
     public static class TileBuilder
     {
-        public static Entity Build(EntityManager entityManager, float x, float y, long chunkID, WorldCreationParameters parameters)
+        public static Entity Build(EntityManager entityManager, float x, float y, long chunkID, WorldCreationParameters parameters, out float height)
         {
             Entity tile = entityManager.CreateEntity();
 
-            float height = CalculateHeight(x, y, parameters);
+            height = CalculateHeight(x, y, parameters);
 
             entityManager.AddComponent<LocalTransform>(tile);
             entityManager.SetComponentData(tile, new LocalTransform {Position = new float3(x, height, y) });
