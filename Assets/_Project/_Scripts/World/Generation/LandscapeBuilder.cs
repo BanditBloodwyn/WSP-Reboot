@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Assets._Project._Scripts.World.Components;
-using Assets._Project._Scripts.World.Data;
 using Assets._Project._Scripts.World.Generation.Helper;
 using UnityEngine;
 
@@ -11,9 +9,18 @@ namespace Assets._Project._Scripts.World.Generation
     {
         public static void Build(WorldCreationParameters parameters, Transform chunkParent, Material tileMaterial)
         {
-            List<Chunk> chunks = new();
+            Chunk[] chunks = CreateChunkData(parameters, tileMaterial);
+            Chunk[] filledChunks = FillChunksWithTiles(parameters, chunks, out float maximumHeight, out float minimumHeight);
+            MaterialAdjuster.AdjustMaterialSettings(parameters, tileMaterial, maximumHeight, minimumHeight);
+            CreateChunkGameObjects(chunkParent, tileMaterial, filledChunks);
+        }
 
-            // Create chunk data
+        private static Chunk[] CreateChunkData(
+            WorldCreationParameters parameters, 
+            Material tileMaterial)
+        {
+            List<Chunk> chunks = new List<Chunk>();
+           
             for (int x = 0; x < parameters.WorldSize; x++)
             {
                 for (int y = 0; y < parameters.WorldSize; y++)
@@ -23,16 +30,25 @@ namespace Assets._Project._Scripts.World.Generation
                 }
             }
 
-            // Fill chunks with tiles
+            return chunks.ToArray();
+        }
+
+        private static Chunk[] FillChunksWithTiles(
+            WorldCreationParameters parameters, 
+            Chunk[] chunks, 
+            out float maximumHeight,
+            out float minimumHeight)
+        {
             List<Chunk> filledChunks = new();
-            float maximumHeight = float.NegativeInfinity;
-            float minimumHeight = float.PositiveInfinity;
+            maximumHeight = float.NegativeInfinity;
+            minimumHeight = float.PositiveInfinity;
 
             foreach (Chunk chunk in chunks)
             {
                 Chunk currentChunk = chunk;
 
-                currentChunk.Tiles = ChunkBuilder.BuildTiles(currentChunk, parameters, out float minHeight, out float maxHeight);
+                currentChunk.Tiles =
+                    ChunkBuilder.BuildTiles(currentChunk, parameters, out float minHeight, out float maxHeight);
                 currentChunk.Mesh = ChunkBuilder.CreateChunkMesh(currentChunk);
 
                 if (maxHeight > maximumHeight)
@@ -43,10 +59,11 @@ namespace Assets._Project._Scripts.World.Generation
                 filledChunks.Add(currentChunk);
             }
 
-            // Adjust material settings
-            MaterialAdjuster.AdjustMaterialSettings(parameters, tileMaterial, maximumHeight, minimumHeight);
+            return filledChunks.ToArray();
+        }
 
-            // Create chunk GameObjects
+        private static void CreateChunkGameObjects(Transform chunkParent, Material tileMaterial, Chunk[] filledChunks)
+        {
             foreach (Chunk chunk in filledChunks)
             {
                 GameObject chunkObject = new($"Chunk{chunk.ID}");

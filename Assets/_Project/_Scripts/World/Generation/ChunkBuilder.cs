@@ -1,5 +1,6 @@
 ﻿using Assets._Project._Scripts.World.Components;
 using Assets._Project._Scripts.World.ECS.Aspects;
+using Assets._Project._Scripts.World.Generation.Helper;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Entities;
@@ -43,9 +44,9 @@ namespace Assets._Project._Scripts.World.Generation
                         parameters,
                         out float height);
 
-                    if(height > maxHeight)
+                    if (height > maxHeight)
                         maxHeight = height;
-                    if(height < minHeight)
+                    if (height < minHeight)
                         minHeight = height;
 
                     entities.Add(tile);
@@ -76,56 +77,14 @@ namespace Assets._Project._Scripts.World.Generation
             List<Vector3> Verticies = new List<Vector3>();
             List<Vector2> uv = new List<Vector2>();
 
-            Dictionary<float2, float3> dictionary = positions.ToDictionary(
+            Dictionary<float2, float3> voxelDictionary = positions.ToDictionary(
                 static pos => new float2(pos.x, pos.z),
                 static pos => pos);
 
             for (int x = -chunkSize / 2; x < chunkSize / 2; x++)
-            {
                 for (int z = -chunkSize / 2; z < chunkSize / 2; z++)
-                {
-                    Vector3[] VertPos =
-                    {
-                        new(-1, 0, -1), new(-1, 0, 1),
-                        new(1, 0, 1), new(1, 0, -1),
-                        new(-1, -5, -1), new(-1, -5, 1),
-                        new(1, -5, 1), new(1, -5, -1),
-                    };
-
-                    int[,] Faces =
-                    {
-                        { 0, 1, 2, 3, 0, 1, 0, 0, 0 }, //top
-                        { 2, 1, 5, 6, 0, 0, 1, 1, 1 }, //right
-                        { 0, 3, 7, 4, 0, 0, -1, 1, 1 }, //left
-                        { 3, 2, 6, 7, 1, 0, 0, 1, 1 }, //front
-                        { 1, 0, 4, 5, -1, 0, 0, 1, 1 } //back
-                    };
-
                     for (int facenum = 0; facenum < 5; facenum++)
-                    {
-                        int v = Verticies.Count;
-                    
-                        // Add Mesh
-                        for (int i = 0; i < 4; i++)
-                        {
-                            if (dictionary.TryGetValue(new float2(x, z) + chunkOffset, out float3 tilePosition))
-                                Verticies.Add(new Vector3(x, tilePosition.y, z) + VertPos[Faces[facenum, i]] / 2f);
-                        }
-                        triangles.AddRange(new List<int> { v, v + 1, v + 2, v, v + 2, v + 3 });
-
-                        // Add uvs
-                        Vector2 bottomleft = new Vector2(Faces[facenum, 7], Faces[facenum, 8]) / 2f;
-
-                        uv.AddRange(new List<Vector2>
-                        {
-                            bottomleft + new Vector2(0, 0.5f),
-                            bottomleft + new Vector2(0.5f, 0.5f),
-                            bottomleft + new Vector2(0.5f, 0),
-                            bottomleft
-                        });
-                    }
-                }
-            }
+                        QuadBuilder.AddQuad(chunkOffset, Verticies, voxelDictionary, x, z, facenum, triangles, uv);
 
             Mesh mesh = new Mesh
             {
