@@ -757,9 +757,8 @@ MonoBehaviour:
   _drawGizmos: 0
   _chunkParent: {fileID: 574594724}
   _worldCreationParameters:
-    Seed: 0
-    WorldSize: 28
-    ChunkSize: 28
+    WorldSize: 10
+    ChunkSize: 10
     NoiseFilters:
     - rid: 1440263964428599299
     - rid: 1440263964428599301

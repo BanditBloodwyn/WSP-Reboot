@@ -3,6 +3,7 @@ using Assets._Project._Scripts.World.ECS.Aspects;
 using Assets._Project._Scripts.World.Generation.Helper;
 using System.Collections.Generic;
 using System.Linq;
+using Assets._Project._Scripts.World.Data.Enums;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace Assets._Project._Scripts.World.Generation
 {
     public static class ChunkBuilder
     {
-        public static Chunk Build(int xCoord, int yCoord, WorldCreationParameters parameters, Material tileMaterial)
+        public static Chunk Build(int xCoord, int yCoord, WorldCreationParameters parameters)
         {
             Chunk chunk = new Chunk();
             chunk.ID = yCoord * parameters.ChunkSize + xCoord;
@@ -23,12 +24,9 @@ namespace Assets._Project._Scripts.World.Generation
             return chunk;
         }
 
-        public static Entity[] BuildTiles(Chunk chunk, WorldCreationParameters parameters, out float minHeight, out float maxHeight)
+        public static Entity[] BuildTiles(Chunk chunk, WorldCreationParameters parameters, out float maxHeight)
         {
-            EntityManager entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
-
             maxHeight = float.NegativeInfinity;
-            minHeight = float.PositiveInfinity;
 
             List<Entity> entities = new();
 
@@ -37,7 +35,6 @@ namespace Assets._Project._Scripts.World.Generation
                 for (int y = 0; y < chunk.Size; y++)
                 {
                     Entity tile = TileBuilder.Build(
-                        entityManager,
                         x + chunk.Size * chunk.Coordinates.x - chunk.Size / 2,
                         y + chunk.Size * chunk.Coordinates.y - chunk.Size / 2,
                         chunk.Coordinates.y * chunk.Size + chunk.Coordinates.x,
@@ -46,8 +43,6 @@ namespace Assets._Project._Scripts.World.Generation
 
                     if (height > maxHeight)
                         maxHeight = height;
-                    if (height < minHeight)
-                        minHeight = height;
 
                     entities.Add(tile);
                 }
@@ -97,6 +92,12 @@ namespace Assets._Project._Scripts.World.Generation
             mesh.RecalculateTangents();
 
             return mesh;
+        }
+
+        public static void FillTileData(Chunk chunk, Dictionary<VegetationZones, float> vegetationZoneHeights)
+        {
+            foreach (Entity tile in chunk.Tiles)
+                TileBuilder.FillTileData(tile, vegetationZoneHeights);
         }
     }
 }

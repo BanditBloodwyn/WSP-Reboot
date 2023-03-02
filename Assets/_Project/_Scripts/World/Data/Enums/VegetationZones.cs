@@ -1,4 +1,4 @@
-﻿namespace Assets._Project._Scripts.World.Data
+﻿namespace Assets._Project._Scripts.World.Data.Enums
 {
     public enum VegetationZones
     {

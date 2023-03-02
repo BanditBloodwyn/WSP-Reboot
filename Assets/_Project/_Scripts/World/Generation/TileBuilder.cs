@@ -1,4 +1,8 @@
-﻿using Assets._Project._Scripts.World.ECS.Components;
+﻿using System.Collections.Generic;
+using Assets._Project._Scripts.World.Data.Enums;
+using Assets._Project._Scripts.World.ECS.Aspects;
+using Assets._Project._Scripts.World.ECS.Components;
+using Assets._Project._Scripts.World.Generation.Helper;
 using Assets._Project._Scripts.World.Generation.Math;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -8,8 +12,10 @@ namespace Assets._Project._Scripts.World.Generation
 {
     public static class TileBuilder
     {
-        public static Entity Build(EntityManager entityManager, float x, float y, long chunkID, WorldCreationParameters parameters, out float height)
+        public static Entity Build(float x, float y, long chunkID, WorldCreationParameters parameters, out float height)
         {
+            EntityManager entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
+
             Entity tile = entityManager.CreateEntity();
 
             height = CalculateHeight(x, y, parameters);
@@ -46,6 +52,14 @@ namespace Assets._Project._Scripts.World.Generation
 
             return elevation;
 
+        }
+
+        public static void FillTileData(Entity tile, Dictionary<VegetationZones, float> vegetationZoneHeights)
+        {
+            EntityManager entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
+
+            entityManager.AddComponent<TilePropertiesComponentData>(tile);
+            entityManager.SetComponentData(tile, TilePropertiesBuilder.Build(tile, vegetationZoneHeights));
         }
     }
 }
