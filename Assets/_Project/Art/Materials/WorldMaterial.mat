@@ -78,18 +78,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpine_BushesHeight: 5.053228
-    - _Alpine_TreesHeight: 4.421574
-    - _KollineHeight: 1.263307
-    - _MontaneHeight: 2.526614
-    - _NivaleHeight: 6.3165345
+    - _Alpine_BushesHeight: 14
+    - _Alpine_TreesHeight: 12
+    - _KollineHeight: 5
+    - _MontaneHeight: 8
+    - _NivaleHeight: 100
     - _NormalStrength: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Selected: 0
     - _Sharpness: 0.3
-    - _SubalpineHeight: 3.474094
-    - _SubnivaleHeight: 5.6848807
+    - _SubalpineHeight: 10
+    - _SubnivaleHeight: 16
     - _TileHeight: 0
     - _WaterHeight: 0
     m_Colors:

@@ -1,3 +1,4 @@
+﻿using System.Collections;
 using Assets._Project._Scripts.World.Components;
 using Assets._Project._Scripts.World.ECS.Components;
 using Sirenix.OdinInspector;
@@ -9,7 +10,6 @@ using UnityEngine.Assertions;
 
 namespace Assets._Project._Scripts.World.Generation
 {
-    [LabelWidth(150)]
     public class WorldBuilder : MonoBehaviour
     {
         [SerializeField] private bool _drawGizmos;
@@ -65,9 +65,22 @@ namespace Assets._Project._Scripts.World.Generation
         public void BuildNewWorld()
         {
             DestroyWorld();
-            LandscapeBuilder.Build(_worldCreationParameters, _chunkParent, _tileMaterial);
-            
-            Debug.Log($"Finished world building - Chunk count = {World.Instance.Chunks.Count}");
+
+            StartCoroutine(BuildWorld());
+        }
+
+        private IEnumerator BuildWorld()
+        {
+            ChunkBuilder.AdjustMaterialSettings(_tileMaterial, _worldCreationParameters.vegetationZoneHeights);
+
+            for (int x = 0; x < _worldCreationParameters.WorldSize; x++)
+            {
+                for (int y = 0; y < _worldCreationParameters.WorldSize; y++)
+                {
+                    ChunkBuilder.Build(x, y, _worldCreationParameters, _chunkParent, _tileMaterial);
+                    yield return null;
+                }
+            }
         }
 
         [Button(Icon = SdfIconType.Globe2, IconAlignment = IconAlignment.LeftOfText, ButtonHeight = 31)]
@@ -75,6 +88,8 @@ namespace Assets._Project._Scripts.World.Generation
         [GUIColor(0.7f, 0, 0)]
         public void DestroyWorld()
         {
+            StopAllCoroutines();
+
             for (int i = _chunkParent.transform.childCount - 1; i >= 0; i--)
             {
                 Transform child = _chunkParent.transform.GetChild(i);
@@ -83,9 +98,7 @@ namespace Assets._Project._Scripts.World.Generation
 
             EntityQuery entityQuery = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntityQuery(typeof(ChunkAssignmentComponentData));
             foreach (Entity tile in entityQuery.ToEntityArray(Allocator.Temp))
-            {
                 Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager.DestroyEntity(tile);
-            }
 
             World.Instance.Chunks.Clear();
         }

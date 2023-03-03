@@ -1,33 +1,36 @@
 ﻿using Assets._Project._Scripts.World.Components;
-using Assets._Project._Scripts.World.ECS.Aspects;
-using Assets._Project._Scripts.World.Generation.Helper;
+using Assets._Project._Scripts.World.Data.Enums;
+using Assets._Project._Scripts.World.Data.Structs;
 using System.Collections.Generic;
 using System.Linq;
-using Assets._Project._Scripts.World.Data.Enums;
 using Unity.Entities;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.World.Generation
 {
-    public static class ChunkBuilder
+    public class ChunkBuilder
     {
-        public static Chunk Build(int xCoord, int yCoord, WorldCreationParameters parameters)
+        public static void Build(int xCoord, int yCoord, WorldCreationParameters worldCreationParameters, Transform parent, Material material)
         {
             Chunk chunk = new Chunk();
-            chunk.ID = yCoord * parameters.ChunkSize + xCoord;
-            chunk.Coordinates = new(xCoord, yCoord);
-            chunk.Size = parameters.ChunkSize;
-
-            World.Instance.Chunks.Add(chunk);
-
-            return chunk;
+            BuildChunkData(ref chunk, xCoord, yCoord, worldCreationParameters);
+            FillChunksWithTiles(ref chunk, worldCreationParameters);
+            FillTileData(ref chunk, worldCreationParameters);
+            ChunkMeshBuilder.Build(ref chunk);
+            CreateChunkGameObject(ref chunk, parent, material);
         }
 
-        public static Entity[] BuildTiles(Chunk chunk, WorldCreationParameters parameters, out float maxHeight)
+        private static void BuildChunkData(ref Chunk chunk, int xCoord, int yCoord, WorldCreationParameters worldCreationParameters)
         {
-            maxHeight = float.NegativeInfinity;
+            chunk.ID = yCoord * worldCreationParameters.ChunkSize + xCoord;
+            chunk.Coordinates = new Vector2Int(xCoord, yCoord);
+            chunk.Size = worldCreationParameters.ChunkSize;
 
+            World.Instance.Chunks.Add(chunk);
+        }
+
+        private static void FillChunksWithTiles(ref Chunk chunk, WorldCreationParameters worldCreationParameters)
+        {
             List<Entity> entities = new();
 
             for (int x = 0; x < chunk.Size; x++)
@@ -38,66 +41,51 @@ namespace Assets._Project._Scripts.World.Generation
                         x + chunk.Size * chunk.Coordinates.x - chunk.Size / 2,
                         y + chunk.Size * chunk.Coordinates.y - chunk.Size / 2,
                         chunk.Coordinates.y * chunk.Size + chunk.Coordinates.x,
-                        parameters,
-                        out float height);
-
-                    if (height > maxHeight)
-                        maxHeight = height;
+                        worldCreationParameters);
 
                     entities.Add(tile);
                 }
             }
 
-            return entities.ToArray();
+            chunk.Tiles = entities.ToArray();
         }
 
-        public static Mesh CreateChunkMesh(Chunk chunk)
-        {
-            EntityManager entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
-
-            List<float3> tilePositions = new();
-
-            foreach (Entity tileEntity in chunk.Tiles)
-            {
-                TileAspect tileAspect = entityManager.GetAspect<TileAspect>(tileEntity);
-                tilePositions.Add(tileAspect.Position);
-            }
-
-            return GenerateMeshFromVoxelPositions(tilePositions.ToArray(), chunk.Size, new float2(chunk.Size * chunk.Coordinates.x, chunk.Size * chunk.Coordinates.y));
-        }
-
-        public static Mesh GenerateMeshFromVoxelPositions(float3[] positions, int chunkSize, float2 chunkOffset)
-        {
-            List<int> triangles = new List<int>();
-            List<Vector3> Verticies = new List<Vector3>();
-            List<Vector2> uv = new List<Vector2>();
-
-            Dictionary<float2, float3> voxelDictionary = positions.ToDictionary(
-                static pos => new float2(pos.x, pos.z),
-                static pos => pos);
-
-            for (int x = -chunkSize / 2; x < chunkSize / 2; x++)
-                for (int z = -chunkSize / 2; z < chunkSize / 2; z++)
-                    for (int facenum = 0; facenum < 5; facenum++)
-                        QuadBuilder.AddQuad(chunkOffset, Verticies, voxelDictionary, x, z, facenum, triangles, uv);
-
-            Mesh mesh = new Mesh
-            {
-                vertices = Verticies.ToArray(),
-                triangles = triangles.ToArray(),
-                uv = uv.ToArray()
-            };
-            mesh.RecalculateNormals();
-            mesh.RecalculateBounds();
-            mesh.RecalculateTangents();
-
-            return mesh;
-        }
-
-        public static void FillTileData(Chunk chunk, Dictionary<VegetationZones, float> vegetationZoneHeights)
+        private static void FillTileData(ref Chunk chunk, WorldCreationParameters worldCreationParameters)
         {
             foreach (Entity tile in chunk.Tiles)
-                TileBuilder.FillTileData(tile, vegetationZoneHeights);
+                TileBuilder.FillTileData(tile, worldCreationParameters);
+        }
+
+        public static void AdjustMaterialSettings(Material material, VegetationZoneHeight[] vegetationZoneHeights)
+        {
+            material.SetFloat("_WaterHeight", vegetationZoneHeights.First(static zone => zone.VegetationZone == VegetationZones.Water).MaximumHeight);
+            material.SetFloat("_KollineHeight", vegetationZoneHeights.First(static zone => zone.VegetationZone == VegetationZones.Kolline).MaximumHeight);
+            material.SetFloat("_MontaneHeight", vegetationZoneHeights.First(static zone => zone.VegetationZone == VegetationZones.Montane).MaximumHeight);
+            material.SetFloat("_SubalpineHeight", vegetationZoneHeights.First(static zone => zone.VegetationZone == VegetationZones.Subalpine).MaximumHeight);
+            material.SetFloat("_Alpine_TreesHeight", vegetationZoneHeights.First(static zone => zone.VegetationZone == VegetationZones.Alpine_Trees).MaximumHeight);
+            material.SetFloat("_Alpine_BushesHeight", vegetationZoneHeights.First(static zone => zone.VegetationZone == VegetationZones.Alpine_Bushes).MaximumHeight);
+            material.SetFloat("_SubnivaleHeight", vegetationZoneHeights.First(static zone => zone.VegetationZone == VegetationZones.Subnivale).MaximumHeight);
+            material.SetFloat("_NivaleHeight", vegetationZoneHeights.First(static zone => zone.VegetationZone == VegetationZones.Nivale).MaximumHeight);
+        }
+
+        private static void CreateChunkGameObject(ref Chunk chunk, Transform parent, Material material)
+        {
+            GameObject chunkObject = new($"Chunk{chunk.ID}");
+            chunkObject.transform.position = new Vector3(chunk.Coordinates.x * chunk.Size, 0, chunk.Coordinates.y * chunk.Size);
+            chunkObject.transform.parent = parent;
+
+            MeshFilter meshFilter = chunkObject.AddComponent<MeshFilter>();
+            meshFilter.sharedMesh = chunk.Mesh;
+
+            MeshRenderer renderer = chunkObject.AddComponent<MeshRenderer>();
+            renderer.sharedMaterial = material;
+
+            MeshCollider collider = chunkObject.AddComponent<MeshCollider>();
+            collider.sharedMesh = meshFilter.sharedMesh;
+
+            ChunkComponent chunkComponent = chunkObject.AddComponent<ChunkComponent>();
+            chunkComponent.Tiles = chunk.Tiles;
+            chunkComponent.ID = chunk.ID;
         }
     }
 }

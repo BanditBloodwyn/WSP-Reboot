@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using Assets._Project._Scripts.World.Data.Enums;
-using Assets._Project._Scripts.World.ECS.Aspects;
-using Assets._Project._Scripts.World.ECS.Components;
-using Assets._Project._Scripts.World.Generation.Helper;
+﻿using Assets._Project._Scripts.World.ECS.Components;
 using Assets._Project._Scripts.World.Generation.Math;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -10,21 +6,19 @@ using Unity.Transforms;
 
 namespace Assets._Project._Scripts.World.Generation
 {
-    public static class TileBuilder
+    public class TileBuilder
     {
-        public static Entity Build(float x, float y, long chunkID, WorldCreationParameters parameters, out float height)
+        public static Entity Build(int xPos, int yPos, int chunkID, WorldCreationParameters parameters)
         {
             EntityManager entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
-
             Entity tile = entityManager.CreateEntity();
-
-            height = CalculateHeight(x, y, parameters);
+            float height = CalculateHeight(xPos, yPos, parameters);
 
             entityManager.AddComponent<LocalTransform>(tile);
-            entityManager.SetComponentData(tile, new LocalTransform {Position = new float3(x, height, y) });
+            entityManager.SetComponentData(tile, new LocalTransform { Position = new float3(xPos, height, yPos) });
 
             entityManager.AddComponent<ChunkAssignmentComponentData>(tile);
-            entityManager.SetComponentData(tile, new ChunkAssignmentComponentData {ChunkID = chunkID});
+            entityManager.SetComponentData(tile, new ChunkAssignmentComponentData { ChunkID = chunkID });
             return tile;
         }
 
@@ -51,15 +45,14 @@ namespace Assets._Project._Scripts.World.Generation
             }
 
             return elevation;
-
         }
 
-        public static void FillTileData(Entity tile, Dictionary<VegetationZones, float> vegetationZoneHeights)
+        public static void FillTileData(Entity tile, WorldCreationParameters worldCreationParameters)
         {
             EntityManager entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
 
             entityManager.AddComponent<TilePropertiesComponentData>(tile);
-            entityManager.SetComponentData(tile, TilePropertiesBuilder.Build(tile, vegetationZoneHeights));
+            entityManager.SetComponentData(tile, TilePropertiesBuilder.Build(tile, worldCreationParameters.vegetationZoneHeights));
         }
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17278276, g: 0.21591198, b: 0.29784822, a: 1}
+  m_IndirectSpecularColor: {r: 0.18105736, g: 0.22238047, b: 0.2826746, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -461,14 +461,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
-  m_LocalRotation: {x: 0.69651043, y: 0.16289595, z: -0.16721736, w: 0.6785105}
+  m_LocalRotation: {x: 0.96092355, y: 0.035713878, z: -0.23069732, w: 0.14875901}
   m_LocalPosition: {x: 0, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2139356211}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 91.5, y: 27, z: 0}
+  m_LocalEulerAnglesHint: {x: 162.4, y: 27, z: 0}
 --- !u!114 &410087042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -629,7 +629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 447c9f482f8ed444f8a515246582b099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _worldBuilder: {fileID: 1154482790}
+  _worldBuilder: {fileID: 0}
 --- !u!1 &732875051
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,7 +719,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1154482789}
-  - component: {fileID: 1154482790}
+  - component: {fileID: 1154482791}
   m_Layer: 0
   m_Name: WorldBuilder
   m_TagString: Untagged
@@ -742,7 +742,7 @@ Transform:
   m_Father: {fileID: 1224687514}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1154482790
+--- !u!114 &1154482791
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -751,39 +751,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 1154482788}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c16663a90c9b0842a6a64795380814f, type: 3}
+  m_Script: {fileID: 11500000, guid: 46f3716cdb6d4e448b807d49b3bfc890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _drawGizmos: 0
   _chunkParent: {fileID: 574594724}
   _worldCreationParameters:
     WorldSize: 10
-    ChunkSize: 10
+    ChunkSize: 64
     NoiseFilters:
-    - rid: 1440263964428599299
-    - rid: 1440263964428599301
+    - rid: 6809958387191644162
+    - rid: 6809958387191644164
     vegetationZoneHeights:
     - VegetationZone: 0
       MaximumHeight: 0
     - VegetationZone: 1
-      MaximumHeight: 20
+      MaximumHeight: 5
     - VegetationZone: 2
-      MaximumHeight: 40
+      MaximumHeight: 8
     - VegetationZone: 3
-      MaximumHeight: 55
+      MaximumHeight: 10
     - VegetationZone: 4
-      MaximumHeight: 70
+      MaximumHeight: 12
     - VegetationZone: 5
-      MaximumHeight: 80
+      MaximumHeight: 14
     - VegetationZone: 6
-      MaximumHeight: 90
+      MaximumHeight: 16
     - VegetationZone: 7
       MaximumHeight: 100
   _tileMaterial: {fileID: 2100000, guid: 16c81ca37932fb94082c49f92581abbe, type: 2}
   references:
     version: 2
     RefIds:
-    - rid: 1440263964428599299
+    - rid: 6809958387191644162
       type: {class: StandardNoiseFilter, ns: Assets._Project._Scripts.World.Generation.Math.NoiseFilters,
         asm: Assembly-CSharp}
       data:
@@ -798,7 +798,7 @@ MonoBehaviour:
         _baseRoughness: 0.002
         _roughness: 6.86
         _persistance: 0.2
-    - rid: 1440263964428599301
+    - rid: 6809958387191644164
       type: {class: RigidNoiseFilter, ns: Assets._Project._Scripts.World.Generation.Math.NoiseFilters,
         asm: Assembly-CSharp}
       data:
