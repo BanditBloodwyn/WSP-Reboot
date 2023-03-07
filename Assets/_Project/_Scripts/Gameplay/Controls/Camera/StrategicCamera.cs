@@ -1,3 +1,4 @@
+using Assets._Project._Scripts.World.Generation;
 using Cinemachine;
 using NUnit.Framework;
 using Sirenix.Utilities;
@@ -11,6 +12,7 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
         
         [SerializeField] private StrategicCameraSettings _settings;
         [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+        [SerializeField] private WorldCreationParameters _worldParameters;
 
         private Vector3 _followOffset;
 
@@ -20,6 +22,7 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
         {
             Assert.IsNotNull(_settings);
             Assert.IsNotNull(_virtualCamera);
+            Assert.IsNotNull(_worldParameters);
         }
 
         private void Start()
@@ -91,8 +94,14 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
 
             transform.position += _settings.PanningSpeed * Time.deltaTime * translation;
             transform.position = transform.position.Clamp(
-                new Vector3(0, 0, 0), 
-                new Vector3(float.PositiveInfinity, 0, float.PositiveInfinity));
+                new Vector3(
+                    -_worldParameters.ChunkSize / 2.0f,
+                    0,
+                    -_worldParameters.ChunkSize / 2.0f),
+                new Vector3(
+                    _worldParameters.WorldSize * _worldParameters.ChunkSize - _worldParameters.ChunkSize / 2,
+                    0,
+                    _worldParameters.WorldSize * _worldParameters.ChunkSize - _worldParameters.ChunkSize / 2));
         }
 
         private void HandleZoom()

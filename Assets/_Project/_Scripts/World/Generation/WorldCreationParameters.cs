@@ -1,13 +1,12 @@
-﻿using System;
-using Assets._Project._Scripts.World.Data.Structs;
+﻿using Assets._Project._Scripts.World.Data.Structs;
 using Assets._Project._Scripts.World.Generation.Math.NoiseFilters;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.World.Generation
 {
-    [Serializable]
-    public struct WorldCreationParameters
+    [CreateAssetMenu(fileName = "WorldCreationParameters", menuName = "ScriptableObjects/Settings/World/World Creation Parameters")]
+    public class WorldCreationParameters : ScriptableObject
     {
         public bool GenerateHeights;
 

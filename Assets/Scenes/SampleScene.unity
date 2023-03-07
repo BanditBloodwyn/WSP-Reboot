@@ -960,30 +960,8 @@ MonoBehaviour:
   _drawGizmos: 0
   _chunkParent: {fileID: 574594724}
   _tileMaterial: {fileID: 2100000, guid: 16c81ca37932fb94082c49f92581abbe, type: 2}
-  _worldCreationParameters:
-    GenerateHeights: 1
-    WorldSize: 4
-    ChunkSize: 64
-    NoiseFilters:
-    - rid: 6809958387191644162
-    - rid: 6809958387191644164
-    vegetationZoneHeights:
-    - VegetationZone: 0
-      MaximumHeight: 0
-    - VegetationZone: 1
-      MaximumHeight: 3
-    - VegetationZone: 2
-      MaximumHeight: 10
-    - VegetationZone: 3
-      MaximumHeight: 15
-    - VegetationZone: 4
-      MaximumHeight: 16
-    - VegetationZone: 5
-      MaximumHeight: 20
-    - VegetationZone: 6
-      MaximumHeight: 25
-    - VegetationZone: 7
-      MaximumHeight: 100
+  _worldCreationParameters: {fileID: 11400000, guid: 348a20141bd8a65418ae18ba8c1baf1b,
+    type: 2}
   _worldGenerationFinished:
     m_PersistentCalls:
       m_Calls:
@@ -1016,40 +994,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  references:
-    version: 2
-    RefIds:
-    - rid: 6809958387191644162
-      type: {class: StandardNoiseFilter, ns: Assets._Project._Scripts.World.Generation.Math.NoiseFilters,
-        asm: Assembly-CSharp}
-      data:
-        _numberOfLayers: 5
-        _strength: 1.81
-        _minValue: 1.27
-        _maxValue: 100
-        _center:
-          x: 0
-          y: 0
-          z: 0
-        _baseRoughness: 0.002
-        _roughness: 6.86
-        _persistance: 0.2
-    - rid: 6809958387191644164
-      type: {class: RigidNoiseFilter, ns: Assets._Project._Scripts.World.Generation.Math.NoiseFilters,
-        asm: Assembly-CSharp}
-      data:
-        _numberOfLayers: 6
-        _strength: 8.89
-        _minValue: 0
-        _maxValue: 100
-        _center:
-          x: 0
-          y: 0
-          z: 0
-        _baseRoughness: 0.005
-        _roughness: 0.17
-        _persistance: 9.83
-        _weightMultiplier: 0.11
 --- !u!1 &1224687513
 GameObject:
   m_ObjectHideFlags: 0
@@ -1290,6 +1234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _settings: {fileID: 11400000, guid: 93a195b02762ac4478a2892f2db95ee0, type: 2}
   _virtualCamera: {fileID: 663577694}
+  _worldParameters: {fileID: 11400000, guid: 348a20141bd8a65418ae18ba8c1baf1b, type: 2}
 --- !u!1 &1911284498
 GameObject:
   m_ObjectHideFlags: 0
