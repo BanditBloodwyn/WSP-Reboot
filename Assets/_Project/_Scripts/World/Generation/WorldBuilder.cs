@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using Assets._Project._Scripts.World.Components;
+﻿using Assets._Project._Scripts.World.Components;
 using Assets._Project._Scripts.World.ECS.Components;
 using Sirenix.OdinInspector;
+using System.Collections;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Transforms;
@@ -14,11 +14,14 @@ namespace Assets._Project._Scripts.World.Generation
     {
         [SerializeField] private bool _drawGizmos;
 
-        [Title("Creation", TitleAlignment = TitleAlignments.Centered)]
-
+        [BoxGroup("Creation")]
         [SerializeField] private Transform _chunkParent;
-        [SerializeField] private WorldCreationParameters _worldCreationParameters;
+        [BoxGroup("Creation")]
         [SerializeField] private Material _tileMaterial;
+        
+        [BoxGroup("Creation")]
+        [Title("")]
+        [SerializeField] private WorldCreationParameters _worldCreationParameters;
 
         #region Unity
 

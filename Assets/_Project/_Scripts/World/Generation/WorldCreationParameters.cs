@@ -9,6 +9,9 @@ namespace Assets._Project._Scripts.World.Generation
     [Serializable]
     public struct WorldCreationParameters
     {
+        public bool GenerateHeights;
+
+        [Title("")]
         [PropertyTooltip("How many chunks in every direction will be spawned.")]
         [Range(1, 32)]
         public int WorldSize;

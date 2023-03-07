@@ -128,6 +128,9 @@
             "m_Id": "e975240957e74fcca48e9c70f9bd8683"
         },
         {
+            "m_Id": "ddb463c1576f4d00842998bdb52ac237"
+        },
+        {
             "m_Id": "2e535a28ac76400e9ef49fdbc808e4e8"
         },
         {
@@ -5812,9 +5815,6 @@
             "m_Id": "9f3ee8cf90a644f69f4cd9d2ccfaee71"
         },
         {
-            "m_Id": "b7ee6c975d4743869a950d50ce021940"
-        },
-        {
             "m_Id": "58d0d05ffa2c4305ba3dc8b113d0e470"
         },
         {
@@ -6117,9 +6117,6 @@
         },
         {
             "m_Id": "e038528fae8a4f8f80ce72b2e69eb6d1"
-        },
-        {
-            "m_Id": "7aad5bbc8ed9412580e4b45b506144da"
         },
         {
             "m_Id": "e77301bda68c46cca162e3b4a3ffe02a"
@@ -8047,9 +8044,6 @@
             "m_Id": "9fb6703c9bb04238b1e61a21fec93621"
         },
         {
-            "m_Id": "cb57456199ff4efa911e74d45ff96da4"
-        },
-        {
             "m_Id": "3d8ae841e3f642949a22ef3db06e1f38"
         }
     ]
@@ -8426,9 +8420,6 @@
         },
         {
             "m_Id": "e956802c14a4489e95fdb43483eea1bd"
-        },
-        {
-            "m_Id": "17c9aa9e797a4c3db9096d0110755202"
         }
     ]
 }
@@ -8550,9 +8541,6 @@
         },
         {
             "m_Id": "1ddf48d24342421e8f342c5becb0d2a3"
-        },
-        {
-            "m_Id": "274595aed60149b4baf59028166a8f2a"
         },
         {
             "m_Id": "1b44317e2641423c95a5c3e6bb81e486"
@@ -9683,9 +9671,6 @@
         },
         {
             "m_Id": "be649cb292fe446fa389e9fdac54f4e9"
-        },
-        {
-            "m_Id": "69c669b3cefe47b181ed69504c0da854"
         },
         {
             "m_Id": "a28bcb282a7644f68ead63b6ace4a777"
@@ -13160,9 +13145,6 @@
             "m_Id": "724c8ac4b9f44485acc749294a3f5b20"
         },
         {
-            "m_Id": "011a4d24f2b74cdbb6e9c5b2e7212c53"
-        },
-        {
             "m_Id": "e039a2ba75894fa1b0a61fc89b259d59"
         }
     ]
@@ -16148,6 +16130,39 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
+    "m_ObjectId": "ddb463c1576f4d00842998bdb52ac237",
+    "m_Name": "Heights",
+    "m_ChildObjectList": [
+        {
+            "m_Id": "b7ee6c975d4743869a950d50ce021940"
+        },
+        {
+            "m_Id": "17c9aa9e797a4c3db9096d0110755202"
+        },
+        {
+            "m_Id": "274595aed60149b4baf59028166a8f2a"
+        },
+        {
+            "m_Id": "69c669b3cefe47b181ed69504c0da854"
+        },
+        {
+            "m_Id": "011a4d24f2b74cdbb6e9c5b2e7212c53"
+        },
+        {
+            "m_Id": "7aad5bbc8ed9412580e4b45b506144da"
+        },
+        {
+            "m_Id": "cb57456199ff4efa911e74d45ff96da4"
+        },
+        {
+            "m_Id": "2c8134c62bc74261975048bd9a1d209a"
+        }
+    ]
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "ddb76d458d024dd291cc1222a8c504bd",
     "m_Id": 0,
@@ -17193,9 +17208,6 @@
         },
         {
             "m_Id": "3661de9c03c34c9ba705dde0bfb6e8b0"
-        },
-        {
-            "m_Id": "2c8134c62bc74261975048bd9a1d209a"
         },
         {
             "m_Id": "ff8d07aa231c49c281bcf63eddafdf89"

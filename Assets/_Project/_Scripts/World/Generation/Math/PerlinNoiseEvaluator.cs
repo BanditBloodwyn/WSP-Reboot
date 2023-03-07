@@ -31,7 +31,6 @@ Some changes by Sebastian Lague for use in a tutorial series.
 */
 
 using System;
-using System.Numerics;
 using Unity.Mathematics;
 
 namespace Assets._Project._Scripts.World.Generation.Math
@@ -58,7 +57,7 @@ namespace Assets._Project._Scripts.World.Generation.Math
         };
 
         private const int RandomSize = 256;
-        private int[]? _random;
+        private int[] _random;
 
         private const double F3 = 1.0 / 3.0;
         private const double G3 = 1.0 / 6.0;

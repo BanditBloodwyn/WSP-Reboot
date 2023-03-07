@@ -12,7 +12,10 @@ namespace Assets._Project._Scripts.World.Generation
         {
             EntityManager entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
             Entity tile = entityManager.CreateEntity();
-            float height = CalculateHeight(xPos, yPos, parameters);
+           
+            float height = parameters.GenerateHeights 
+                ? CalculateHeight(xPos, yPos, parameters)
+                : 0;
 
             entityManager.AddComponent<LocalTransform>(tile);
             entityManager.SetComponentData(tile, new LocalTransform { Position = new float3(xPos, height, yPos) });

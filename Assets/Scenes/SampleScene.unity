@@ -756,8 +756,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _drawGizmos: 0
   _chunkParent: {fileID: 574594724}
+  _tileMaterial: {fileID: 2100000, guid: 16c81ca37932fb94082c49f92581abbe, type: 2}
   _worldCreationParameters:
-    WorldSize: 10
+    GenerateHeights: 1
+    WorldSize: 8
     ChunkSize: 64
     NoiseFilters:
     - rid: 6809958387191644162
@@ -766,20 +768,19 @@ MonoBehaviour:
     - VegetationZone: 0
       MaximumHeight: 0
     - VegetationZone: 1
-      MaximumHeight: 5
+      MaximumHeight: 3
     - VegetationZone: 2
-      MaximumHeight: 8
-    - VegetationZone: 3
       MaximumHeight: 10
+    - VegetationZone: 3
+      MaximumHeight: 15
     - VegetationZone: 4
-      MaximumHeight: 12
-    - VegetationZone: 5
-      MaximumHeight: 14
-    - VegetationZone: 6
       MaximumHeight: 16
+    - VegetationZone: 5
+      MaximumHeight: 20
+    - VegetationZone: 6
+      MaximumHeight: 25
     - VegetationZone: 7
       MaximumHeight: 100
-  _tileMaterial: {fileID: 2100000, guid: 16c81ca37932fb94082c49f92581abbe, type: 2}
   references:
     version: 2
     RefIds:
