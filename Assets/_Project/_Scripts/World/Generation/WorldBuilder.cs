@@ -7,6 +7,7 @@ using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 
 namespace Assets._Project._Scripts.World.Generation
 {
@@ -22,6 +23,11 @@ namespace Assets._Project._Scripts.World.Generation
         [BoxGroup("Creation")]
         [Title("")]
         [SerializeField] private WorldCreationParameters _worldCreationParameters;
+
+        [BoxGroup("Events")]
+        [SerializeField] private UnityEvent _worldGenerationFinished;
+        [BoxGroup("Events")]
+        [SerializeField] private UnityEvent _worldDestructionStarted;
 
         #region Unity
 
@@ -84,6 +90,8 @@ namespace Assets._Project._Scripts.World.Generation
                     yield return null;
                 }
             }
+
+            _worldGenerationFinished?.Invoke();
         }
 
         [Button(Icon = SdfIconType.Globe2, IconAlignment = IconAlignment.LeftOfText, ButtonHeight = 31)]
@@ -91,6 +99,7 @@ namespace Assets._Project._Scripts.World.Generation
         [GUIColor(0.7f, 0, 0)]
         public void DestroyWorld()
         {
+            _worldDestructionStarted?.Invoke();
             StopAllCoroutines();
 
             for (int i = _chunkParent.transform.childCount - 1; i >= 0; i--)
