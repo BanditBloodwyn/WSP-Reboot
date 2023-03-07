@@ -1,3 +1,5 @@
+using Cinemachine;
+using NUnit.Framework;
 using Sirenix.Utilities;
 using UnityEngine;
 
@@ -8,11 +10,21 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
         private bool _enabled;
         
         [SerializeField] private StrategicCameraSettings _settings;
+        [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+
+        private Vector3 _followOffset;
 
         #region Unity
 
+        private void Awake()
+        {
+            Assert.IsNotNull(_settings);
+            Assert.IsNotNull(_virtualCamera);
+        }
+
         private void Start()
         {
+            _followOffset = _virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset;
         }
 
         private void Update()
@@ -22,6 +34,7 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
 
             HandleRotation();
             HandlePosition();
+            HandleZoom();
         }
 
         private void OnDrawGizmos()
@@ -50,7 +63,6 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
 
         #endregion
 
-
         #region Control
 
         private void HandleRotation()
@@ -78,7 +90,29 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
             Vector3 translation = transform.forward * lookVertical + transform.right * lookHorizontal;
 
             transform.position += _settings.PanningSpeed * Time.deltaTime * translation;
-            transform.position = transform.position.Clamp(new Vector3(0, 0, 0), new Vector3(float.PositiveInfinity, 0, float.PositiveInfinity));
+            transform.position = transform.position.Clamp(
+                new Vector3(0, 0, 0), 
+                new Vector3(float.PositiveInfinity, 0, float.PositiveInfinity));
+        }
+
+        private void HandleZoom()
+        {
+            Vector3 zoomDirection = _followOffset.normalized * _settings.ZoomSpeed;
+
+            if (Input.mouseScrollDelta.y > 0)
+            {
+                if((_followOffset - zoomDirection).y > 5) 
+                    _followOffset -= zoomDirection;
+            }            
+            if (Input.mouseScrollDelta.y < 0)
+            {
+                _followOffset += zoomDirection;
+            }
+
+            _virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = Vector3.Lerp(
+                _virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset,
+                _followOffset,
+                _settings.ZoomDamping * Time.deltaTime);
         }
 
         #endregion
