@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc2288a3af51a8446931247c11ac8946, type: 3}
+  m_Script: {fileID: 11500000, guid: cd2024922723f1847bef7b120a063bfa, type: 3}
   m_Name: WorldCreationParameters
   m_EditorClassIdentifier: 
   GenerateHeights: 1
