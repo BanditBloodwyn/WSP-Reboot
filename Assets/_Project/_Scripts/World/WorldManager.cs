@@ -1,4 +1,4 @@
-using Assets._Project._Scripts.World.Generation;
+using Assets._Project._Scripts.World.Generation.old;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.World

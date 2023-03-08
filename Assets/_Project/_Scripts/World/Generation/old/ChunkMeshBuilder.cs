@@ -1,14 +1,14 @@
-﻿using Assets._Project._Scripts.World.Components;
-using Assets._Project._Scripts.World.ECS.Aspects;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Assets._Project._Scripts.World.Components;
+using Assets._Project._Scripts.World.ECS.Aspects;
 using Assets._Project._Scripts.World.Generation.Helper;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace Assets._Project._Scripts.World.Generation
+namespace Assets._Project._Scripts.World.Generation.old
 {
     public class ChunkMeshBuilder
     {

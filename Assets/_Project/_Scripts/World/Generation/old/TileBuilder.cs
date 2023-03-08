@@ -4,7 +4,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-namespace Assets._Project._Scripts.World.Generation
+namespace Assets._Project._Scripts.World.Generation.old
 {
     public class TileBuilder
     {

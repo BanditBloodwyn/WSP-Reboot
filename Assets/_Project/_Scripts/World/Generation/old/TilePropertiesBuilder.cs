@@ -4,7 +4,7 @@ using Assets._Project._Scripts.World.ECS.Aspects;
 using Assets._Project._Scripts.World.ECS.Components;
 using Unity.Entities;
 
-namespace Assets._Project._Scripts.World.Generation
+namespace Assets._Project._Scripts.World.Generation.old
 {
     public class TilePropertiesBuilder
     {

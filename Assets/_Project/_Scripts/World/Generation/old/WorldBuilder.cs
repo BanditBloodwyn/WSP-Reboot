@@ -1,7 +1,7 @@
-﻿using Assets._Project._Scripts.World.Components;
+﻿using System.Collections;
+using Assets._Project._Scripts.World.Components;
 using Assets._Project._Scripts.World.ECS.Components;
 using Sirenix.OdinInspector;
-using System.Collections;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Transforms;
@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
 
-namespace Assets._Project._Scripts.World.Generation
+namespace Assets._Project._Scripts.World.Generation.old
 {
     public class WorldBuilder : MonoBehaviour
     {

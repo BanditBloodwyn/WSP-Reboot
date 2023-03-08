@@ -3,7 +3,7 @@ using Assets._Project._Scripts.World.Generation.Math.NoiseFilters;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.World.Generation
+namespace Assets._Project._Scripts.World.Generation.old
 {
     [CreateAssetMenu(fileName = "WorldCreationParameters", menuName = "ScriptableObjects/Settings/World/World Creation Parameters")]
     public class WorldCreationParameters : ScriptableObject

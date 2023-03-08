@@ -1,12 +1,12 @@
-﻿using Assets._Project._Scripts.World.Components;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Assets._Project._Scripts.World.Components;
 using Assets._Project._Scripts.World.Data.Enums;
 using Assets._Project._Scripts.World.Data.Structs;
-using System.Collections.Generic;
-using System.Linq;
 using Unity.Entities;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.World.Generation
+namespace Assets._Project._Scripts.World.Generation.old
 {
     public class ChunkBuilder
     {
