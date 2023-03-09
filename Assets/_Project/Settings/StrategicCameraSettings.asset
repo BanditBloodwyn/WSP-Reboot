@@ -16,3 +16,69 @@ MonoBehaviour:
   RotationSpeed: 0.1
   ZoomSpeed: 2
   ZoomDamping: 10
+  PanningSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.025
+      outSlope: 0.025
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 12
+      value: 0.3
+      inSlope: 0.024307575
+      outSlope: 0.036241975
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.5531749
+      outWeight: 0.055296745
+    - serializedVersion: 3
+      time: 150
+      value: 6
+      inSlope: 0.041304346
+      outSlope: 0.041304346
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ZoomingSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.04
+      outSlope: 0.04
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 20
+      value: 0.8
+      inSlope: 0.05153846
+      outSlope: 0.05153846
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 150
+      value: 9
+      inSlope: 0.06307692
+      outSlope: 0.06307692
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

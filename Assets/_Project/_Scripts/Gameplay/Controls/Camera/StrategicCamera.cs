@@ -1,4 +1,3 @@
-using Assets._Project._Scripts.World.Generation;
 using Assets._Project._Scripts.World.Generation.Settings;
 using Cinemachine;
 using NUnit.Framework;
@@ -10,7 +9,7 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
     public class StrategicCamera : MonoBehaviour
     {
         private bool _enabled;
-        
+
         [SerializeField] private StrategicCameraSettings _settings;
         [SerializeField] private CinemachineVirtualCamera _virtualCamera;
         [SerializeField] private WorldCreationParameters _worldParameters;
@@ -54,7 +53,7 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
         public void Activate()
         {
             Debug.Log("<color=#73BD73>Activate StrategicCamera</color>");
-          
+
             _enabled = true;
         }
 
@@ -93,7 +92,9 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
 
             Vector3 translation = transform.forward * lookVertical + transform.right * lookHorizontal;
 
-            transform.position += _settings.PanningSpeed * Time.deltaTime * translation;
+            float speedFromHeight = _settings.PanningSpeedCurve.Evaluate(_virtualCamera.transform.position.y);
+            transform.position += _settings.PanningSpeed * speedFromHeight * Time.deltaTime * translation;
+
             transform.position = transform.position.Clamp(
                 new Vector3(
                     -_worldParameters.ChunkSize / 2.0f,
@@ -107,13 +108,15 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
 
         private void HandleZoom()
         {
-            Vector3 zoomDirection = _followOffset.normalized * _settings.ZoomSpeed;
+            float speedFromHeight = _settings.ZoomingSpeedCurve.Evaluate(_virtualCamera.transform.position.y);
+
+            Vector3 zoomDirection = _followOffset.normalized * _settings.ZoomSpeed * speedFromHeight;
 
             if (Input.mouseScrollDelta.y > 0)
             {
-                if((_followOffset - zoomDirection).y > 5) 
+                if ((_followOffset - zoomDirection).y > 5)
                     _followOffset -= zoomDirection;
-            }            
+            }
             if (Input.mouseScrollDelta.y < 0)
             {
                 _followOffset += zoomDirection;
