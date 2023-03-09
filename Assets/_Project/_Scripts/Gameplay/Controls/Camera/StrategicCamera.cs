@@ -38,6 +38,7 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
             HandleRotation();
             HandlePosition();
             HandleZoom();
+            HandlePitch();
         }
 
         private void OnDrawGizmos()
@@ -121,6 +122,29 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
             {
                 _followOffset += zoomDirection;
             }
+
+            _virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = Vector3.Lerp(
+                _virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset,
+                _followOffset,
+                _settings.ZoomDamping * Time.deltaTime);
+        }
+
+        private void HandlePitch()
+        {
+            Cursor.visible = !Input.GetMouseButton(2);
+            Cursor.lockState = Input.GetMouseButton(2) ? CursorLockMode.Locked : CursorLockMode.None;
+
+            if (Input.GetMouseButton(2) == false)
+                return;
+
+            float lookVertical = Input.GetAxis("Mouse Y");
+            _followOffset = new Vector3(
+                _followOffset.x,
+                Mathf.Clamp(
+                    _followOffset.y + lookVertical * _settings.PitchSpeed * _settings.ZoomingSpeedCurve.Evaluate(_virtualCamera.transform.position.y),
+                    Mathf.Abs(_followOffset.z) * 0.5f, 
+                    Mathf.Abs(_followOffset.z) * 2),
+                _followOffset.z);
 
             _virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = Vector3.Lerp(
                 _virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset,

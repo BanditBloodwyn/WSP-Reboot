@@ -16,6 +16,7 @@ MonoBehaviour:
   RotationSpeed: 0.1
   ZoomSpeed: 2
   ZoomDamping: 10
+  PitchSpeed: 0.05
   PanningSpeedCurve:
     serializedVersion: 2
     m_Curve:
