@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Assets._Project._Scripts.World.Components;
+using Assets._Project._Scripts.World.Generation;
 
 namespace Assets._Project._Scripts.World
 {

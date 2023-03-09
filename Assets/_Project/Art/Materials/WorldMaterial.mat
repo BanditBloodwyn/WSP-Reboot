@@ -79,7 +79,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Alpine_BushesHeight: 20
-    - _Alpine_TreesHeight: 16
+    - _Alpine_TreesHeight: 18
     - _KollineHeight: 3
     - _MontaneHeight: 10
     - _NivaleHeight: 100

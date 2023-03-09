@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e6b171debd9e54ebe5f54d84a1979e, type: 3}
+  m_Name: WorldCreationParameters
+  m_EditorClassIdentifier: 
+  WorldSize: 4
+  ChunkSize: 64
+  GenerationComponents:
+  - rid: 6809958500753473541
+  - rid: 6809958500753473549
+  - rid: 6809958500753473554
+  - rid: 6809958500753473548
+  - rid: 6809958500753473540
+  references:
+    version: 2
+    RefIds:
+    - rid: 6809958500753473540
+      type: {class: GameObjectBuilderComponent, ns: Assets._Project._Scripts.World.Generation.GenerationComponents,
+        asm: Assembly-CSharp}
+      data:
+        _enabled: 1
+        _chunkParent: {fileID: 0}
+        _tileMaterial: {fileID: 2100000, guid: 16c81ca37932fb94082c49f92581abbe, type: 2}
+        _vegetationZoneSettings: {fileID: 11400000, guid: ab265ad2426712c42a22992e47e60d37,
+          type: 2}
+    - rid: 6809958500753473541
+      type: {class: TileGeneratorComponent, ns: Assets._Project._Scripts.World.Generation.GenerationComponents,
+        asm: Assembly-CSharp}
+      data:
+        _enabled: 1
+    - rid: 6809958500753473548
+      type: {class: MeshBuilderComponent, ns: Assets._Project._Scripts.World.Generation.GenerationComponents.Mesh,
+        asm: Assembly-CSharp}
+      data:
+        _enabled: 1
+    - rid: 6809958500753473549
+      type: {class: TerrainBuilderComponent, ns: Assets._Project._Scripts.World.Generation.GenerationComponents.Terrain,
+        asm: Assembly-CSharp}
+      data:
+        _enabled: 1
+        _noiseParameters: {fileID: 11400000, guid: 84cccd3d83ed02643bbef60cfcc90a6e,
+          type: 2}
+    - rid: 6809958500753473554
+      type: {class: TileDataBuilderComponent, ns: Assets._Project._Scripts.World.Generation.GenerationComponents.TileData,
+        asm: Assembly-CSharp}
+      data:
+        _enabled: 1
+        _vegetationZoneSettings: {fileID: 11400000, guid: ab265ad2426712c42a22992e47e60d37,
+          type: 2}

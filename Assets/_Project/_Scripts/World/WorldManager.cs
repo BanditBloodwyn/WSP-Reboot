@@ -1,4 +1,4 @@
-using Assets._Project._Scripts.World.Generation;
+﻿using Assets._Project._Scripts.World.Generation;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.World
@@ -9,17 +9,10 @@ namespace Assets._Project._Scripts.World
 
         private void Start()
         {
-
         }
 
         private void Update()
         {
-
-        }
-
-        public void BuildNewWorld()
-        {
-            _worldBuilder.BuildNewWorld();
         }
     }
 }

@@ -1,7 +1,8 @@
-﻿using Assets._Project._Scripts.World.Components;
+﻿using System.Collections;
 using Assets._Project._Scripts.World.ECS.Components;
+using Assets._Project._Scripts.World.Generation.GenerationComponents;
+using Assets._Project._Scripts.World.Generation.Settings;
 using Sirenix.OdinInspector;
-using System.Collections;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Transforms;
@@ -15,18 +16,15 @@ namespace Assets._Project._Scripts.World.Generation
     {
         [SerializeField] private bool _drawGizmos;
 
-        [BoxGroup("Creation")]
+        [FoldoutGroup("Creation")]
         [SerializeField] private Transform _chunkParent;
-        [BoxGroup("Creation")]
-        [SerializeField] private Material _tileMaterial;
-        
-        [BoxGroup("Creation")]
-        [Title("")]
+
+        [FoldoutGroup("Creation")]
         [SerializeField] private WorldCreationParameters _worldCreationParameters;
 
-        [BoxGroup("Events")]
+        [FoldoutGroup("Events")]
         [SerializeField] private UnityEvent _worldGenerationFinished;
-        [BoxGroup("Events")]
+        [FoldoutGroup("Events")]
         [SerializeField] private UnityEvent _worldDestructionStarted;
 
         #region Unity
@@ -34,6 +32,7 @@ namespace Assets._Project._Scripts.World.Generation
         private void Awake()
         {
             Assert.IsNotNull(_chunkParent);
+            Assert.IsNotNull(_worldCreationParameters);
         }
 
         private void Start()
@@ -80,13 +79,23 @@ namespace Assets._Project._Scripts.World.Generation
 
         private IEnumerator BuildWorld()
         {
-            ChunkBuilder.AdjustMaterialSettings(_tileMaterial, _worldCreationParameters.vegetationZoneHeights);
-
             for (int x = 0; x < _worldCreationParameters.WorldSize; x++)
             {
                 for (int y = 0; y < _worldCreationParameters.WorldSize; y++)
                 {
-                    ChunkBuilder.Build(x, y, _worldCreationParameters, _chunkParent, _tileMaterial);
+                    Chunk chunk = new Chunk();
+
+                    chunk.ID = y * _worldCreationParameters.ChunkSize + x;
+                    chunk.Coordinates = new Vector2Int(x, y);
+                    chunk.Size = _worldCreationParameters.ChunkSize;
+
+                    foreach (IGenerationComponent component in _worldCreationParameters.GenerationComponents)
+                        if(component != null && component.Enabled) 
+                            component.Apply(chunk);
+
+                    World.Instance.Chunks.Add(chunk);
+
+                    
                     yield return null;
                 }
             }

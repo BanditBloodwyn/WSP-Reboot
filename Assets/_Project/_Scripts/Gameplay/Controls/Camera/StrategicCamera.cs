@@ -1,4 +1,5 @@
 using Assets._Project._Scripts.World.Generation;
+using Assets._Project._Scripts.World.Generation.Settings;
 using Cinemachine;
 using NUnit.Framework;
 using Sirenix.Utilities;
@@ -52,14 +53,14 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
 
         public void Activate()
         {
-            Debug.Log("<color=green>Activate StrategicCamera");
+            Debug.Log("<color=#73BD73>Activate StrategicCamera</color>");
           
             _enabled = true;
         }
 
         public void Deactivate()
         {
-            Debug.Log("Deactivate StrategicCamera");
+            Debug.Log("<color=orange>Deactivate StrategicCamera</color>");
 
             _enabled = false;
         }
