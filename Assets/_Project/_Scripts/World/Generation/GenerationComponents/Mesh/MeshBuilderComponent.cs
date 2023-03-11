@@ -21,7 +21,7 @@ namespace Assets._Project._Scripts.World.Generation.GenerationComponents.Mesh
 
             foreach (Entity tileEntity in chunk.Tiles)
             {
-                TileAspect tileAspect = entityManager.GetAspect<TileAspect>(tileEntity);
+                EmptyTileAspect tileAspect = entityManager.GetAspect<EmptyTileAspect>(tileEntity);
                 tilePositions.Add(tileAspect.Position);
             }
 

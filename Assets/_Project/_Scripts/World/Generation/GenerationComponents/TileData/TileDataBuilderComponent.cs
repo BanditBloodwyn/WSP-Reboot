@@ -28,7 +28,7 @@ namespace Assets._Project._Scripts.World.Generation.GenerationComponents.TileDat
 
         private TilePropertiesComponentData BuildTileProperties(Entity tile, EntityManager entityManager)
         {
-            TileAspect tileAspect = entityManager.GetAspect<TileAspect>(tile);
+            EmptyTileAspect tileAspect = entityManager.GetAspect<EmptyTileAspect>(tile);
             float height = tileAspect.Position.y;
 
             TilePropertiesComponentData data = new TilePropertiesComponentData();

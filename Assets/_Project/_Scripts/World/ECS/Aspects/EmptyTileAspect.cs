@@ -5,16 +5,14 @@ using Unity.Transforms;
 
 namespace Assets._Project._Scripts.World.ECS.Aspects
 {
-    public readonly partial struct TileAspect : IAspect
+    public readonly partial struct EmptyTileAspect : IAspect
     {
         public readonly Entity Entity;
 
         private readonly TransformAspect _transformAspect;
 
         private readonly RefRO<ChunkAssignmentComponentData> _chunkAssignment;
-        private readonly RefRW<TilePropertiesComponentData> _tileProperties;
 
         public float3 Position => _transformAspect.LocalPosition;
-
     }
 }

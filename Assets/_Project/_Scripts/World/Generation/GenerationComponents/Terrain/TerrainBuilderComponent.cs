@@ -21,7 +21,7 @@ namespace Assets._Project._Scripts.World.Generation.GenerationComponents.Terrain
 
             foreach (Entity tileEntity in chunk.Tiles)
             {
-                TileAspect tileAspect = entityManager.GetAspect<TileAspect>(tileEntity);
+                EmptyTileAspect tileAspect = entityManager.GetAspect<EmptyTileAspect>(tileEntity);
                 
                 float height = CalculateHeight(tileAspect.Position.x, tileAspect.Position.z);
               
