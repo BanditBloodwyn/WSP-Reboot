@@ -50,7 +50,7 @@ namespace Assets._Project._Scripts.World.Generation
             if (!_drawGizmos)
                 return;
 
-            foreach (Chunk chunk in World.Instance.Chunks)
+            foreach (Chunk chunk in Landscape.Instance.Chunks)
             {
                 Gizmos.DrawWireCube(new Vector3(chunk.Size * chunk.Coordinates.x, 0, chunk.Size * chunk.Coordinates.y), new Vector3(chunk.Size, 0, chunk.Size));
             }
@@ -93,7 +93,7 @@ namespace Assets._Project._Scripts.World.Generation
                         if(component != null && component.Enabled) 
                             component.Apply(chunk);
 
-                    World.Instance.Chunks.Add(chunk);
+                    Landscape.Instance.Chunks.Add(chunk);
 
                     
                     yield return null;
@@ -121,7 +121,7 @@ namespace Assets._Project._Scripts.World.Generation
             foreach (Entity tile in entityQuery.ToEntityArray(Allocator.Temp))
                 Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager.DestroyEntity(tile);
 
-            World.Instance.Chunks.Clear();
+            Landscape.Instance.Chunks.Clear();
         }
     }
 }

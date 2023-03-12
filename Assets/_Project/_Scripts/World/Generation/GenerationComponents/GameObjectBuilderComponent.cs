@@ -18,7 +18,9 @@ namespace Assets._Project._Scripts.World.Generation.GenerationComponents
         {
             GameObject chunkObject = new($"Chunk{chunk.ID}");
             chunkObject.transform.position = new Vector3(chunk.Coordinates.x * chunk.Size, 0, chunk.Coordinates.y * chunk.Size);
-            chunkObject.transform.parent = _chunkParent;
+            chunkObject.transform.parent = _chunkParent != null 
+                ? _chunkParent 
+                : GameObject.Find("#Chunks").transform;
 
             MeshFilter meshFilter = chunkObject.AddComponent<MeshFilter>();
             meshFilter.sharedMesh = chunk.Mesh;
