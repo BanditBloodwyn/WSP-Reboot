@@ -16,5 +16,9 @@ namespace Assets._Project._Scripts.World.ECS.Aspects
 
         public float3 Position => _transformAspect.LocalPosition;
 
+        public string GetVegetationZone()
+        {
+            return _tileProperties.ValueRO.VegetationZone.ToString();
+        }
     }
 }

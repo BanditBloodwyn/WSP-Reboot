@@ -1,14 +1,15 @@
 using Assets._Project._Scripts.UI.Core;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets._Project._Scripts.UI.Controls
 {
     public class Popup : MonoBehaviour
     {
         [SerializeField] private TMP_Text _header;
-        [SerializeField] private GameObject _contentPanel;
+        [SerializeField] private Transform _contentPanel;
+
+        public string ContentIdentifier => _header.text;
 
         public void ApplyData(IUIDataContainer data)
         {
@@ -18,7 +19,7 @@ namespace Assets._Project._Scripts.UI.Controls
 
         public void Close()
         {
-            Destroy(gameObject);
+            UIManager.Instance.ClosePopup(this);
         }
     }
 }
