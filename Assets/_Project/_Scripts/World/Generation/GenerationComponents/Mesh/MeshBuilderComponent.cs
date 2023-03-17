@@ -11,17 +11,16 @@ namespace Assets._Project._Scripts.World.Generation.GenerationComponents.Mesh
     public class MeshBuilderComponent : IGenerationComponent
     {
         [SerializeField] private bool _enabled;
+
         public bool Enabled => _enabled;
 
         public void Apply(Chunk chunk)
         {
-            EntityManager entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
-
             List<float3> tilePositions = new();
 
             foreach (Entity tileEntity in chunk.Tiles)
             {
-                EmptyTileAspect tileAspect = entityManager.GetAspect<EmptyTileAspect>(tileEntity);
+                EmptyTileAspect tileAspect = tileEntity.GetEmptyTileAspect();
                 tilePositions.Add(tileAspect.Position);
             }
 

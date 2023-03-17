@@ -3,7 +3,6 @@ using Assets._Project._Scripts.World.Generation.GenerationComponents.Terrain.Mat
 using Assets._Project._Scripts.World.Generation.Settings;
 using Unity.Entities;
 using Unity.Mathematics;
-using Unity.Transforms;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.World.Generation.GenerationComponents.Terrain
@@ -17,17 +16,12 @@ namespace Assets._Project._Scripts.World.Generation.GenerationComponents.Terrain
 
         public void Apply(Chunk chunk)
         {
-            EntityManager entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
-
             foreach (Entity tileEntity in chunk.Tiles)
             {
-                EmptyTileAspect tileAspect = entityManager.GetAspect<EmptyTileAspect>(tileEntity);
+                EmptyTileAspect tileAspect = tileEntity.GetEmptyTileAspect();
                 
                 float height = CalculateHeight(tileAspect.Position.x, tileAspect.Position.z);
-              
-                entityManager.SetComponentData(
-                    tileAspect.Entity,
-                    new LocalTransform { Position = new float3(tileAspect.Position.x, height, tileAspect.Position.z) });
+                tileAspect.Entity.SetTilePosition(new float3(tileAspect.Position.x, height, tileAspect.Position.z));
             }
         }
 

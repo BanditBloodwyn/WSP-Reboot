@@ -17,18 +17,13 @@ namespace Assets._Project._Scripts.World.Generation.GenerationComponents.TileDat
 
         public void Apply(Chunk chunk)
         {
-            EntityManager entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
-
             foreach (Entity tile in chunk.Tiles)
-            {
-                entityManager.AddComponent<TilePropertiesComponentData>(tile);
-                entityManager.SetComponentData(tile, BuildTileProperties(tile, entityManager));
-            }
+                tile.AddTileProperties(BuildTileProperties(tile));
         }
 
-        private TilePropertiesComponentData BuildTileProperties(Entity tile, EntityManager entityManager)
+        private TilePropertiesComponentData BuildTileProperties(Entity tile)
         {
-            EmptyTileAspect tileAspect = entityManager.GetAspect<EmptyTileAspect>(tile);
+            EmptyTileAspect tileAspect = tile.GetEmptyTileAspect();
             float height = tileAspect.Position.y;
 
             TilePropertiesComponentData data = new TilePropertiesComponentData();
