@@ -8,22 +8,23 @@ namespace Assets._Project._Scripts.World
 {
     public static class TileMethods
     {
-        private static EntityManager _entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
-
         public static EmptyTileAspect GetEmptyTileAspect(this Entity entity)
         {
-            return _entityManager.GetAspect<EmptyTileAspect>(entity);
+            EntityManager entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
+            return entityManager.GetAspect<EmptyTileAspect>(entity);
         }
 
         public static void SetTilePosition(this Entity entity, float3 position)
         {
-            _entityManager.SetComponentData(entity, new LocalTransform { Position = position });
+            EntityManager entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
+            entityManager.SetComponentData(entity, new LocalTransform { Position = position });
         }
 
         public static void AddTileProperties(this Entity entity, TilePropertiesComponentData data) 
         {
-            _entityManager.AddComponent<TilePropertiesComponentData>(entity);
-            _entityManager.SetComponentData(entity, data);
+            EntityManager entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
+            entityManager.AddComponent<TilePropertiesComponentData>(entity);
+            entityManager.SetComponentData(entity, data);
         }
     }
 }

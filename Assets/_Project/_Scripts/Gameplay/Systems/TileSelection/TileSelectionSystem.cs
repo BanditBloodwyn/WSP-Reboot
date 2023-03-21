@@ -1,11 +1,11 @@
-﻿using Assets._Project._Scripts.Gameplay.Systems.TileSelection.Settings;
+﻿using Assets._Project._Scripts.Gameplay.Helper;
+using Assets._Project._Scripts.Gameplay.Systems.TileSelection.Settings;
 using Assets._Project._Scripts.UI;
 using Assets._Project._Scripts.UI.DataContainer;
 using Assets._Project._Scripts.World.ECS.Aspects;
 using Assets._Project._Scripts.World.Generation;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.EventSystems;
 
 namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection
 {
@@ -41,6 +41,8 @@ namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection
 
             if (Input.GetMouseButtonUp(0))
                 SelectTile();
+
+            _selector.gameObject.SetActive(!Input.GetMouseButton(2));
         }
 
         #endregion
@@ -49,7 +51,7 @@ namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection
 
         private bool UpdateTilePointingAt()
         {
-            Vector3 currentSelectionPosition = UpdateCurrentSelectionPosition(out ChunkComponent chunk);
+            Vector3 currentSelectionPosition = PointerHelper.GetCurrentSelectionPosition(out ChunkComponent chunk);
             if (currentSelectionPosition == Vector3.zero)
                 return false;
 
@@ -58,23 +60,6 @@ namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection
 
             UpdateSelectorPosition((Vector3)_currentPointedTile.Position + Vector3.up * 0.01f);
             return true;
-        }
-
-        private static Vector3 UpdateCurrentSelectionPosition(out ChunkComponent chunk)
-        {
-            chunk = null;
-
-            if (EventSystem.current.IsPointerOverGameObject())
-                return Vector3.zero;
-
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if(Physics.Raycast(ray, out RaycastHit hit))
-            {
-                chunk = hit.transform.GetComponent<ChunkComponent>();
-                return hit.point;
-            }                
-            return Vector3.zero;
         }
 
         private void UpdateSelectorPosition(Vector3 currentSelectionTilePosition)

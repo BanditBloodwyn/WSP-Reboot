@@ -1,86 +1,52 @@
+﻿using Assets._Project._Scripts.Core.Extentions;
+using Assets._Project._Scripts.Gameplay.Helper;
 using Assets._Project._Scripts.World.Generation.Settings;
-using Cinemachine;
 using NUnit.Framework;
 using Sirenix.Utilities;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.Gameplay.Controls.Camera
 {
-    public class StrategicCamera : MonoBehaviour
+    [CreateAssetMenu(fileName = "StrategicCamera", menuName = "ScriptableObjects/Cameras/Strategic Camera")]
+    public class StrategicCamera : ScriptableObject, ICameraController
     {
-        private bool _enabled;
-
+        [SerializeField] private Transform _cameraTransform;
         [SerializeField] private StrategicCameraSettings _settings;
-        [SerializeField] private CinemachineVirtualCamera _virtualCamera;
         [SerializeField] private WorldCreationParameters _worldParameters;
 
-        private Vector3 _followOffset;
-
-        #region Unity
+        private float _pitch;
+        private float _yaw;
 
         private void Awake()
         {
+            Assert.IsNotNull(_cameraTransform);
             Assert.IsNotNull(_settings);
-            Assert.IsNotNull(_virtualCamera);
             Assert.IsNotNull(_worldParameters);
         }
 
-        private void Start()
+        public void Execute()
         {
-            _followOffset = _virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset;
-        }
-
-        private void Update()
-        {
-            if (!_enabled)
-                return;
-
             HandleRotation();
             HandlePosition();
             HandleZoom();
-            HandlePitch();
         }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(transform.position, 1.0f);
-        }
-
-        #endregion
-
-        #region EventResponses
-
-        public void Activate()
-        {
-            Debug.Log("<color=#73BD73>Activate StrategicCamera</color>");
-
-            _enabled = true;
-        }
-
-        public void Deactivate()
-        {
-            Debug.Log("<color=orange>Deactivate StrategicCamera</color>");
-
-            _enabled = false;
-        }
-
-        #endregion
-
-        #region Control
 
         private void HandleRotation()
         {
             Cursor.visible = !Input.GetMouseButton(2);
-            Cursor.lockState = Input.GetMouseButton(2) ? CursorLockMode.Locked : CursorLockMode.None;
 
             if (Input.GetMouseButton(2) == false)
                 return;
 
-            float lookHorizontal = Input.GetAxis("Mouse X");
-            float rotationY = lookHorizontal * _settings.RotationSpeed;
+            float yaw = Input.GetAxis("Mouse X") * _settings.YawSpeed * Time.deltaTime;
+            float pitchDelta = Input.GetAxis("Mouse Y") * _settings.PitchSpeed * Time.deltaTime;
 
-            transform.eulerAngles += new Vector3(0, rotationY, 0);
+            _cameraTransform.RotateAround(PointerHelper.GetCurrentViewPosition(), Vector3.up, yaw);
+           
+            float pitch = _cameraTransform.rotation.eulerAngles.x;
+
+            if((pitch > 20 || pitchDelta > 0) && (pitch < 80 || pitchDelta < 0)) 
+                _cameraTransform.Rotate(Vector3.right, pitchDelta);
         }
 
         private void HandlePosition()
@@ -91,67 +57,36 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
             float lookHorizontal = -Input.GetAxis("Mouse X");
             float lookVertical = -Input.GetAxis("Mouse Y");
 
-            Vector3 translation = transform.forward * lookVertical + transform.right * lookHorizontal;
+            Vector3 translation = _cameraTransform.forward.Get2D() * lookVertical + 
+                                  _cameraTransform.right.Get2D() * lookHorizontal;
 
-            float speedFromHeight = _settings.PanningSpeedCurve.Evaluate(_virtualCamera.transform.position.y);
-            transform.position += _settings.PanningSpeed * speedFromHeight * Time.deltaTime * translation;
+            float speedFromHeight = _settings.PanningSpeedCurve.Evaluate(_cameraTransform.position.y);
+            _cameraTransform.position += _settings.PanningSpeed * speedFromHeight * Time.deltaTime * translation;
 
-            transform.position = transform.position.Clamp(
+            _cameraTransform.position = _cameraTransform.position.Clamp(
                 new Vector3(
                     -_worldParameters.ChunkSize / 2.0f,
-                    0,
+                    3,
                     -_worldParameters.ChunkSize / 2.0f),
                 new Vector3(
                     _worldParameters.WorldSize * _worldParameters.ChunkSize - _worldParameters.ChunkSize / 2,
-                    0,
+                    100,
                     _worldParameters.WorldSize * _worldParameters.ChunkSize - _worldParameters.ChunkSize / 2));
         }
 
         private void HandleZoom()
         {
-            float speedFromHeight = _settings.ZoomingSpeedCurve.Evaluate(_virtualCamera.transform.position.y);
-
-            Vector3 zoomDirection = _followOffset.normalized * _settings.ZoomSpeed * speedFromHeight;
-
-            if (Input.mouseScrollDelta.y > 0)
-            {
-                if ((_followOffset - zoomDirection).y > 5)
-                    _followOffset -= zoomDirection;
-            }
-            if (Input.mouseScrollDelta.y < 0)
-            {
-                _followOffset += zoomDirection;
-            }
-
-            _virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = Vector3.Lerp(
-                _virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset,
-                _followOffset,
-                _settings.ZoomDamping * Time.deltaTime);
-        }
-
-        private void HandlePitch()
-        {
-            Cursor.visible = !Input.GetMouseButton(2);
-            Cursor.lockState = Input.GetMouseButton(2) ? CursorLockMode.Locked : CursorLockMode.None;
-
-            if (Input.GetMouseButton(2) == false)
+            if (Mathf.Abs(Input.mouseScrollDelta.y) == 0)
                 return;
 
-            float lookVertical = Input.GetAxis("Mouse Y");
-            _followOffset = new Vector3(
-                _followOffset.x,
-                Mathf.Clamp(
-                    _followOffset.y + lookVertical * _settings.PitchSpeed * _settings.ZoomingSpeedCurve.Evaluate(_virtualCamera.transform.position.y),
-                    Mathf.Abs(_followOffset.z) * 0.5f, 
-                    Mathf.Abs(_followOffset.z) * 2),
-                _followOffset.z);
+            float speedFromHeight = _settings.ZoomingSpeedCurve.Evaluate(_cameraTransform.position.y);
 
-            _virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = Vector3.Lerp(
-                _virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset,
-                _followOffset,
-                _settings.ZoomDamping * Time.deltaTime);
+            Vector3 zoomDirection = _settings.ZoomSpeed * speedFromHeight * Time.deltaTime * _cameraTransform.forward;
+
+            if (Input.mouseScrollDelta.y > 0)
+                _cameraTransform.position += zoomDirection;
+            if (Input.mouseScrollDelta.y < 0)
+                _cameraTransform.position -= zoomDirection;
         }
-
-        #endregion
     }
 }

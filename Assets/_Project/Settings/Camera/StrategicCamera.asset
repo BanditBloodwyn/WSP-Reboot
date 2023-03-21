@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f19f88704c14f4cb671458cc077b2c, type: 3}
+  m_Name: StrategicCamera
+  m_EditorClassIdentifier: 
+  _cameraTransform: {fileID: 0}
+  _settings: {fileID: 11400000, guid: 93a195b02762ac4478a2892f2db95ee0, type: 2}
+  _worldParameters: {fileID: 11400000, guid: d8346ac90e2dd4145af23eadd759070e, type: 2}

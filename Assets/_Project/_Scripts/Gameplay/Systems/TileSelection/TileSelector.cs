@@ -20,6 +20,9 @@ namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection
 
         public void StartMoveToPosition(Vector3 newPosition)
         {
+            if(!gameObject.activeSelf)
+                return;
+
             _startPosition = transform.position;
             _endPosition = newPosition;
         
