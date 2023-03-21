@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: CinematicCamera
   m_EditorClassIdentifier: 
   _cameraTransform: {fileID: 0}
+  _cameraHandler: {fileID: 0}
   _settings: {fileID: 11400000, guid: 4200624158c225f42b57281a3362f186, type: 2}
   _worldParameters: {fileID: 11400000, guid: d8346ac90e2dd4145af23eadd759070e, type: 2}

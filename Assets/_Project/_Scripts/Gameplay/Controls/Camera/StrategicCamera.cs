@@ -24,6 +24,10 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
             Assert.IsNotNull(_worldParameters);
         }
 
+        public void ResetController()
+        {
+        }
+
         public void Execute()
         {
             HandleRotation();

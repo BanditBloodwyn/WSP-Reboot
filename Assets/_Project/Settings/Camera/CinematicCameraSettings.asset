@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f503390e6627eee499187a90ac41c856, type: 3}
   m_Name: CinematicCameraSettings
   m_EditorClassIdentifier: 
+  ShotDuration: 9.07
+  MaximumShotDistance: 20

@@ -18,6 +18,8 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
 
         private void Start()
         {
+            if (_cameraType is ICameraController cameraController)
+                cameraController.ResetController();
         }
 
         private void Update()
