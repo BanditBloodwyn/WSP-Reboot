@@ -13,39 +13,39 @@ MonoBehaviour:
   m_Name: NoiseParameters
   m_EditorClassIdentifier: 
   NoiseFilters:
-  - rid: 6809958500753473552
-  - rid: 6809958500753473553
+  - rid: 6809958843202404357
+  - rid: 6809958843202404359
   references:
     version: 2
     RefIds:
-    - rid: 6809958500753473552
-      type: {class: StandardNoiseFilter, ns: Assets._Project._Scripts.World.Generation.GenerationComponents.Terrain.Math.NoiseFilters,
+    - rid: 6809958843202404357
+      type: {class: StandardNoiseFilter, ns: Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Terrain.Math.NoiseFilters,
         asm: Assembly-CSharp}
       data:
         _numberOfLayers: 4
-        _strength: 1.81
-        _minValue: 1.27
+        _strength: 6.2
+        _minValue: 5
         _maxValue: 100
         _center:
           x: 0
           y: 0
           z: 0
         _baseRoughness: 0.002
-        _roughness: 6.86
-        _persistance: 0.2
-    - rid: 6809958500753473553
-      type: {class: RigidNoiseFilter, ns: Assets._Project._Scripts.World.Generation.GenerationComponents.Terrain.Math.NoiseFilters,
+        _roughness: 4.11
+        _persistance: 0.34
+    - rid: 6809958843202404359
+      type: {class: RigidNoiseFilter, ns: Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Terrain.Math.NoiseFilters,
         asm: Assembly-CSharp}
       data:
         _numberOfLayers: 6
-        _strength: 8.89
+        _strength: 10
         _minValue: 0
         _maxValue: 100
         _center:
           x: 0
           y: 0
           z: 0
-        _baseRoughness: 0.005
-        _roughness: 0.17
-        _persistance: 9.83
-        _weightMultiplier: 0.11
+        _baseRoughness: 0.008
+        _roughness: 0.15
+        _persistance: 1.26
+        _weightMultiplier: 0

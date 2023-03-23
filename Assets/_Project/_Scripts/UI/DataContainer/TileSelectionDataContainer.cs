@@ -1,9 +1,9 @@
 ﻿using Assets._Project._Scripts.Core.Enum.PrefabLists;
 using Assets._Project._Scripts.UI.Controls;
 using Assets._Project._Scripts.UI.Core;
-using Assets._Project._Scripts.World.ECS.Aspects;
 using TMPro;
 using UnityEngine;
+using TileAspect = Assets._Project._Scripts.WorldMap.ECS.Aspects.TileAspect;
 
 namespace Assets._Project._Scripts.UI.DataContainer
 {

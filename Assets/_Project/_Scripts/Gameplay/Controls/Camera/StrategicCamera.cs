@@ -1,6 +1,6 @@
 ﻿using Assets._Project._Scripts.Core.Extentions;
 using Assets._Project._Scripts.Gameplay.Helper;
-using Assets._Project._Scripts.World.Generation.Settings;
+using Assets._Project._Scripts.WorldMap.Generation.Settings;
 using NUnit.Framework;
 using Sirenix.Utilities;
 using UnityEngine;
@@ -74,7 +74,7 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
                     -_worldParameters.ChunkSize / 2.0f),
                 new Vector3(
                     _worldParameters.WorldSize * _worldParameters.ChunkSize - _worldParameters.ChunkSize / 2,
-                    100,
+                    1000,
                     _worldParameters.WorldSize * _worldParameters.ChunkSize - _worldParameters.ChunkSize / 2));
         }
 

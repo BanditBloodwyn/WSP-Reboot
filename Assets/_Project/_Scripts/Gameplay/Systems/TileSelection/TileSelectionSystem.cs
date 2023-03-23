@@ -2,10 +2,11 @@
 using Assets._Project._Scripts.Gameplay.Systems.TileSelection.Settings;
 using Assets._Project._Scripts.UI;
 using Assets._Project._Scripts.UI.DataContainer;
-using Assets._Project._Scripts.World.ECS.Aspects;
-using Assets._Project._Scripts.World.Generation;
+using Assets._Project._Scripts.WorldMap;
+using Assets._Project._Scripts.WorldMap.Generation;
 using UnityEngine;
 using UnityEngine.Assertions;
+using TileAspect = Assets._Project._Scripts.WorldMap.ECS.Aspects.TileAspect;
 
 namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection
 {
@@ -55,7 +56,7 @@ namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection
             if (currentSelectionPosition == Vector3.zero)
                 return false;
 
-            if (!World.Landscape.Instance.TryGetTileFromChunkAndPosition(chunk, currentSelectionPosition, out _currentPointedTile))
+            if (!Landscape.Instance.TryGetTileFromChunkAndPosition(chunk, currentSelectionPosition, out _currentPointedTile))
                 return false;
 
             UpdateSelectorPosition((Vector3)_currentPointedTile.Position + Vector3.up * 0.01f);
