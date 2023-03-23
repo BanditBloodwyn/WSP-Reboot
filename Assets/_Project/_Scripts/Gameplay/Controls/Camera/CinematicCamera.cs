@@ -31,6 +31,7 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
                 _cameraHandler = _cameraTransform.GetComponent<CameraHandler>();
 
             _cameraHandler.StopCoroutine(Move());
+
             _started = false;
            
             Debug.Log("Reset Cinematics");
