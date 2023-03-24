@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using Assets._Project._Scripts.WorldMap.Generation.Settings;
-using Unity.Assertions;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Assets._Project._Scripts.Gameplay.Controls.Camera
 {
