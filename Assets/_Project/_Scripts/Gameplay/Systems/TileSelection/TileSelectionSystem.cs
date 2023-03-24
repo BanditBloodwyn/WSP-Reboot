@@ -6,6 +6,7 @@ using Assets._Project._Scripts.WorldMap;
 using Assets._Project._Scripts.WorldMap.Generation;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.EventSystems;
 using TileAspect = Assets._Project._Scripts.WorldMap.ECS.Aspects.TileAspect;
 
 namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection
@@ -37,8 +38,9 @@ namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection
 
         private void Update()
         {
-            if (!UpdateTilePointingAt())
-                return;
+            if(_settings.RealTimeSelectorMovement) 
+                if (!UpdateTilePointingAt()) 
+                    return;
 
             if (Input.GetMouseButtonUp(0))
                 SelectTile();
@@ -78,6 +80,10 @@ namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection
 
         private void SelectTile()
         {
+            if (!_settings.RealTimeSelectorMovement)
+                if (!UpdateTilePointingAt())
+                    return;
+
             UIManager.Instance.OpenMovablePopup(new TileSelectionDataContainer(_currentPointedTile));
         }
 

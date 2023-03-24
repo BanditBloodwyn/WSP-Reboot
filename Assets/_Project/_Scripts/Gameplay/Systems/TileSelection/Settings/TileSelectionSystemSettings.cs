@@ -8,6 +8,8 @@ namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection.Settings
     {
         public GameObject SelectorPrefab;
         public Color SelectorTint;
+
+        public bool RealTimeSelectorMovement;
         
         [Title("")]
         [Range(0, 0.5f)] public float HighlightFadeDuration = 0.1f;

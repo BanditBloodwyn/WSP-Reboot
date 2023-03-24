@@ -15,4 +15,5 @@ MonoBehaviour:
   SelectorPrefab: {fileID: 8173355790897345080, guid: 402fecdf580b517498e5158f0673fdc3,
     type: 3}
   SelectorTint: {r: 1, g: 1, b: 1, a: 1}
+  RealTimeSelectorMovement: 0
   HighlightFadeDuration: 0.1

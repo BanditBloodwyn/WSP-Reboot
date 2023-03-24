@@ -16,7 +16,6 @@ MonoBehaviour:
   YawSpeed: 4.89
   PitchSpeed: 4.94
   ZoomSpeed: 100
-  ZoomDamping: 10
   PanningSpeedCurve:
     serializedVersion: 2
     m_Curve:
@@ -83,3 +82,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  InversePitch: 0
+  InverseYaw: 1
