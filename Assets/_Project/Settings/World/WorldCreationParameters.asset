@@ -12,44 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e6b171debd9e54ebe5f54d84a1979e, type: 3}
   m_Name: WorldCreationParameters
   m_EditorClassIdentifier: 
-  WorldSize: 2
+  WorldSize: 10
   ChunkSize: 64
   GenerationComponents:
-  - rid: 6809958843202404352
-  - rid: 6809958843202404353
-  - rid: 6809958843202404354
-  - rid: 6809958843202404355
-  - rid: 6809958843202404356
+  - rid: 6809958863656976384
+  - rid: 6809958863656976385
+  - rid: 6809958863656976386
+  - rid: 6809958863656976387
+  - rid: 6809958863656976388
   references:
     version: 2
     RefIds:
-    - rid: 6809958843202404352
+    - rid: 6809958863656976384
       type: {class: TileGeneratorComponent, ns: Assets._Project._Scripts.WorldMap.Generation.GenerationComponents,
-        asm: Assembly-CSharp}
+        asm: WorldMap}
       data:
         _enabled: 1
-    - rid: 6809958843202404353
+    - rid: 6809958863656976385
       type: {class: TerrainBuilderComponent, ns: Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Terrain,
-        asm: Assembly-CSharp}
+        asm: WorldMap}
       data:
         _enabled: 1
         _noiseParameters: {fileID: 11400000, guid: 84cccd3d83ed02643bbef60cfcc90a6e,
           type: 2}
-    - rid: 6809958843202404354
+    - rid: 6809958863656976386
       type: {class: TileDataBuilderComponent, ns: Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.TileData,
-        asm: Assembly-CSharp}
+        asm: WorldMap}
       data:
         _enabled: 1
         _vegetationZoneSettings: {fileID: 11400000, guid: ab265ad2426712c42a22992e47e60d37,
           type: 2}
-    - rid: 6809958843202404355
+    - rid: 6809958863656976387
       type: {class: MeshBuilderComponent, ns: Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Mesh,
-        asm: Assembly-CSharp}
+        asm: WorldMap}
       data:
         _enabled: 1
-    - rid: 6809958843202404356
+    - rid: 6809958863656976388
       type: {class: GameObjectBuilderComponent, ns: Assets._Project._Scripts.WorldMap.Generation.GenerationComponents,
-        asm: Assembly-CSharp}
+        asm: WorldMap}
       data:
         _enabled: 1
         _chunkParent: {fileID: 0}

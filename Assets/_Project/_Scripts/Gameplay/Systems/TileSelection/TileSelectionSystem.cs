@@ -6,7 +6,6 @@ using Assets._Project._Scripts.WorldMap;
 using Assets._Project._Scripts.WorldMap.Generation;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.EventSystems;
 using TileAspect = Assets._Project._Scripts.WorldMap.ECS.Aspects.TileAspect;
 
 namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection

@@ -14,9 +14,9 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Terr
         [SerializeField, Min(0)] private float _maxValue;
         [SerializeField] private float3 _center;
 
-        [SerializeField, Range(0, 10)] private float _baseRoughness;
+        [SerializeField, Range(0, 0.01f)] private float _baseRoughness;
         [SerializeField, Range(0, 10)] private float _roughness;
-        [SerializeField, Range(0, 10)] private float _persistance;
+        [SerializeField, Range(0, 5)] private float _persistance;
 
         public float Evaluate(float3 point, PerlinNoiseEvaluator noiseEvaluator)
         {
