@@ -45,6 +45,11 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
             float yaw = Input.GetAxis("Mouse X") * _settings.YawSpeed * Time.deltaTime;
             float pitchDelta = Input.GetAxis("Mouse Y") * _settings.PitchSpeed * Time.deltaTime;
 
+            if (_settings.InversePitch)
+                pitchDelta *= -1;
+            if (_settings.InverseYaw)
+                yaw *= -1;
+
             _cameraTransform.RotateAround(PointerHelper.GetCurrentViewPosition(), Vector3.up, yaw);
            
             float pitch = _cameraTransform.rotation.eulerAngles.x;

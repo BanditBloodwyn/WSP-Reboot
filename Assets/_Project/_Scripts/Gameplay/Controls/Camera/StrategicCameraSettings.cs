@@ -12,5 +12,8 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
 
         public AnimationCurve PanningSpeedCurve;
         public AnimationCurve ZoomingSpeedCurve;
+
+        public bool InversePitch;
+        public bool InverseYaw;
     }
 }
