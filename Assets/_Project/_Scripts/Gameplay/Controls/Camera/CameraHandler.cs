@@ -19,7 +19,7 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
         private void Start()
         {
             if (_cameraType is ICameraController cameraController)
-                cameraController.ResetController();
+                cameraController.ResetController(this);
         }
 
         private void Update()
@@ -30,7 +30,10 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
             if (_cameraType is not ICameraController cameraController)
                 return;
 
-            cameraController.Execute();
+            if (Input.GetKeyUp(KeyCode.Space))
+                cameraController.ResetController(this);
+            else 
+                cameraController.Execute();
         }
 
         #endregion

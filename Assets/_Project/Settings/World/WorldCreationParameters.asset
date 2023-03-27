@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e6b171debd9e54ebe5f54d84a1979e, type: 3}
   m_Name: WorldCreationParameters
   m_EditorClassIdentifier: 
-  WorldSize: 10
+  WorldSize: 6
   ChunkSize: 64
   GenerationComponents:
   - rid: 6809958863656976384

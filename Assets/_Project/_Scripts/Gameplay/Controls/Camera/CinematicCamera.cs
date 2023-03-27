@@ -8,30 +8,31 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
     [CreateAssetMenu(fileName = "CinematicCamera", menuName = "ScriptableObjects/Cameras/Cinematic Camera")]
     public class CinematicCamera : ScriptableObject, ICameraController
     {
-        [SerializeField] private Transform _cameraTransform;
-        [SerializeField] private CameraHandler _cameraHandler;
         [SerializeField] private CinematicCameraSettings _settings;
         [SerializeField] private WorldCreationParameters _worldParameters;
         
+        private Transform _cameraTransform;
+        private CameraHandler _cameraHandler;
+
         private float _elapsedTime;
         private bool _started;
       
         private void Awake()
         {
             _started = false;
-            Assert.IsNotNull(_cameraTransform);
-            Assert.IsNotNull(_cameraHandler);
             Assert.IsNotNull(_settings);
             Assert.IsNotNull(_worldParameters);
         }
 
-        public void ResetController()
+        public void ResetController(CameraHandler cameraHandler)
         {
-            if(_cameraHandler == null)
-                _cameraHandler = _cameraTransform.GetComponent<CameraHandler>();
+            _cameraHandler = cameraHandler;
+            _cameraTransform = cameraHandler.transform;
+           
+            Assert.IsNotNull(_cameraHandler);
+            Assert.IsNotNull(_cameraTransform);
 
-            _cameraHandler.StopCoroutine(Move());
-
+            _cameraHandler.StopAllCoroutines();
             _started = false;
            
             Debug.Log("Reset Cinematics");
@@ -42,6 +43,7 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
             if(!_started)
             {
                 Debug.Log("Start Cinematics");
+
                 _cameraHandler.StartCoroutine(Move());
             }
         }

@@ -2,7 +2,7 @@
 {
     public interface ICameraController
     {
-        public void ResetController();
+        public void ResetController(CameraHandler cameraHandler);
         public void Execute();
     }
 }

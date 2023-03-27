@@ -87,7 +87,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Selected: 0
-    - _Sharpness: 1
+    - _Sharpness: 0.583
     - _SubalpineHeight: 11
     - _SubnivaleHeight: 18
     - _TileHeight: 0

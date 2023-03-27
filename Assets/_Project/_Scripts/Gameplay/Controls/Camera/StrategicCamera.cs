@@ -10,22 +10,21 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
     [CreateAssetMenu(fileName = "StrategicCamera", menuName = "ScriptableObjects/Cameras/Strategic Camera")]
     public class StrategicCamera : ScriptableObject, ICameraController
     {
-        [SerializeField] private Transform _cameraTransform;
         [SerializeField] private StrategicCameraSettings _settings;
         [SerializeField] private WorldCreationParameters _worldParameters;
 
-        private float _pitch;
-        private float _yaw;
+        private Transform _cameraTransform;
 
         private void Awake()
         {
-            Assert.IsNotNull(_cameraTransform);
             Assert.IsNotNull(_settings);
             Assert.IsNotNull(_worldParameters);
         }
 
-        public void ResetController()
+        public void ResetController(CameraHandler cameraHandler)
         {
+            _cameraTransform = cameraHandler.transform;
+            Assert.IsNotNull(_cameraTransform);
         }
 
         public void Execute()
@@ -66,21 +65,17 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
             float lookHorizontal = -Input.GetAxis("Mouse X");
             float lookVertical = -Input.GetAxis("Mouse Y");
 
-            Vector3 translation = _cameraTransform.forward.Get2D() * lookVertical + 
-                                  _cameraTransform.right.Get2D() * lookHorizontal;
+            Vector3 translation = _cameraTransform.forward.Get2D() * lookVertical + _cameraTransform.right.Get2D() * lookHorizontal;
 
             float speedFromHeight = _settings.PanningSpeedCurve.Evaluate(_cameraTransform.position.y);
-            _cameraTransform.position += _settings.PanningSpeed * speedFromHeight * Time.deltaTime * translation;
 
+            float chunkSize = _worldParameters.ChunkSize;
+            float worldSize = _worldParameters.WorldSize;
+
+            _cameraTransform.position += _settings.PanningSpeed * speedFromHeight * Time.deltaTime * translation;
             _cameraTransform.position = _cameraTransform.position.Clamp(
-                new Vector3(
-                    -_worldParameters.ChunkSize / 2.0f,
-                    3,
-                    -_worldParameters.ChunkSize / 2.0f),
-                new Vector3(
-                    _worldParameters.WorldSize * _worldParameters.ChunkSize - _worldParameters.ChunkSize / 2,
-                    1000,
-                    _worldParameters.WorldSize * _worldParameters.ChunkSize - _worldParameters.ChunkSize / 2));
+                new Vector3(-chunkSize / 2.0f, 3, -chunkSize / 2.0f),
+                new Vector3(worldSize * chunkSize - chunkSize / 2, 1000, worldSize * chunkSize - chunkSize / 2));
         }
 
         private void HandleZoom()
