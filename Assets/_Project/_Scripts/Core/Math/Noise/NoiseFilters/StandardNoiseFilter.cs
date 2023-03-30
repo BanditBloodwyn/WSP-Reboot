@@ -2,14 +2,14 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Terrain.Math.NoiseFilters
+namespace Assets._Project._Scripts.Core.Math.Noise.NoiseFilters
 {
     [Serializable]
-    public class RigidNoiseFilter : INoiseFilter
+    public class StandardNoiseFilter : INoiseFilter
     {
-        [SerializeField, Range(0,8)] private int _numberOfLayers;
+        [SerializeField, Range(0, 8)] private int _numberOfLayers;
 
-        [SerializeField, Range(0, 30)] private float _strength;
+        [SerializeField, Range(0, 10)] private float _strength;
         [SerializeField, Min(0)] private float _minValue;
         [SerializeField, Min(0)] private float _maxValue;
         [SerializeField] private float3 _center;
@@ -17,24 +17,31 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Terr
         [SerializeField, Range(0, 0.01f)] private float _baseRoughness;
         [SerializeField, Range(0, 10)] private float _roughness;
         [SerializeField, Range(0, 5)] private float _persistance;
-        [SerializeField, Range(0, 10)] private float _weightMultiplier;
-        
+
+        public float Evaluate(float3 point, PerlinNoiseEvaluator noiseEvaluator, DefaultNoiseFilterSettings settings)
+        {
+            _numberOfLayers = settings.NumberOfLayers;
+            _strength = settings.Strength;
+            _minValue = settings.MinValue;
+            _maxValue = settings.MaxValue;
+            _center = settings.Center;
+            _baseRoughness = settings.BaseRoughness;
+            _roughness = settings.Roughness;
+            _persistance = settings.Persistance;
+
+            return Evaluate(point, noiseEvaluator);
+        }
+
         public float Evaluate(float3 point, PerlinNoiseEvaluator noiseEvaluator)
         {
             float noiseValue = 0;
             float frequency = _baseRoughness;
             float amplitude = 1;
-            float weight = 1;
 
             for (int i = 0; i < _numberOfLayers; i++)
             {
-                float v = 1 - Mathf.Abs(noiseEvaluator.Evaluate(point * frequency + _center));
-
-                v *= v;
-                v *= weight;
-                weight = Mathf.Clamp01(v * _weightMultiplier);
-
-                noiseValue += v * amplitude;
+                float v = noiseEvaluator.Evaluate(point * frequency + _center);
+                noiseValue += (v + 1) * 0.5f * amplitude;
                 frequency *= _roughness;
                 amplitude *= _persistance;
             }

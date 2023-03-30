@@ -1,4 +1,4 @@
-﻿using Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Terrain.Math.NoiseFilters;
+﻿using Assets._Project._Scripts.Core.Math.Noise.NoiseFilters;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.WorldMap.Generation.Settings

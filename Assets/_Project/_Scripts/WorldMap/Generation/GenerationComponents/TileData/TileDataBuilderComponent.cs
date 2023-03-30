@@ -12,6 +12,10 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Tile
     {
         [SerializeField] private bool _enabled;
         [SerializeField] private VegetationZoneSettings _vegetationZoneSettings;
+       
+        [SerializeField] private FloraGenerator _floraGenerator;
+        [SerializeField] private FaunaGenerator _faunaGenerator;
+        [SerializeField] private ResourceGenerator _resourceGenerator;
 
         public bool Enabled => _enabled;
 
@@ -27,12 +31,13 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Tile
             float height = tileAspect.Position.y;
 
             TilePropertiesComponentData data = new TilePropertiesComponentData();
-
+            
+            data.Height = height;
             data.VegetationZone = GetVegetationZoneByHeight(height);
 
-            data.TerrainValues = new TerrainValues();
-            data.FloraValues = new FloraValues();
-            data.FaunaValues = new FaunaValues();
+            data.FloraValues = _floraGenerator.Generate(data, tileAspect.Position);
+            data.FaunaValues = _faunaGenerator.Generate(data);
+            data.ResourceValues = _resourceGenerator.Generate(data);
             data.PopulationValues = new PopulationValues();
 
             return data;

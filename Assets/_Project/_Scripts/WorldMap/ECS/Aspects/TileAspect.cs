@@ -20,5 +20,25 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Aspects
         {
             return _tileProperties.ValueRO.VegetationZone.ToString();
         }
+
+        public float GetDeciduousTrees()
+        {
+            return _tileProperties.ValueRO.FloraValues.DeciduousTrees;
+        }
+
+        public float GetEvergreenTrees()
+        {
+            return _tileProperties.ValueRO.FloraValues.EvergreenTrees;
+        }
+      
+        public float GetVegetables()
+        {
+            return _tileProperties.ValueRO.FloraValues.Vegetables;
+        }
+       
+        public float GetFruits()
+        {
+            return _tileProperties.ValueRO.FloraValues.Fruits;
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace Assets._Project._Scripts.WorldMap
 
         public bool TryGetTileFromChunkAndPosition(ChunkComponent chunk, Vector3 position, out TileAspect tile)
         {
-            EntityManager entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
+            EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
             float nearestDistance = float.MaxValue;
             tile = new TileAspect();

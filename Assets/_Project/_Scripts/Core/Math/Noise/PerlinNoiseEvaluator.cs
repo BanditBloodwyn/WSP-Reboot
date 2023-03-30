@@ -33,7 +33,7 @@ Some changes by Sebastian Lague for use in a tutorial series.
 using System;
 using Unity.Mathematics;
 
-namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Terrain.Math
+namespace Assets._Project._Scripts.Core.Math.Noise
 {
     public class PerlinNoiseEvaluator
     {
