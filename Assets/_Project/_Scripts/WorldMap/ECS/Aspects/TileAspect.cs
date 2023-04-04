@@ -16,6 +16,11 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Aspects
 
         public float3 Position => _transformAspect.LocalPosition;
 
+        public TilePropertiesComponentData GetData()
+        {
+            return _tileProperties.ValueRO;
+        }
+
         public string GetVegetationZone()
         {
             return _tileProperties.ValueRO.VegetationZone.ToString();

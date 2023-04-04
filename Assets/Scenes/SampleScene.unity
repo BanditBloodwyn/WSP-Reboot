@@ -984,6 +984,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c02ee44c100342458c7b8d8f90b6016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _worldCreationParameters: {fileID: 11400000, guid: d8346ac90e2dd4145af23eadd759070e,
+    type: 2}
   _chunkParent: {fileID: 574594724}
 --- !u!1 &832575517
 GameObject:

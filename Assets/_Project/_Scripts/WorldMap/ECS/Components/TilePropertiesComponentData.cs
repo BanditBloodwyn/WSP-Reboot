@@ -6,10 +6,9 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Components
 {
     public struct TilePropertiesComponentData : IComponentData
     {
-        public float Height;
-
         public VegetationZones VegetationZone;
 
+        public TerrainValues TerrainValues;
         public ResourceValues ResourceValues;
         public FloraValues FloraValues;
         public FaunaValues FaunaValues;

@@ -11,8 +11,14 @@ namespace Assets._Project._Scripts.UI.MapModesUI.MapModes
 
         public MapModeCategory Category;
 
+        public Gradient Colors;
+
         public Sprite UIIcon;
 
         public Material WorldMapMaterial;
+
+        public bool CalculateShaderBuffer;
+       
+        public string PropertyName;
     }
 }
