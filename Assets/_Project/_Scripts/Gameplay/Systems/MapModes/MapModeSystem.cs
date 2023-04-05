@@ -10,7 +10,6 @@ namespace Assets._Project._Scripts.Gameplay.Systems.MapModes
     public class MapModeSystem : MonoBehaviour
     {
         [SerializeField] private WorldCreationParameters _worldCreationParameters;
-
         [SerializeField] private Transform _chunkParent;
 
         private void Awake()
@@ -22,7 +21,7 @@ namespace Assets._Project._Scripts.Gameplay.Systems.MapModes
         {
             if (mapMode.WorldMapMaterial == null)
             {
-                Debug.LogWarning($"No material set for map mode \"<color=#73BD73>{mapMode.DisplayName}</color>\"");
+                Debug.LogWarning($"<color=#73BD73>Map mode system</color> - No material set for map mode \"<color=#73BD73>{mapMode.DisplayName}</color>\"");
                 return;
             }
 
@@ -32,22 +31,20 @@ namespace Assets._Project._Scripts.Gameplay.Systems.MapModes
             for (int i = 0; i < _chunkParent.childCount; i++)
                 _chunkParent.GetChild(i).GetComponent<MeshRenderer>().sharedMaterial = mapMode.WorldMapMaterial;
 
-            Debug.Log($"Changed map mode to \"<color=#73BD73>{mapMode.DisplayName}</color>\"");
+            Debug.Log($"<color=#73BD73>Map mode system</color> - Changed map mode to \"<color=#73BD73>{mapMode.DisplayName}</color>\"");
         }
 
         private void CalculateMaterialBuffer(MapMode mapMode)
         {
-            int textureDimensions = _worldCreationParameters.WorldSize * _worldCreationParameters.ChunkSize;
-            Debug.Log($"textureDimensions: {textureDimensions}");
-
             TileValue[] chunkTileValues = Landscape.Instance.GetChunkTileValues(mapMode.Property);
 
             if (chunkTileValues == null || chunkTileValues.Length == 0)
                 return;
 
+            int textureDimensions = _worldCreationParameters.WorldSize * _worldCreationParameters.ChunkSize;
             Texture2D bufferTexture = CreateBufferTexture(chunkTileValues, textureDimensions, mapMode.Colors);
-            mapMode.WorldMapMaterial.SetTexture("_ValueTexture", bufferTexture);
 
+            mapMode.WorldMapMaterial.SetTexture("_ValueTexture", bufferTexture);
             mapMode.WorldMapMaterial.SetVector(
                 "_Tiling",
                 new Vector4(textureDimensions, textureDimensions, 0, 0));

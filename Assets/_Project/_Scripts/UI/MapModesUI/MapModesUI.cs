@@ -47,7 +47,7 @@ namespace Assets._Project._Scripts.UI.MapModesUI
 
         private void ClearMapModeIcons()
         {
-            Debug.Log("Clear map mode icons");
+            Debug.Log("<color=#73BD73>Map mode system</color> - Clear map mode icons");
 
             for (int i = transform.childCount - 1; i >= 0; i--)
             {
@@ -58,7 +58,7 @@ namespace Assets._Project._Scripts.UI.MapModesUI
 
         private void CreateMapModeIcons()
         {
-            Debug.Log("Create map mode icons");
+            Debug.Log("<color=#73BD73>Map mode system</color> - Create map mode icons");
 
             if (_mapModes == null || _mapModes.Length == 0)
                 return;

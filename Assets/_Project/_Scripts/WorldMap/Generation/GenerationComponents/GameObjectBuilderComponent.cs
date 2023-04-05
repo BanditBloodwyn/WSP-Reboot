@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using Assets._Project._Scripts.WorldMap.Data.Enums;
+﻿using Assets._Project._Scripts.WorldMap.Data.Enums;
 using Assets._Project._Scripts.WorldMap.Generation.Settings;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents
@@ -18,8 +18,8 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents
         {
             GameObject chunkObject = new($"Chunk{chunk.ID}");
             chunkObject.transform.position = new Vector3(chunk.Coordinates.x * chunk.Size, 0, chunk.Coordinates.y * chunk.Size);
-            chunkObject.transform.parent = _chunkParent != null 
-                ? _chunkParent 
+            chunkObject.transform.parent = _chunkParent != null
+                ? _chunkParent
                 : GameObject.Find("#Chunks").transform;
 
             MeshFilter meshFilter = chunkObject.AddComponent<MeshFilter>();

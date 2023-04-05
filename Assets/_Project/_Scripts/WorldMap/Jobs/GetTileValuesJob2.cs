@@ -1,33 +1,33 @@
 ﻿using Assets._Project._Scripts.WorldMap.Data.Enums;
 using Assets._Project._Scripts.WorldMap.Data.Structs;
+using Assets._Project._Scripts.WorldMap.ECS.Aspects;
 using Assets._Project._Scripts.WorldMap.ECS.Components;
-using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
-using Unity.Transforms;
+using Unity.Jobs;
 
 namespace Assets._Project._Scripts.WorldMap.Jobs
 {
-    [BurstCompile]
-    public partial struct GetTileValuesJob : IJobEntity
+    public struct GetTileValuesJob2 : IJobParallelFor
     {
         public TileProperties Property;
+        [ReadOnly] public NativeArray<Entity> Tiles;
         public NativeArray<TileValue> TileValues;
 
-        [BurstCompile]
-        public void Execute([EntityIndexInQuery] int entityIndex, in LocalTransform localTransform, in TilePropertiesComponentData properties)
+        public void Execute(int index)
         {
-            float value = GetPropertyValue(properties, Property);
+            TileAspect aspect = World.DefaultGameObjectInjectionWorld.EntityManager.GetAspect<TileAspect>(Tiles[index]);
+            TilePropertiesComponentData data = aspect.GetData();
 
-            TileValues[entityIndex] = new TileValue
+            float value = GetPropertyValue(data, Property);
+            TileValues[index] = new TileValue
             {
-                X = (int)localTransform.Position.x,
-                Z = (int)localTransform.Position.z,
+                X = (int)aspect.Position.x,
+                Z = (int)aspect.Position.z,
                 Value = value
             };
         }
 
-        [BurstCompile]
         private static float GetPropertyValue(in TilePropertiesComponentData properties, TileProperties property)
         {
             return property switch

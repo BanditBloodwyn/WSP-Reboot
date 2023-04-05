@@ -1,27 +1,40 @@
 ﻿using Assets._Project._Scripts.WorldMap.Data.Enums;
 using Assets._Project._Scripts.WorldMap.Data.Structs;
-using Assets._Project._Scripts.WorldMap.ECS.Systems;
+using Assets._Project._Scripts.WorldMap.Generation;
+using Assets._Project._Scripts.WorldMap.Jobs;
+using System.Collections.Generic;
+using Unity.Collections;
 using Unity.Entities;
+using Unity.Jobs;
 
 namespace Assets._Project._Scripts.WorldMap.ECS.Helpers
 {
     public class GetChunkValuesHelper
     {
-        private Entity _bufferEntity;
-
-        public void Init()
-        {
-            _bufferEntity = World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntity();
-            World.DefaultGameObjectInjectionWorld.EntityManager.AddBuffer<GetTileValuesBufferElement>(_bufferEntity);
-        }
-
         public TileValue[] GetChunkTileValues(TileProperties property)
         {
-            World.DefaultGameObjectInjectionWorld.EntityManager
-                .GetBuffer<GetTileValuesBufferElement>(_bufferEntity)
-                .Add(new GetTileValuesBufferElement { Property = property });
+            List<TileValue> tileValues = new List<TileValue>();
 
-            return null;
+            foreach (Chunk chunk in Landscape.Instance.Chunks)
+            {
+                NativeArray<Entity> tilesArray = new NativeArray<Entity>(chunk.Tiles, Allocator.Persistent);
+                NativeArray<TileValue> tileValuesArray = new NativeArray<TileValue>(chunk.Tiles.Length, Allocator.Persistent);
+
+                GetTileValuesJob2 job = new GetTileValuesJob2();
+                job.Property = property;
+                job.Tiles = tilesArray;
+                job.TileValues = tileValuesArray;
+
+                JobHandle jobHandle = job.Schedule(chunk.Tiles.Length, 64);
+                jobHandle.Complete();
+
+                tileValues.AddRange(job.TileValues.ToArray());
+
+                tilesArray.Dispose();
+                tileValuesArray.Dispose();
+            }
+
+            return tileValues.ToArray();
         }
     }
 }

@@ -1,10 +1,9 @@
 ﻿using Assets._Project._Scripts.WorldMap.Data.Enums;
 using Assets._Project._Scripts.WorldMap.Data.Structs;
 using Assets._Project._Scripts.WorldMap.ECS.Aspects;
+using Assets._Project._Scripts.WorldMap.ECS.Helpers;
 using Assets._Project._Scripts.WorldMap.Generation;
 using System.Collections.Generic;
-using System.Linq;
-using Assets._Project._Scripts.WorldMap.ECS.Helpers;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -18,10 +17,7 @@ namespace Assets._Project._Scripts.WorldMap
 
         private static Landscape instance;
 
-        private Landscape()
-        {
-            _getChunkValuesHelper.Init();
-        }
+        private Landscape() { }
 
         public static Landscape Instance => instance ??= new Landscape();
 
@@ -58,27 +54,7 @@ namespace Assets._Project._Scripts.WorldMap
 
         public TileValue[] GetChunkTileValues(TileProperties property)
         {
-            _getChunkValuesHelper.GetChunkTileValues(property);
-
-            return null;
-        }
-
-        private static List<(string, string)> GetTileFields()
-        {
-            List<(string, string)> fields = new List<(string, string)>();
-
-            foreach (string fieldName in typeof(TerrainValues).GetFields().Select(static field => field.Name))
-                fields.Add(new(nameof(TerrainValues), fieldName));
-            foreach (string fieldName in typeof(FloraValues).GetFields().Select(static field => field.Name))
-                fields.Add(new(nameof(FloraValues), fieldName));
-            foreach (string fieldName in typeof(FaunaValues).GetFields().Select(static field => field.Name))
-                fields.Add(new(nameof(FaunaValues), fieldName));
-            foreach (string fieldName in typeof(ResourceValues).GetFields().Select(static field => field.Name))
-                fields.Add(new(nameof(ResourceValues), fieldName));
-            foreach (string fieldName in typeof(PopulationValues).GetFields().Select(static field => field.Name))
-                fields.Add(new(nameof(PopulationValues), fieldName));
-
-            return fields;
+            return _getChunkValuesHelper.GetChunkTileValues(property);
         }
     }
 }

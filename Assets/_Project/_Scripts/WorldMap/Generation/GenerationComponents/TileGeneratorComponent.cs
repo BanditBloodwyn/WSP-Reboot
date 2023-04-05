@@ -35,7 +35,7 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents
 
         private static Entity CreateTile(int xPos, int yPos, int chunkID)
         {
-            EntityManager entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
+            EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
             Entity tile = entityManager.CreateEntity();
 
             entityManager.AddComponent<LocalTransform>(tile);

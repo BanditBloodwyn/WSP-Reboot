@@ -42,14 +42,14 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
 
         public void Activate()
         {
-            Debug.Log("<color=#73BD73>Activate StrategicCamera</color>");
+            Debug.Log("<color=#73BD73>Camera</color> - <color=#73BD73>Activate</color> StrategicCamera");
 
             _enabled = true;
         }
 
         public void Deactivate()
         {
-            Debug.Log("<color=orange>Deactivate StrategicCamera</color>");
+            Debug.Log("<color=#73BD73>Camera</color> - <color=orange>Deactivate</color> StrategicCamera");
 
             _enabled = false;
         }

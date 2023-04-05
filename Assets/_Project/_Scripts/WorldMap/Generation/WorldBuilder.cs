@@ -55,7 +55,7 @@ namespace Assets._Project._Scripts.WorldMap.Generation
                 Gizmos.DrawWireCube(new Vector3(chunk.Size * chunk.Coordinates.x, 0, chunk.Size * chunk.Coordinates.y), new Vector3(chunk.Size, 0, chunk.Size));
             }
 
-            EntityQuery entityQuery = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntityQuery(typeof(LocalTransform));
+            EntityQuery entityQuery = World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntityQuery(typeof(LocalTransform));
 
             foreach (LocalTransform tile in entityQuery.ToComponentDataArray<LocalTransform>(Allocator.Temp))
             {
@@ -117,9 +117,9 @@ namespace Assets._Project._Scripts.WorldMap.Generation
                 DestroyImmediate(child.gameObject);
             }
 
-            EntityQuery entityQuery = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntityQuery(typeof(ChunkAssignmentComponentData));
+            EntityQuery entityQuery = World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntityQuery(typeof(ChunkAssignmentComponentData));
             foreach (Entity tile in entityQuery.ToEntityArray(Allocator.Temp))
-                Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager.DestroyEntity(tile);
+                World.DefaultGameObjectInjectionWorld.EntityManager.DestroyEntity(tile);
 
             Landscape.Instance.Chunks.Clear();
         }
