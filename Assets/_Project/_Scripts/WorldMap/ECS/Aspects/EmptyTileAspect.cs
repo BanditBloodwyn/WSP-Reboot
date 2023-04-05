@@ -9,10 +9,10 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Aspects
     {
         public readonly Entity Entity;
 
-        private readonly TransformAspect _transformAspect;
+        private readonly RefRO<LocalTransform> _localTransform;
 
         private readonly RefRO<ChunkAssignmentComponentData> _chunkAssignment;
 
-        public float3 Position => _transformAspect.LocalPosition;
+        public float3 Position => _localTransform.ValueRO.Position;
     }
 }

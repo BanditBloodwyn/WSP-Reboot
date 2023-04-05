@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets._Project._Scripts.WorldMap.Data.Enums;
+using UnityEngine;
 
 namespace Assets._Project._Scripts.UI.MapModesUI.MapModes
 {
@@ -19,6 +20,6 @@ namespace Assets._Project._Scripts.UI.MapModesUI.MapModes
 
         public bool CalculateShaderBuffer;
        
-        public string PropertyName;
+        public TileProperties Property;
     }
 }

@@ -1,10 +1,8 @@
 using Assets._Project._Scripts.UI.MapModesUI.MapModes;
 using Assets._Project._Scripts.WorldMap;
+using Assets._Project._Scripts.WorldMap.Data.Structs;
 using Assets._Project._Scripts.WorldMap.Generation.Settings;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.Gameplay.Systems.MapModes
@@ -42,36 +40,36 @@ namespace Assets._Project._Scripts.Gameplay.Systems.MapModes
             int textureDimensions = _worldCreationParameters.WorldSize * _worldCreationParameters.ChunkSize;
             Debug.Log($"textureDimensions: {textureDimensions}");
 
-            Dictionary<Tuple<int, int>, float> chunkTileValues = Landscape.Instance.GetChunkTileValues(mapMode.PropertyName);
+            TileValue[] chunkTileValues = Landscape.Instance.GetChunkTileValues(mapMode.Property);
 
-            if (chunkTileValues == null)
+            if (chunkTileValues == null || chunkTileValues.Length == 0)
                 return;
 
             Texture2D bufferTexture = CreateBufferTexture(chunkTileValues, textureDimensions, mapMode.Colors);
             mapMode.WorldMapMaterial.SetTexture("_ValueTexture", bufferTexture);
-            
+
             mapMode.WorldMapMaterial.SetVector(
-                "_Tiling", 
+                "_Tiling",
                 new Vector4(textureDimensions, textureDimensions, 0, 0));
             mapMode.WorldMapMaterial.SetVector(
-                "_Offset", 
+                "_Offset",
                 new Vector4(1 / (textureDimensions * 2.0f), 1 / (textureDimensions * 2.0f), 0, 0));
         }
 
         private static Texture2D CreateBufferTexture(
-            Dictionary<Tuple<int, int>, float> chunkTileValues,
+            TileValue[] chunkTileValues,
             int textureDimensions,
             Gradient colors)
         {
             Texture2D bufferTexture = new Texture2D(textureDimensions, textureDimensions, TextureFormat.RGBA32, false);
             bufferTexture.filterMode = FilterMode.Point;
 
-            foreach (KeyValuePair<Tuple<int, int>, float> chunkTileValue in chunkTileValues)
+            foreach (TileValue chunkTileValue in chunkTileValues)
             {
                 Color color = colors.Evaluate(chunkTileValue.Value / 100);
                 bufferTexture.SetPixel(
-                    chunkTileValue.Key.Item1,
-                    chunkTileValue.Key.Item2,
+                    chunkTileValue.X,
+                    chunkTileValue.Z,
                     color);
             }
 

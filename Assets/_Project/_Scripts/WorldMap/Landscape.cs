@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Assets._Project._Scripts.Core.Reflection;
+﻿using Assets._Project._Scripts.WorldMap.Data.Enums;
 using Assets._Project._Scripts.WorldMap.Data.Structs;
 using Assets._Project._Scripts.WorldMap.ECS.Aspects;
-using Assets._Project._Scripts.WorldMap.ECS.Components;
 using Assets._Project._Scripts.WorldMap.Generation;
+using System.Collections.Generic;
+using System.Linq;
+using Assets._Project._Scripts.WorldMap.ECS.Helpers;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -19,13 +18,16 @@ namespace Assets._Project._Scripts.WorldMap
 
         private static Landscape instance;
 
-        private Landscape() { }
+        private Landscape()
+        {
+            _getChunkValuesHelper.Init();
+        }
 
         public static Landscape Instance => instance ??= new Landscape();
 
         #endregion
 
-        private readonly List<(string, string)> TileFields = GetTileFields();
+        private readonly GetChunkValuesHelper _getChunkValuesHelper = new();
 
         public List<Chunk> Chunks = new();
 
@@ -54,36 +56,19 @@ namespace Assets._Project._Scripts.WorldMap
             return true;
         }
 
-        public Dictionary<Tuple<int, int>, float> GetChunkTileValues(string propertyName)
+        public TileValue[] GetChunkTileValues(TileProperties property)
         {
-            if (TileFields.All(field => field.Item2 != propertyName))
-                return null;
+            _getChunkValuesHelper.GetChunkTileValues(property);
 
-            Dictionary<Tuple<int, int>, float> values = new();
-            (string container, string valueName) = TileFields.First(field => field.Item2 == propertyName);
-
-            EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-
-            foreach (Chunk chunk in Chunks)
-            {
-                foreach (Entity tile in chunk.Tiles)
-                {
-                    TileAspect aspect = entityManager.GetAspect<TileAspect>(tile);
-                    TilePropertiesComponentData data = aspect.GetData();
-
-                    float value = ReflectionHelper.GetFieldValueFromStruct(data, container, valueName);
-                    values.Add(new Tuple<int, int>((int)aspect.Position.x, (int)aspect.Position.z), value);
-                }
-            }
-            return values;
+            return null;
         }
 
         private static List<(string, string)> GetTileFields()
         {
             List<(string, string)> fields = new List<(string, string)>();
 
-            foreach (string fieldName in typeof(TerrainValues).GetFields().Select(static field => field.Name)) 
-                fields.Add(new (nameof(TerrainValues), fieldName));
+            foreach (string fieldName in typeof(TerrainValues).GetFields().Select(static field => field.Name))
+                fields.Add(new(nameof(TerrainValues), fieldName));
             foreach (string fieldName in typeof(FloraValues).GetFields().Select(static field => field.Name))
                 fields.Add(new(nameof(FloraValues), fieldName));
             foreach (string fieldName in typeof(FaunaValues).GetFields().Select(static field => field.Name))

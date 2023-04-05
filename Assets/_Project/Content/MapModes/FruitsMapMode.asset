@@ -48,4 +48,4 @@ MonoBehaviour:
   UIIcon: {fileID: 21300000, guid: f69dcdc9781e14241b9e00212ddb16af, type: 3}
   WorldMapMaterial: {fileID: 2100000, guid: 52e49f25815a0ed4d96ca36521b3f96a, type: 2}
   CalculateShaderBuffer: 1
-  PropertyName: Fruits
+  Property: 5
