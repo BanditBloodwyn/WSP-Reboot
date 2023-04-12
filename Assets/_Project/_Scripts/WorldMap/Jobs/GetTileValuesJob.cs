@@ -7,7 +7,7 @@ using Unity.Jobs;
 
 namespace Assets._Project._Scripts.WorldMap.Jobs
 {
-    public struct GetTileValuesJob2 : IJobParallelFor
+    public struct GetTileValuesJob : IJobParallelFor
     {
         public TileProperties Property;
 

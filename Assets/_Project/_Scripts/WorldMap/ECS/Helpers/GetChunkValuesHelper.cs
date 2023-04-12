@@ -25,7 +25,7 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Helpers
 
                 NativeArray<TileValue> tileValuesArray = new NativeArray<TileValue>(chunk.Tiles.Length, Allocator.Persistent);
 
-                GetTileValuesJob2 job = new GetTileValuesJob2();
+                GetTileValuesJob job = new GetTileValuesJob();
                 job.Property = property;
                 job.TileAspects = tileAspectArray;
                 job.TileValues = tileValuesArray;
