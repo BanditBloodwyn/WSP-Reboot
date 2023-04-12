@@ -1,9 +1,9 @@
 ﻿using Assets._Project._Scripts.WorldMap.Data.Enums;
 using Assets._Project._Scripts.WorldMap.Data.Structs;
+using Assets._Project._Scripts.WorldMap.ECS.Aspects;
 using Assets._Project._Scripts.WorldMap.Generation;
 using Assets._Project._Scripts.WorldMap.Jobs;
-using System.Collections.Generic;
-using Assets._Project._Scripts.WorldMap.ECS.Aspects;
+using System.Linq;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
@@ -14,33 +14,41 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Helpers
     {
         public TileValue[] GetChunkTileValues(TileProperties property)
         {
-            List<TileValue> tileValues = new List<TileValue>();
+            Entity[] tiles = Landscape.Instance.Chunks
+                .SelectMany(static chunk => chunk.Tiles)
+                .ToArray();
 
-            foreach (Chunk chunk in Landscape.Instance.Chunks)
-            {
-                NativeList<TileAspect> tileAspectList = new NativeList<TileAspect>(chunk.Tiles.Length, Allocator.Persistent);
-                foreach (Entity tile in chunk.Tiles)
-                    tileAspectList.Add(World.DefaultGameObjectInjectionWorld.EntityManager.GetAspect<TileAspect>(tile));
-                NativeArray<TileAspect> tileAspectArray = tileAspectList.ToArray(Allocator.Persistent);
+            NativeArray<TileAspect> tileAspectArray = GetChunkTileAspects(tiles);
+            NativeArray<TileValue> tileValuesArray = new NativeArray<TileValue>(tiles.Length, Allocator.Persistent);
 
-                NativeArray<TileValue> tileValuesArray = new NativeArray<TileValue>(chunk.Tiles.Length, Allocator.Persistent);
+            GetTileValuesJob job = new GetTileValuesJob();
+            job.Property = property;
+            job.TileAspects = tileAspectArray;
+            job.TileValues = tileValuesArray;
 
-                GetTileValuesJob job = new GetTileValuesJob();
-                job.Property = property;
-                job.TileAspects = tileAspectArray;
-                job.TileValues = tileValuesArray;
+            JobHandle jobHandle = job.Schedule(tiles.Length, 12);
+            jobHandle.Complete();
 
-                JobHandle jobHandle = job.Schedule(chunk.Tiles.Length, 64);
-                jobHandle.Complete();
+            TileValue[] tileValues = job.TileValues.ToArray();
 
-                tileValues.AddRange(job.TileValues.ToArray());
-
-                tileAspectArray.Dispose();
-                tileAspectList.Dispose();
-                tileValuesArray.Dispose();
-            }
+            tileAspectArray.Dispose();
+            tileValuesArray.Dispose();
 
             return tileValues.ToArray();
+        }
+
+        private NativeArray<TileAspect> GetChunkTileAspects(Entity[] tiles)
+        {
+            NativeList<TileAspect> tileAspectList = new NativeList<TileAspect>(tiles.Length, Allocator.Persistent);
+            
+            foreach (Entity tile in tiles)
+                tileAspectList.Add(World.DefaultGameObjectInjectionWorld.EntityManager.GetAspect<TileAspect>(tile));
+            
+            NativeArray<TileAspect> tileAspectArray = tileAspectList.ToArray(Allocator.Persistent);
+           
+            tileAspectList.Dispose();
+            
+            return tileAspectArray;
         }
     }
 }

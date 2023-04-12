@@ -27,10 +27,10 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Terr
 
         private float CalculateHeight(float x, float y)
         {
-            PerlinNoiseEvaluator evaluator = new PerlinNoiseEvaluator();
+            PerlinNoiseEvaluator evaluator = new();
             float firstLayerValue = 0;
             float elevation = 0;
-            float3 point = new float3(x, 0, y);
+            float3 point = new(x, 0, y);
 
             if (_noiseParameters.NoiseFilters.Length > 0)
             {
@@ -42,10 +42,7 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Terr
                 return elevation;
 
             for (int i = 1; i < _noiseParameters.NoiseFilters.Length; i++)
-            {
-                float mask = firstLayerValue;
-                elevation += _noiseParameters.NoiseFilters[i].Evaluate(point, evaluator) * mask;
-            }
+                elevation += _noiseParameters.NoiseFilters[i].Evaluate(point, evaluator) * firstLayerValue;
 
             return elevation;
         }

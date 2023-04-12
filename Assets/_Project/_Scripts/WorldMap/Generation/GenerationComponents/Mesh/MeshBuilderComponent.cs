@@ -29,9 +29,9 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Mesh
 
         private static UnityEngine.Mesh GenerateMeshFromVoxelPositions(float3[] positions, int chunkSize, float2 chunkOffset)
         {
-            List<int> triangles = new List<int>();
-            List<Vector3> Verticies = new List<Vector3>();
-            List<Vector2> uv = new List<Vector2>();
+            List<int> triangles = new();
+            List<Vector3> Verticies = new();
+            List<Vector2> uv = new();
 
             Dictionary<float2, float3> voxelDictionary = positions.ToDictionary(
                 static pos => new float2(pos.x, pos.z),
@@ -43,7 +43,7 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Mesh
                 QuadBuilder.AddQuad(chunkOffset, Verticies, voxelDictionary, x, z, facenum, triangles, uv);
 
 
-            UnityEngine.Mesh mesh = new UnityEngine.Mesh();
+            UnityEngine.Mesh mesh = new();
             mesh.indexFormat = IndexFormat.UInt32;
 
             mesh.vertices = Verticies.ToArray();

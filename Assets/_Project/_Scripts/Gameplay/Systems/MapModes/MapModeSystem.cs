@@ -1,3 +1,4 @@
+using System;
 using Assets._Project._Scripts.UI.MapModesUI.MapModes;
 using Assets._Project._Scripts.WorldMap;
 using Assets._Project._Scripts.WorldMap.Data.Structs;
@@ -31,12 +32,14 @@ namespace Assets._Project._Scripts.Gameplay.Systems.MapModes
             for (int i = 0; i < _chunkParent.childCount; i++)
                 _chunkParent.GetChild(i).GetComponent<MeshRenderer>().sharedMaterial = mapMode.WorldMapMaterial;
 
-            Debug.Log($"<color=#73BD73>Map mode system</color> - Changed map mode to \"<color=#73BD73>{mapMode.DisplayName}</color>\"");
+            //Debug.Log($"<color=#73BD73>Map mode system</color> - Changed map mode to \"<color=#73BD73>{mapMode.DisplayName}</color>\"");
         }
 
         private void CalculateMaterialBuffer(MapMode mapMode)
         {
+            DateTime startTime = DateTime.Now;
             TileValue[] chunkTileValues = Landscape.Instance.GetChunkTileValues(mapMode.Property);
+            Debug.Log($"<color=#73BD73>Map mode system</color> - Time to collect tile data: {(DateTime.Now - startTime).TotalMilliseconds}");
 
             if (chunkTileValues == null || chunkTileValues.Length == 0)
                 return;
