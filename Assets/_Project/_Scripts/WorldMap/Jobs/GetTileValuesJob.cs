@@ -2,11 +2,13 @@
 using Assets._Project._Scripts.WorldMap.Data.Structs;
 using Assets._Project._Scripts.WorldMap.ECS.Aspects;
 using Assets._Project._Scripts.WorldMap.ECS.Components;
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
 
 namespace Assets._Project._Scripts.WorldMap.Jobs
 {
+    [BurstCompile]
     public struct GetTileValuesJob : IJobParallelFor
     {
         public TileProperties Property;
@@ -14,6 +16,7 @@ namespace Assets._Project._Scripts.WorldMap.Jobs
         [ReadOnly] public NativeArray<TileAspect> TileAspects;
         public NativeArray<TileValue> TileValues;
 
+        [BurstCompile]
         public void Execute(int index)
         {
             TileAspect tileAspect = TileAspects[index];
@@ -28,6 +31,7 @@ namespace Assets._Project._Scripts.WorldMap.Jobs
             };
         }
 
+        [BurstCompile]
         private static float GetPropertyValue(in TilePropertiesComponentData properties, TileProperties property)
         {
             return property switch

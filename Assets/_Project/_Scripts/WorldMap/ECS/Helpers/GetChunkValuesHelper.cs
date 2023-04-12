@@ -1,7 +1,6 @@
 ﻿using Assets._Project._Scripts.WorldMap.Data.Enums;
 using Assets._Project._Scripts.WorldMap.Data.Structs;
 using Assets._Project._Scripts.WorldMap.ECS.Aspects;
-using Assets._Project._Scripts.WorldMap.Generation;
 using Assets._Project._Scripts.WorldMap.Jobs;
 using System.Linq;
 using Unity.Collections;
@@ -40,10 +39,11 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Helpers
         private NativeArray<TileAspect> GetChunkTileAspects(Entity[] tiles)
         {
             NativeList<TileAspect> tileAspectList = new NativeList<TileAspect>(tiles.Length, Allocator.Persistent);
-            
+            EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+
             foreach (Entity tile in tiles)
-                tileAspectList.Add(World.DefaultGameObjectInjectionWorld.EntityManager.GetAspect<TileAspect>(tile));
-            
+                tileAspectList.Add(entityManager.GetAspect<TileAspect>(tile));
+
             NativeArray<TileAspect> tileAspectArray = tileAspectList.ToArray(Allocator.Persistent);
            
             tileAspectList.Dispose();
