@@ -3,6 +3,7 @@ using Assets._Project._Scripts.WorldMap.Data.Structs;
 using Assets._Project._Scripts.WorldMap.Generation;
 using Assets._Project._Scripts.WorldMap.Jobs;
 using System.Collections.Generic;
+using Assets._Project._Scripts.WorldMap.ECS.Aspects;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
@@ -17,12 +18,16 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Helpers
 
             foreach (Chunk chunk in Landscape.Instance.Chunks)
             {
-                NativeArray<Entity> tilesArray = new NativeArray<Entity>(chunk.Tiles, Allocator.Persistent);
+                NativeList<TileAspect> tileAspectList = new NativeList<TileAspect>(chunk.Tiles.Length, Allocator.Persistent);
+                foreach (Entity tile in chunk.Tiles)
+                    tileAspectList.Add(World.DefaultGameObjectInjectionWorld.EntityManager.GetAspect<TileAspect>(tile));
+                NativeArray<TileAspect> tileAspectArray = tileAspectList.ToArray(Allocator.Persistent);
+
                 NativeArray<TileValue> tileValuesArray = new NativeArray<TileValue>(chunk.Tiles.Length, Allocator.Persistent);
 
                 GetTileValuesJob2 job = new GetTileValuesJob2();
                 job.Property = property;
-                job.Tiles = tilesArray;
+                job.TileAspects = tileAspectArray;
                 job.TileValues = tileValuesArray;
 
                 JobHandle jobHandle = job.Schedule(chunk.Tiles.Length, 64);
@@ -30,7 +35,8 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Helpers
 
                 tileValues.AddRange(job.TileValues.ToArray());
 
-                tilesArray.Dispose();
+                tileAspectArray.Dispose();
+                tileAspectList.Dispose();
                 tileValuesArray.Dispose();
             }
 

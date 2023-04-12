@@ -3,7 +3,6 @@ using Assets._Project._Scripts.WorldMap.Data.Structs;
 using Assets._Project._Scripts.WorldMap.ECS.Aspects;
 using Assets._Project._Scripts.WorldMap.ECS.Components;
 using Unity.Collections;
-using Unity.Entities;
 using Unity.Jobs;
 
 namespace Assets._Project._Scripts.WorldMap.Jobs
@@ -11,19 +10,20 @@ namespace Assets._Project._Scripts.WorldMap.Jobs
     public struct GetTileValuesJob2 : IJobParallelFor
     {
         public TileProperties Property;
-        [ReadOnly] public NativeArray<Entity> Tiles;
+
+        [ReadOnly] public NativeArray<TileAspect> TileAspects;
         public NativeArray<TileValue> TileValues;
 
         public void Execute(int index)
         {
-            TileAspect aspect = World.DefaultGameObjectInjectionWorld.EntityManager.GetAspect<TileAspect>(Tiles[index]);
-            TilePropertiesComponentData data = aspect.GetData();
+            TileAspect tileAspect = TileAspects[index];
+            TilePropertiesComponentData data = tileAspect.GetData();
 
             float value = GetPropertyValue(data, Property);
             TileValues[index] = new TileValue
             {
-                X = (int)aspect.Position.x,
-                Z = (int)aspect.Position.z,
+                X = (int)tileAspect.Position.x,
+                Z = (int)tileAspect.Position.z,
                 Value = value
             };
         }
