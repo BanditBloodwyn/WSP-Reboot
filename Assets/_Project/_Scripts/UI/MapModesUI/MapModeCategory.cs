@@ -5,6 +5,7 @@
         General,
         Flora,
         Fauna,
-        Resources
+        Resources,
+        Population
     }
 }

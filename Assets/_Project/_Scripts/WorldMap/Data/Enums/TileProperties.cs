@@ -3,10 +3,24 @@
     public enum TileProperties
     {
         None,
+
         Height,
+
         DedicuousTrees,
         EvergreenTrees,
         Vegetables,
-        Fruits
+        Fruits,
+
+        Carnivores,
+        Herbivores,
+
+        Coal,
+        IronOre,
+        GoldOre,
+        Oil,
+        Gas,
+
+        LifeStandard,
+        Urbanization
     }
 }

@@ -2,7 +2,7 @@
 {
     public struct FaunaValues
     {
-        public double Carnivores;
-        public double Herbivores;
+        public float Carnivores;
+        public float Herbivores;
     }
 }
