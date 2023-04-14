@@ -37,9 +37,7 @@ namespace Assets._Project._Scripts.Gameplay.Systems.MapModes
 
         private void CalculateMaterialBuffer(MapMode mapMode)
         {
-            DateTime startTime = DateTime.Now;
             TileValue[] chunkTileValues = Landscape.Instance.GetChunkTileValues(mapMode.Property);
-            Debug.Log($"<color=#73BD73>Map mode system</color> - Time to collect tile data: {(DateTime.Now - startTime).TotalMilliseconds}");
 
             if (chunkTileValues == null || chunkTileValues.Length == 0)
                 return;
@@ -54,6 +52,12 @@ namespace Assets._Project._Scripts.Gameplay.Systems.MapModes
             mapMode.WorldMapMaterial.SetVector(
                 "_Offset",
                 new Vector4(1 / (textureDimensions * 2.0f), 1 / (textureDimensions * 2.0f), 0, 0));
+            mapMode.WorldMapMaterial.SetFloat(
+                "_DrawWaterAsBlue",
+                mapMode.DrawWaterAsBlue ? 1 : 0);
+            mapMode.WorldMapMaterial.SetColor(
+                "_WaterColor",
+                mapMode.WaterColor);
         }
 
         private static Texture2D CreateBufferTexture(

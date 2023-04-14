@@ -8,6 +8,9 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Components
     {
         public VegetationZones VegetationZone;
 
+        public int X;
+        public int Z;
+
         public TerrainValues TerrainValues;
         public ResourceValues ResourceValues;
         public FloraValues FloraValues;

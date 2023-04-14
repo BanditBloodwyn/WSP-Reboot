@@ -49,3 +49,5 @@ MonoBehaviour:
   WorldMapMaterial: {fileID: 2100000, guid: 52e49f25815a0ed4d96ca36521b3f96a, type: 2}
   CalculateShaderBuffer: 1
   Property: 1
+  DrawWaterAsBlue: 1
+  WaterColor: {r: 0.3529412, g: 0.54901963, b: 1, a: 0}

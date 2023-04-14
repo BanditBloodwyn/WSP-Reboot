@@ -33,6 +33,9 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Tile
             TilePropertiesComponentData data = new TilePropertiesComponentData();
             
             data.TerrainValues.Height = height;
+            data.X = (int)tileAspect.Position.x;
+            data.Z = (int)tileAspect.Position.z;
+
             data.VegetationZone = GetVegetationZoneByHeight(height);
 
             data.FloraValues = _floraGenerator.Generate(data, tileAspect.Position);

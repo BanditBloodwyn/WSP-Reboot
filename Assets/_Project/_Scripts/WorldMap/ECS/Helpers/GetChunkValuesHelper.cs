@@ -1,6 +1,6 @@
 ﻿using Assets._Project._Scripts.WorldMap.Data.Enums;
 using Assets._Project._Scripts.WorldMap.Data.Structs;
-using Assets._Project._Scripts.WorldMap.ECS.Aspects;
+using Assets._Project._Scripts.WorldMap.ECS.Components;
 using Assets._Project._Scripts.WorldMap.Jobs;
 using System.Linq;
 using Unity.Collections;
@@ -11,18 +11,22 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Helpers
 {
     public class GetChunkValuesHelper
     {
+        private JobHandle _jobHandle;
+
         public TileValue[] GetChunkTileValues(TileProperties property)
         {
             Entity[] tiles = Landscape.Instance.Chunks
                 .SelectMany(static chunk => chunk.Tiles)
                 .ToArray();
 
-            NativeArray<TileAspect> tileAspectArray = GetChunkTileAspects(tiles);
+            TilePropertiesComponentData[] tileData = GetChunkTileAspects2(tiles);
+
+            NativeArray<TilePropertiesComponentData> tileComponentArray = new NativeArray<TilePropertiesComponentData>(tileData, Allocator.Persistent);
             NativeArray<TileValue> tileValuesArray = new NativeArray<TileValue>(tiles.Length, Allocator.Persistent);
 
-            GetTileValuesJob job = new GetTileValuesJob();
+            GetTileValuesJob2 job = new GetTileValuesJob2();
             job.Property = property;
-            job.TileAspects = tileAspectArray;
+            job.TilePropertiesComponents = tileComponentArray;
             job.TileValues = tileValuesArray;
 
             JobHandle jobHandle = job.Schedule(tiles.Length, 12);
@@ -30,25 +34,36 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Helpers
 
             TileValue[] tileValues = job.TileValues.ToArray();
 
-            tileAspectArray.Dispose();
+            tileComponentArray.Dispose();
             tileValuesArray.Dispose();
 
-            return tileValues.ToArray();
+            return tileValues;
         }
 
-        private NativeArray<TileAspect> GetChunkTileAspects(Entity[] tiles)
+        private TilePropertiesComponentData[] GetChunkTileAspects2(Entity[] tiles)
         {
-            NativeList<TileAspect> tileAspectList = new NativeList<TileAspect>(tiles.Length, Allocator.Persistent);
             EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-            foreach (Entity tile in tiles)
-                tileAspectList.Add(entityManager.GetAspect<TileAspect>(tile));
+            NativeArray<Entity> tileArray = new NativeArray<Entity>(tiles, Allocator.Persistent);
+            NativeArray<TilePropertiesComponentData> tileComponentArray = new NativeArray<TilePropertiesComponentData>(tiles.Length, Allocator.Persistent);
+            EntityQuery query = new EntityQueryBuilder(Allocator.Temp)
+                .WithAll<TilePropertiesComponentData>()
+                .Build(entityManager);
 
-            NativeArray<TileAspect> tileAspectArray = tileAspectList.ToArray(Allocator.Persistent);
-           
-            tileAspectList.Dispose();
-            
-            return tileAspectArray;
+            GetTileComponentJob job = new GetTileComponentJob();
+            job.entities = tileArray;
+            job.data = tileComponentArray;
+            job.ComponentTypeHandle = entityManager.GetComponentTypeHandle<TilePropertiesComponentData>(true);
+
+            _jobHandle = job.Schedule(query, _jobHandle);
+            _jobHandle.Complete();
+
+            TilePropertiesComponentData[] tileData = job.data.ToArray();
+
+            tileArray.Dispose();
+            tileComponentArray.Dispose();
+
+            return tileData;
         }
     }
 }

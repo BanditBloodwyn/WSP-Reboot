@@ -1,25 +1,25 @@
 ﻿using Assets._Project._Scripts.WorldMap.ECS.Components;
+using Unity.Burst;
+using Unity.Burst.Intrinsics;
 using Unity.Collections;
 using Unity.Entities;
-using Unity.Jobs;
 
 namespace Assets._Project._Scripts.WorldMap.Jobs
 {
-    public partial struct GetTileComponentJob : IJobParallelFor
+    [BurstCompile]
+    public partial struct GetTileComponentJob : IJobChunk
     {
-        [ReadOnly] public NativeArray<Entity> TileEntities;
-        [ReadOnly] public NativeArray<TilePropertiesComponentData> TileComponenets;
+        [ReadOnly] public ComponentTypeHandle<TilePropertiesComponentData> ComponentTypeHandle;
+        [ReadOnly] public NativeArray<Entity> entities;
+        public NativeArray<TilePropertiesComponentData> data;
 
-        [ReadOnly] public ComponentLookup<TilePropertiesComponentData> TileData;
-
-        public void Execute(int index)
+        [BurstCompile]
+        public void Execute(in ArchetypeChunk chunk, int unfilteredChunkIndex, bool useEnabledMask, in v128 chunkEnabledMask)
         {
-            Entity entity = TileEntities[index];
+            NativeArray<TilePropertiesComponentData> dataArray = chunk.GetNativeArray(ref ComponentTypeHandle);
 
-            if (!TileData.HasComponent(entity))
-                return;
-
-            TileComponenets[index] = TileData[entity];
+            for (int i = 0; i < dataArray.Length; i++)
+                data[unfilteredChunkIndex * 128 + i] = dataArray[i];
         }
     }
 }

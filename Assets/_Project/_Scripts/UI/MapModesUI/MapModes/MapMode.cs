@@ -21,5 +21,9 @@ namespace Assets._Project._Scripts.UI.MapModesUI.MapModes
         public bool CalculateShaderBuffer;
        
         public TileProperties Property;
+
+        public bool DrawWaterAsBlue;
+
+        public Color WaterColor;
     }
 }

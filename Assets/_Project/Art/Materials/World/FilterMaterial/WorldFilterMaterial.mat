@@ -97,6 +97,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
+    - _DrawWaterAsBlue: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
@@ -121,10 +122,11 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Offset: {r: 0.0011160715, g: 0.0011160715, b: 0, a: 0}
+    - _Offset: {r: 0.0026041667, g: 0.0026041667, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Tiling: {r: 448, g: 448, b: 0, a: 0}
+    - _Tiling: {r: 192, g: 192, b: 0, a: 0}
     - _Vector4: {r: 320, g: 320, b: 1, a: 1}
+    - _WaterColor: {r: 0.3529412, g: 0.54901963, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6394410707511482741
 MonoBehaviour:
