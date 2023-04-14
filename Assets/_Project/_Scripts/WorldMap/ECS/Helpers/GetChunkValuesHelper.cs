@@ -21,8 +21,13 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Helpers
 
             TilePropertiesComponentData[] tileData = GetChunkTileAspects2(tiles);
 
-            NativeArray<TilePropertiesComponentData> tileComponentArray = new NativeArray<TilePropertiesComponentData>(tileData, Allocator.Persistent);
-            NativeArray<TileValue> tileValuesArray = new NativeArray<TileValue>(tiles.Length, Allocator.Persistent);
+            NativeArray<TilePropertiesComponentData> tileComponentArray = new NativeArray<TilePropertiesComponentData>(
+                tileData,
+                Allocator.TempJob);
+            NativeArray<TileValue> tileValuesArray = CollectionHelper.CreateNativeArray<TileValue>(
+                tiles.Length, 
+                World.DefaultGameObjectInjectionWorld.UpdateAllocator.ToAllocator,
+                NativeArrayOptions.UninitializedMemory);
 
             GetTileValuesJob2 job = new GetTileValuesJob2();
             job.Property = property;
@@ -34,9 +39,6 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Helpers
 
             TileValue[] tileValues = job.TileValues.ToArray();
 
-            tileComponentArray.Dispose();
-            tileValuesArray.Dispose();
-
             return tileValues;
         }
 
@@ -44,8 +46,13 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Helpers
         {
             EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-            NativeArray<Entity> tileArray = new NativeArray<Entity>(tiles, Allocator.Persistent);
-            NativeArray<TilePropertiesComponentData> tileComponentArray = new NativeArray<TilePropertiesComponentData>(tiles.Length, Allocator.Persistent);
+            NativeArray<Entity> tileArray = new NativeArray<Entity>(
+                tiles, 
+                Allocator.TempJob);
+            NativeArray<TilePropertiesComponentData> tileComponentArray = CollectionHelper.CreateNativeArray<TilePropertiesComponentData>(
+                tiles.Length, 
+                World.DefaultGameObjectInjectionWorld.UpdateAllocator.ToAllocator,
+                NativeArrayOptions.UninitializedMemory);
             EntityQuery query = new EntityQueryBuilder(Allocator.Temp)
                 .WithAll<TilePropertiesComponentData>()
                 .Build(entityManager);
@@ -59,9 +66,6 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Helpers
             _jobHandle.Complete();
 
             TilePropertiesComponentData[] tileData = job.data.ToArray();
-
-            tileArray.Dispose();
-            tileComponentArray.Dispose();
 
             return tileData;
         }
