@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using Assets._Project._Scripts.WorldMap.ECS.Components;
 using Assets._Project._Scripts.WorldMap.Generation.GenerationComponents;
 using Assets._Project._Scripts.WorldMap.Generation.Settings;
@@ -99,6 +100,8 @@ namespace Assets._Project._Scripts.WorldMap.Generation
                     yield return null;
                 }
             }
+
+            Debug.Log($"Finished creating world. Total tile count {Landscape.Instance.Chunks.Sum(static chunk => chunk.Tiles.Length)}");
 
             _worldGenerationFinished?.Invoke();
         }
