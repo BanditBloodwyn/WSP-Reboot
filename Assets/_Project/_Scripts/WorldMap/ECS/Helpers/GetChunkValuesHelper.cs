@@ -39,6 +39,9 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Helpers
 
             TileValue[] tileValues = job.TileValues.ToArray();
 
+            tileComponentArray.Dispose();
+            tileValuesArray.Dispose();
+
             return tileValues;
         }
 
@@ -66,6 +69,10 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Helpers
             _jobHandle.Complete();
 
             TilePropertiesComponentData[] tileData = job.data.ToArray();
+
+            query.Dispose();
+            tileArray.Dispose();
+            tileComponentArray.Dispose();
 
             return tileData;
         }
