@@ -1,10 +1,10 @@
-using System;
 using Assets._Project._Scripts.UI.MapModesUI.MapModes;
 using Assets._Project._Scripts.WorldMap;
 using Assets._Project._Scripts.WorldMap.Data.Structs;
 using Assets._Project._Scripts.WorldMap.Generation.Settings;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Assets._Project._Scripts.Gameplay.Systems.MapModes
 {
@@ -12,6 +12,8 @@ namespace Assets._Project._Scripts.Gameplay.Systems.MapModes
     {
         [SerializeField] private WorldCreationParameters _worldCreationParameters;
         [SerializeField] private Transform _chunkParent;
+
+        [SerializeField] private UnityEvent _mapModeChosen;
 
         private void Awake()
         {
@@ -22,7 +24,7 @@ namespace Assets._Project._Scripts.Gameplay.Systems.MapModes
         {
             if (mapMode.WorldMapMaterial == null)
             {
-                Debug.LogWarning($"<color=#73BD73>Map mode system</color> - No material set for map mode \"<color=#73BD73>{mapMode.DisplayName}</color>\"");
+                Debug.LogError($"<color=#73BD73>Map mode system</color> - No material set for map mode \"<color=#73BD73>{mapMode.DisplayName}</color>\"");
                 return;
             }
 
@@ -32,7 +34,7 @@ namespace Assets._Project._Scripts.Gameplay.Systems.MapModes
             for (int i = 0; i < _chunkParent.childCount; i++)
                 _chunkParent.GetChild(i).GetComponent<MeshRenderer>().sharedMaterial = mapMode.WorldMapMaterial;
 
-            //Debug.Log($"<color=#73BD73>Map mode system</color> - Changed map mode to \"<color=#73BD73>{mapMode.DisplayName}</color>\"");
+            _mapModeChosen?.Invoke();
         }
 
         private void CalculateMaterialBuffer(MapMode mapMode)

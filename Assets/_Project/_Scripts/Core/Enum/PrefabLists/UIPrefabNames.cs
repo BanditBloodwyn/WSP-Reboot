@@ -2,7 +2,9 @@
 {
     public enum UIPrefabNames
     {
+        EntryPanel,
+        Icon,
         MovablePopup,
-        EntryPanel
+        IconGroup
     }
 }
