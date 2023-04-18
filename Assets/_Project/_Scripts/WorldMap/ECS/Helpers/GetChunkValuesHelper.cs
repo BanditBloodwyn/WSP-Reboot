@@ -19,7 +19,7 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Helpers
                 .SelectMany(static chunk => chunk.Tiles)
                 .ToArray();
 
-            TilePropertiesComponentData[] tileData = GetChunkTileAspects2(tiles);
+            TilePropertiesComponentData[] tileData = GetAllTilePropertiesComponentData(tiles);
 
             NativeArray<TilePropertiesComponentData> tileComponentArray = new NativeArray<TilePropertiesComponentData>(
                 tileData,
@@ -29,7 +29,7 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Helpers
                 World.DefaultGameObjectInjectionWorld.UpdateAllocator.ToAllocator,
                 NativeArrayOptions.UninitializedMemory);
 
-            GetTileValuesJob2 job = new GetTileValuesJob2();
+            GetTileValuesJob job = new GetTileValuesJob();
             job.Property = property;
             job.TilePropertiesComponents = tileComponentArray;
             job.TileValues = tileValuesArray;
@@ -42,7 +42,7 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Helpers
             return tileValues;
         }
 
-        private TilePropertiesComponentData[] GetChunkTileAspects2(Entity[] tiles)
+        private TilePropertiesComponentData[] GetAllTilePropertiesComponentData(Entity[] tiles)
         {
             EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
