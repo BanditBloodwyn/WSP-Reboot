@@ -2239,7 +2239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movablePopupParent: {fileID: 1476515568}
-  _popupOffset: {x: 10, y: -10}
+  _popupOffset: {x: 20, y: -20}
 --- !u!1 &1911284498
 GameObject:
   m_ObjectHideFlags: 0
