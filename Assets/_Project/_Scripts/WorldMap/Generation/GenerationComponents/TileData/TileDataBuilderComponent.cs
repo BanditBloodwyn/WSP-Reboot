@@ -40,7 +40,7 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Tile
 
             data.FloraValues = _floraGenerator.Generate(data, tileAspect.Position);
             data.FaunaValues = _faunaGenerator.Generate(data);
-            data.ResourceValues = _resourceGenerator.Generate(data);
+            data.ResourceValues = _resourceGenerator.Generate(data, tileAspect.Position);
             data.PopulationValues = new PopulationValues();
 
             return data;

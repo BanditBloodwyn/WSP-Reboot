@@ -19,14 +19,13 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Tile
             TilePropertiesComponentData data,
             float3 position)
         {
-            FloraValues floraValues = new FloraValues();
-
             if (data.VegetationZone is VegetationZones.Water or VegetationZones.Subnivale or VegetationZones.Nivale)
-                return floraValues;
+                return default;
 
             PerlinNoiseEvaluator evaluator = new PerlinNoiseEvaluator();
             StandardNoiseFilter noiseFilter = new StandardNoiseFilter();
 
+            FloraValues floraValues = new FloraValues();
             floraValues.DeciduousTrees = GenerateDeciduoudTrees(position, evaluator, noiseFilter);
             floraValues.EvergreenTrees = GenerateEvergreenTrees(position, evaluator, noiseFilter, _worldCreationParameters);
             floraValues.Vegetables = GenerateVegetables(position, evaluator, noiseFilter);

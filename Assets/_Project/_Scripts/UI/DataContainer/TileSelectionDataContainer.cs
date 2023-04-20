@@ -35,6 +35,8 @@ namespace Assets._Project._Scripts.UI.DataContainer
             Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Evergreen trees", _tile.GetEvergreenTrees().ToString("F2"));
             Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Vegetables", _tile.GetVegetables().ToString("F2"));
             Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Fruits", _tile.GetFruits().ToString("F2"));
+           
+            Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Oil", _tile.GetOil().ToString("F2"));
         }
     }
 }

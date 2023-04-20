@@ -45,5 +45,10 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Aspects
         {
             return _tileProperties.ValueRO.FloraValues.Fruits;
         }
+
+        public float GetOil()
+        {
+            return _tileProperties.ValueRO.ResourceValues.Oil;
+        }
     }
 }
