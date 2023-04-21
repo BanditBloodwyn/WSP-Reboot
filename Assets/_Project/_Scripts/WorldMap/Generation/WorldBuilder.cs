@@ -80,15 +80,15 @@ namespace Assets._Project._Scripts.WorldMap.Generation
 
         private IEnumerator BuildWorld()
         {
-            for (int x = 0; x < _worldCreationParameters.WorldSize; x++)
+            for (int x = 0; x < _worldCreationParameters.ChunkCountPerAxis; x++)
             {
-                for (int y = 0; y < _worldCreationParameters.WorldSize; y++)
+                for (int y = 0; y < _worldCreationParameters.ChunkCountPerAxis; y++)
                 {
                     Chunk chunk = new Chunk();
 
-                    chunk.ID = y * _worldCreationParameters.ChunkSize + x;
+                    chunk.ID = y * _worldCreationParameters.ChunkCountPerAxis + x;
                     chunk.Coordinates = new Vector2Int(x, y);
-                    chunk.Size = _worldCreationParameters.ChunkSize;
+                    chunk.Size = _worldCreationParameters.TileAmountPerAxis;
 
                     foreach (IGenerationComponent component in _worldCreationParameters.GenerationComponents)
                         if(component != null && component.Enabled) 

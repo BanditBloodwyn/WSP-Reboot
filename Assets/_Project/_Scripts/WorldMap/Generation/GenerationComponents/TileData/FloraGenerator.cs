@@ -63,7 +63,7 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Tile
                 Strength = 72,
                 MinValue = 0,
                 MaxValue = 100,
-                Center = new Vector3(0, 0, worldCreationParameters.WorldSize / 2f),
+                Center = new Vector3(0, 0, worldCreationParameters.ChunkCountPerAxis / 2f),
                 BaseRoughness = MathFunctions.Bump(position.y, 100, 15, 50, 5)
             };
 
@@ -99,7 +99,7 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Tile
                 Strength = 200,
                 MinValue = 0.5f,
                 MaxValue = 100,
-                Center = new Vector3(0, worldCreationParameters.WorldSize / 2f, 0),
+                Center = new Vector3(0, worldCreationParameters.ChunkCountPerAxis / 2f, 0),
                 BaseRoughness = MathFunctions.Bump(position.y, 30, 25, 10, 5)
             };
 

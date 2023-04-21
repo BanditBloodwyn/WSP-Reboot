@@ -50,5 +50,10 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Aspects
         {
             return _tileProperties.ValueRO.ResourceValues.Oil;
         }
+
+        public float GetGas()
+        {
+            return _tileProperties.ValueRO.ResourceValues.Gas;
+        }
     }
 }

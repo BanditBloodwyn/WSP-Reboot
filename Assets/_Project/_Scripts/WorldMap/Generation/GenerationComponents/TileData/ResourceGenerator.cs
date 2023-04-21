@@ -10,9 +10,12 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Tile
     [CreateAssetMenu(fileName = "ResourceGenerator", menuName = "ScriptableObjects/Settings/World/Generators/Resource Generator")]
     public class ResourceGenerator : ScriptableObject
     {
-        public ResourceValues Generate(
-            TilePropertiesComponentData data,
-            float3 position)
+        [SerializeField] private AnimationCurve _oilAmountMultiplicator;
+        [SerializeField] private AnimationCurve _gasAmountMultiplicator;
+
+        public ResourceValues Generate(TilePropertiesComponentData data,
+            float3 position,
+            int worldSize)
         {
             PerlinNoiseEvaluator evaluator = new PerlinNoiseEvaluator();
             StandardNoiseFilter noiseFilter = new StandardNoiseFilter();
@@ -22,7 +25,7 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Tile
             resourceValues.IronOre = GenerateIronOre(position, evaluator, noiseFilter);
             resourceValues.GoldOre = GenerateGoldOre(position, evaluator, noiseFilter);
             resourceValues.Oil = GenerateOil(position, evaluator, noiseFilter);
-            resourceValues.Gas = GenerateGas(position, evaluator, noiseFilter);
+            resourceValues.Gas = GenerateGas(position, evaluator, noiseFilter, worldSize);
 
             return resourceValues;
         }
@@ -51,7 +54,7 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Tile
             return 0;
         }
 
-        private static float GenerateOil(
+        private float GenerateOil(
             float3 position,
             PerlinNoiseEvaluator evaluator,
             StandardNoiseFilter noiseFilter)
@@ -59,22 +62,36 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Tile
             DefaultNoiseFilterSettings filterSettings = new DefaultNoiseFilterSettings
             {
                 NumberOfLayers = 1,
-                Strength = 200,
-                MinValue = 100,
+                Strength = 101,
+                MinValue = 0,
                 MaxValue = 100,
                 Center = new Vector3(0, 0, 0),
                 BaseRoughness = 0.005f
             };
 
-            return noiseFilter.Evaluate(position, evaluator, filterSettings);
+            float filterValue = noiseFilter.Evaluate(position, evaluator, filterSettings);
+
+            float generatedOil = filterValue * _oilAmountMultiplicator.Evaluate(filterValue);
+            return generatedOil;
         }
 
-        private static float GenerateGas(
-            float3 position,
+        private float GenerateGas(float3 position,
             PerlinNoiseEvaluator evaluator,
-            StandardNoiseFilter noiseFilter)
+            StandardNoiseFilter noiseFilter, 
+            int worldSize)
         {
-            return 0;
+            DefaultNoiseFilterSettings filterSettings = new DefaultNoiseFilterSettings
+            {
+                NumberOfLayers = 1,
+                Strength = 300,
+                MinValue = 150,
+                MaxValue = 100,
+                Center = new Vector3(0, worldSize / 2.0f, 0),
+                BaseRoughness = 0.005f
+            };
+
+            float filterValue = noiseFilter.Evaluate(position, evaluator, filterSettings);
+            return filterValue * _gasAmountMultiplicator.Evaluate(filterValue);
         }
     }
 }

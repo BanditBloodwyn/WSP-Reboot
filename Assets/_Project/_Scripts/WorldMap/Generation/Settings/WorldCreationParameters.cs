@@ -10,11 +10,11 @@ namespace Assets._Project._Scripts.WorldMap.Generation.Settings
         [Title("")]
         [PropertyTooltip("How many chunks in every direction will be spawned.")]
         [Range(1, 32)]
-        public int WorldSize;
+        public int ChunkCountPerAxis;
 
         [PropertyTooltip("How many tiles in every direction a chunk will contain.")]
         [Range(1, 64)]
-        public int ChunkSize;
+        public int TileAmountPerAxis;
 
         [SerializeReference]
         public IGenerationComponent[] GenerationComponents;

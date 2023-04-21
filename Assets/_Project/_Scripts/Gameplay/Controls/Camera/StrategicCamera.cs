@@ -69,13 +69,13 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
 
             float speedFromHeight = _settings.PanningSpeedCurve.Evaluate(_cameraTransform.position.y);
 
-            float chunkSize = _worldParameters.ChunkSize;
-            float worldSize = _worldParameters.WorldSize;
+            float chunkCountPerAxis = _worldParameters.ChunkCountPerAxis;
+            float tileAmountPerAxis = _worldParameters.TileAmountPerAxis;
 
             _cameraTransform.position += _settings.PanningSpeed * speedFromHeight * Time.deltaTime * translation;
             _cameraTransform.position = _cameraTransform.position.Clamp(
-                new Vector3(-chunkSize / 2.0f, 3, -chunkSize / 2.0f),
-                new Vector3(worldSize * chunkSize - chunkSize / 2, 1000, worldSize * chunkSize - chunkSize / 2));
+                new Vector3(-tileAmountPerAxis / 2.0f, 3, -tileAmountPerAxis / 2.0f),
+                new Vector3(chunkCountPerAxis * tileAmountPerAxis - tileAmountPerAxis / 2, 1000, chunkCountPerAxis * tileAmountPerAxis - tileAmountPerAxis / 2));
         }
 
         private void HandleZoom()

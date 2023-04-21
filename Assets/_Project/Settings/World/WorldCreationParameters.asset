@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e6b171debd9e54ebe5f54d84a1979e, type: 3}
   m_Name: WorldCreationParameters
   m_EditorClassIdentifier: 
-  WorldSize: 7
-  ChunkSize: 64
+  ChunkCountPerAxis: 4
+  TileAmountPerAxis: 64
   GenerationComponents:
   - rid: 6809958863656976384
   - rid: 6809958863656976385
@@ -42,6 +42,7 @@ MonoBehaviour:
         _enabled: 1
         _vegetationZoneSettings: {fileID: 11400000, guid: ab265ad2426712c42a22992e47e60d37,
           type: 2}
+        _worldCreationParameters: {fileID: 11400000}
         _floraGenerator: {fileID: 11400000, guid: 8e778266d085a1842b7d559443584f2b,
           type: 2}
         _faunaGenerator: {fileID: 11400000, guid: 3c984663f5e8fee4db0fd09ae0889e18,

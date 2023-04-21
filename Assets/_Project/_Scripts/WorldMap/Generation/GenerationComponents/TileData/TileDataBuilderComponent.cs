@@ -12,7 +12,8 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Tile
     {
         [SerializeField] private bool _enabled;
         [SerializeField] private VegetationZoneSettings _vegetationZoneSettings;
-       
+        [SerializeField] private WorldCreationParameters _worldCreationParameters;
+
         [SerializeField] private FloraGenerator _floraGenerator;
         [SerializeField] private FaunaGenerator _faunaGenerator;
         [SerializeField] private ResourceGenerator _resourceGenerator;
@@ -27,6 +28,7 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Tile
 
         private TilePropertiesComponentData BuildTileProperties(Entity tile)
         {
+            // prepare
             EmptyTileAspect tileAspect = tile.GetEmptyTileAspect();
             float height = tileAspect.Position.y;
 
@@ -36,11 +38,14 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Tile
             data.X = (int)tileAspect.Position.x;
             data.Z = (int)tileAspect.Position.z;
 
+            int size = _worldCreationParameters.TileAmountPerAxis * _worldCreationParameters.ChunkCountPerAxis;
+
+            // build
             data.VegetationZone = GetVegetationZoneByHeight(height);
 
             data.FloraValues = _floraGenerator.Generate(data, tileAspect.Position);
             data.FaunaValues = _faunaGenerator.Generate(data);
-            data.ResourceValues = _resourceGenerator.Generate(data, tileAspect.Position);
+            data.ResourceValues = _resourceGenerator.Generate(data, tileAspect.Position, size);
             data.PopulationValues = new PopulationValues();
 
             return data;
