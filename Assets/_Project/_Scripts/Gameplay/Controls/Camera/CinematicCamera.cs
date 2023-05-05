@@ -83,7 +83,7 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
         {
             return new Vector3(
                 Random.Range(0, (_worldParameters.ChunkCountPerAxis - 1) * _worldParameters.TileAmountPerAxis),
-                Random.Range(10, 30),
+                Random.Range(_settings.MinimumHeight, _settings.MaximumHeight),
                 Random.Range(0, (_worldParameters.ChunkCountPerAxis - 1) * _worldParameters.TileAmountPerAxis));
         }
 
@@ -91,7 +91,7 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
         {
             Vector3 potentialEndPosition = new Vector3(
                 Random.Range(0, (_worldParameters.ChunkCountPerAxis - 1) * _worldParameters.TileAmountPerAxis),
-                Random.Range(10, 30),
+                Random.Range(_settings.MinimumHeight, _settings.MaximumHeight),
                 Random.Range(0, (_worldParameters.ChunkCountPerAxis - 1) * _worldParameters.TileAmountPerAxis));
 
             if (Vector3.Distance(startPosition, potentialEndPosition) > _settings.MaximumShotDistance)

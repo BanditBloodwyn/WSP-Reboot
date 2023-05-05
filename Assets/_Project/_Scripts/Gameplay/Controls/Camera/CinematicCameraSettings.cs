@@ -7,5 +7,9 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
     {
         [Range(5, 20)] public float ShotDuration;
         [Range(5, 20)] public float MaximumShotDistance;
+       
+        [Range(10, 100)] public float MinimumHeight;
+        [Range(10, 100)] public float MaximumHeight;
+
     }
 }
