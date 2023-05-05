@@ -2,7 +2,8 @@
 using Assets._Project._Scripts.WorldMap.Data.Structs;
 using Assets._Project._Scripts.WorldMap.ECS.Aspects;
 using Assets._Project._Scripts.WorldMap.ECS.Components;
-using Assets._Project._Scripts.WorldMap.Generation.Settings;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings;
 using Unity.Entities;
 using UnityEngine;
 
@@ -13,10 +14,6 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Tile
         [SerializeField] private bool _enabled;
         [SerializeField] private VegetationZoneSettings _vegetationZoneSettings;
         [SerializeField] private WorldCreationParameters _worldCreationParameters;
-
-        [SerializeField] private FloraGenerator _floraGenerator;
-        [SerializeField] private FaunaGenerator _faunaGenerator;
-        [SerializeField] private ResourceGenerator _resourceGenerator;
 
         public bool Enabled => _enabled;
 
@@ -43,9 +40,9 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Tile
             // build
             data.VegetationZone = GetVegetationZoneByHeight(height);
 
-            data.FloraValues = _floraGenerator.Generate(data, tileAspect.Position);
-            data.FaunaValues = _faunaGenerator.Generate(data);
-            data.ResourceValues = _resourceGenerator.Generate(data, tileAspect.Position, size);
+            //data.FloraValues = _floraGenerator.Generate(data, tileAspect.Position);
+            //data.FaunaValues = _faunaGenerator.Generate(data);
+            //data.ResourceValues = _resourceGenerator.Generate(data, tileAspect.Position, size);
             data.PopulationValues = new PopulationValues();
 
             return data;

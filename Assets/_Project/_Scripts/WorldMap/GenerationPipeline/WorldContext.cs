@@ -1,5 +1,4 @@
-﻿using Assets._Project._Scripts.WorldMap.Generation;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.WorldMap.GenerationPipeline

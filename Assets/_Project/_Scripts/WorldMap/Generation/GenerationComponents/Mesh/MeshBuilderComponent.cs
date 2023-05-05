@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Assets._Project._Scripts.WorldMap.ECS.Aspects;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.Mesh;
+using System.Collections.Generic;
 using System.Linq;
-using Assets._Project._Scripts.WorldMap.ECS.Aspects;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
@@ -38,9 +40,9 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Mesh
                 static pos => pos);
 
             for (int x = -chunkSize / 2; x < chunkSize / 2; x++)
-            for (int z = -chunkSize / 2; z < chunkSize / 2; z++)
-            for (int facenum = 0; facenum < 5; facenum++)
-                QuadBuilder.AddQuad(chunkOffset, Verticies, voxelDictionary, x, z, facenum, triangles, uv);
+                for (int z = -chunkSize / 2; z < chunkSize / 2; z++)
+                    for (int facenum = 0; facenum < 5; facenum++)
+                        QuadBuilder.AddQuad(chunkOffset, Verticies, voxelDictionary, x, z, facenum, triangles, uv);
 
 
             UnityEngine.Mesh mesh = new();

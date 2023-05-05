@@ -1,4 +1,6 @@
-﻿namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents
+﻿using Assets._Project._Scripts.WorldMap.GenerationPipeline;
+
+namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents
 {
     public interface IGenerationComponent
     {

@@ -1,7 +1,6 @@
-﻿using System.Linq;
-using Assets._Project._Scripts.WorldMap.Data.Enums;
-using Assets._Project._Scripts.WorldMap.Generation;
-using Assets._Project._Scripts.WorldMap.Generation.Settings;
+﻿using Assets._Project._Scripts.WorldMap.Data.Enums;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.ChunkObject
@@ -34,6 +33,9 @@ namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.C
 
         private static void AdjustMaterial(Material material, VegetationZoneSettings settings)
         {
+            if(settings.VegetationZones == null || settings.VegetationZones.Length == 0)
+                return;
+
             material.SetFloat("_WaterHeight", settings.VegetationZones.First(static zone => zone.VegetationZone == VegetationZones.Water).MaximumHeight);
             material.SetFloat("_KollineHeight", settings.VegetationZones.First(static zone => zone.VegetationZone == VegetationZones.Kolline).MaximumHeight);
             material.SetFloat("_MontaneHeight", settings.VegetationZones.First(static zone => zone.VegetationZone == VegetationZones.Montane).MaximumHeight);
@@ -42,6 +44,6 @@ namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.C
             material.SetFloat("_Alpine_BushesHeight", settings.VegetationZones.First(static zone => zone.VegetationZone == VegetationZones.Alpine_Bushes).MaximumHeight);
             material.SetFloat("_SubnivaleHeight", settings.VegetationZones.First(static zone => zone.VegetationZone == VegetationZones.Subnivale).MaximumHeight);
             material.SetFloat("_NivaleHeight", settings.VegetationZones.First(static zone => zone.VegetationZone == VegetationZones.Nivale).MaximumHeight);
-        }   
+        }
     }
 }

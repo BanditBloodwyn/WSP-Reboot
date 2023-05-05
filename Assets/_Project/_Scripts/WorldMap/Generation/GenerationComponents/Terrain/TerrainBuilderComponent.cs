@@ -1,6 +1,7 @@
 ﻿using Assets._Project._Scripts.Core.Math.Noise;
 using Assets._Project._Scripts.WorldMap.ECS.Aspects;
-using Assets._Project._Scripts.WorldMap.Generation.Settings;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;

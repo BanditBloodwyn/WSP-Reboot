@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using Assets._Project._Scripts.WorldMap.Generation.Settings;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings;
 using UnityEngine;
 using UnityEngine.Assertions;
 

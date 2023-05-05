@@ -1,8 +1,7 @@
-﻿using Assets._Project._Scripts.WorldMap.Generation.GenerationComponents;
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.WorldMap.Generation.Settings
+namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings
 {
     [CreateAssetMenu(fileName = "WorldCreationParameters", menuName = "ScriptableObjects/Settings/World/World Creation Parameters")]
     public class WorldCreationParameters : ScriptableObject
@@ -22,8 +21,5 @@ namespace Assets._Project._Scripts.WorldMap.Generation.Settings
         public Material DefaultWorldMaterial;
 
         public VegetationZoneSettings VegetationZoneSettings;
-
-        [SerializeReference]
-        public IGenerationComponent[] GenerationComponents;
     }
 }

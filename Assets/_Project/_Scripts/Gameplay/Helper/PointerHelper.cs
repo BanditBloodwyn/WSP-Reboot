@@ -1,6 +1,6 @@
-﻿using Assets._Project._Scripts.WorldMap.Generation;
-using UnityEngine.EventSystems;
+﻿using Assets._Project._Scripts.WorldMap.GenerationPipeline;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Assets._Project._Scripts.Gameplay.Helper
 {
@@ -30,8 +30,8 @@ namespace Assets._Project._Scripts.Gameplay.Helper
 
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 
-            return Physics.Raycast(ray, out RaycastHit hit) 
-                ? hit.point 
+            return Physics.Raycast(ray, out RaycastHit hit)
+                ? hit.point
                 : Vector3.zero;
         }
     }

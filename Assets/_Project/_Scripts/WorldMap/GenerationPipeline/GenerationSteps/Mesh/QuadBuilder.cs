@@ -2,7 +2,7 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Mesh
+namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.Mesh
 {
     public static class QuadBuilder
     {

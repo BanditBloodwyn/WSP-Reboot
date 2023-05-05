@@ -1,7 +1,7 @@
 ﻿using Unity.Entities;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.WorldMap.Generation
+namespace Assets._Project._Scripts.WorldMap.GenerationPipeline
 {
     public class Chunk
     {

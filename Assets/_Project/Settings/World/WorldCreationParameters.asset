@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17e6b171debd9e54ebe5f54d84a1979e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1712cd4906c7a5143afe785c7117fae6, type: 3}
   m_Name: WorldCreationParameters
   m_EditorClassIdentifier: 
   ChunkCountPerAxis: 5
@@ -19,52 +19,3 @@ MonoBehaviour:
     type: 2}
   VegetationZoneSettings: {fileID: 11400000, guid: ab265ad2426712c42a22992e47e60d37,
     type: 2}
-  GenerationComponents:
-  - rid: 6809958863656976384
-  - rid: 6809958863656976385
-  - rid: 6809958863656976386
-  - rid: 6809958863656976387
-  - rid: 6809958863656976388
-  references:
-    version: 2
-    RefIds:
-    - rid: 6809958863656976384
-      type: {class: TileGeneratorComponent, ns: Assets._Project._Scripts.WorldMap.Generation.GenerationComponents,
-        asm: WorldMap}
-      data:
-        _enabled: 1
-    - rid: 6809958863656976385
-      type: {class: TerrainBuilderComponent, ns: Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Terrain,
-        asm: WorldMap}
-      data:
-        _enabled: 1
-        _noiseParameters: {fileID: 11400000, guid: 84cccd3d83ed02643bbef60cfcc90a6e,
-          type: 2}
-    - rid: 6809958863656976386
-      type: {class: TileDataBuilderComponent, ns: Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.TileData,
-        asm: WorldMap}
-      data:
-        _enabled: 1
-        _vegetationZoneSettings: {fileID: 11400000, guid: ab265ad2426712c42a22992e47e60d37,
-          type: 2}
-        _worldCreationParameters: {fileID: 11400000}
-        _floraGenerator: {fileID: 11400000, guid: 8e778266d085a1842b7d559443584f2b,
-          type: 2}
-        _faunaGenerator: {fileID: 11400000, guid: 3c984663f5e8fee4db0fd09ae0889e18,
-          type: 2}
-        _resourceGenerator: {fileID: 11400000, guid: 81939c5c177ba754496ee94455d0469f,
-          type: 2}
-    - rid: 6809958863656976387
-      type: {class: MeshBuilderComponent, ns: Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Mesh,
-        asm: WorldMap}
-      data:
-        _enabled: 1
-    - rid: 6809958863656976388
-      type: {class: GameObjectBuilderComponent, ns: Assets._Project._Scripts.WorldMap.Generation.GenerationComponents,
-        asm: WorldMap}
-      data:
-        _enabled: 1
-        _chunkParent: {fileID: 0}
-        _tileMaterial: {fileID: 2100000, guid: 16c81ca37932fb94082c49f92581abbe, type: 2}
-        _vegetationZoneSettings: {fileID: 11400000, guid: ab265ad2426712c42a22992e47e60d37,
-          type: 2}

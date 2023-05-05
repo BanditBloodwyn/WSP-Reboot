@@ -1,6 +1,6 @@
 ﻿using Assets._Project._Scripts.Core.Extentions;
 using Assets._Project._Scripts.Gameplay.Helper;
-using Assets._Project._Scripts.WorldMap.Generation.Settings;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings;
 using NUnit.Framework;
 using Sirenix.Utilities;
 using UnityEngine;

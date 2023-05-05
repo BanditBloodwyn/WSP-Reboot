@@ -4,20 +4,18 @@ using Assets._Project._Scripts.Core.Math.Noise.NoiseFilters;
 using Assets._Project._Scripts.WorldMap.Data.Enums;
 using Assets._Project._Scripts.WorldMap.Data.Structs;
 using Assets._Project._Scripts.WorldMap.ECS.Components;
-using Assets._Project._Scripts.WorldMap.Generation.Settings;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.TileData
+namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.TileData
 {
-    [CreateAssetMenu(fileName = "FloraGenerator", menuName = "ScriptableObjects/Settings/World/Generators/Flora Generator")]
-    public class FloraGenerator : ScriptableObject
+    public static class FloraGenerator
     {
-        [SerializeField] private WorldCreationParameters _worldCreationParameters;
-
-        public FloraValues Generate(
+        public static FloraValues Generate(
             TilePropertiesComponentData data,
-            float3 position)
+            float3 position,
+            WorldCreationParameters settings)
         {
             if (data.VegetationZone is VegetationZones.Water or VegetationZones.Subnivale or VegetationZones.Nivale)
                 return default;
@@ -27,9 +25,9 @@ namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Tile
 
             FloraValues floraValues = new FloraValues();
             floraValues.DeciduousTrees = GenerateDeciduoudTrees(position, evaluator, noiseFilter);
-            floraValues.EvergreenTrees = GenerateEvergreenTrees(position, evaluator, noiseFilter, _worldCreationParameters);
+            floraValues.EvergreenTrees = GenerateEvergreenTrees(position, evaluator, noiseFilter, settings);
             floraValues.Vegetables = GenerateVegetables(position, evaluator, noiseFilter);
-            floraValues.Fruits = GenerateFruits(position, evaluator, noiseFilter, _worldCreationParameters);
+            floraValues.Fruits = GenerateFruits(position, evaluator, noiseFilter, settings);
 
             return floraValues;
         }

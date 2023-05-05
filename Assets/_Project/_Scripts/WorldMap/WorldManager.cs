@@ -1,12 +1,11 @@
-﻿using Assets._Project._Scripts.WorldMap.Generation;
-using Assets._Project._Scripts.WorldMap.Generation.Settings;
-using Assets._Project._Scripts.WorldMap.GenerationPipeline;
+﻿using Assets._Project._Scripts.WorldMap.GenerationPipeline;
 using Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.ChunkObject;
 using Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.Chunks;
 using Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.Height;
 using Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.Mesh;
 using Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.TileData;
 using Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.Tiles;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings;
 using NUnit.Framework;
 using System.Collections;
 using Unity.Collections;

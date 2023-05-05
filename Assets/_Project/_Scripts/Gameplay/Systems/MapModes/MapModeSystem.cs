@@ -1,7 +1,7 @@
 using Assets._Project._Scripts.UI.MapModesUI.MapModes;
 using Assets._Project._Scripts.WorldMap;
 using Assets._Project._Scripts.WorldMap.Data.Structs;
-using Assets._Project._Scripts.WorldMap.Generation.Settings;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Events;

@@ -2,7 +2,7 @@
 using Assets._Project._Scripts.WorldMap.Data.Structs;
 using Assets._Project._Scripts.WorldMap.ECS.Aspects;
 using Assets._Project._Scripts.WorldMap.ECS.Helpers;
-using Assets._Project._Scripts.WorldMap.Generation;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline;
 using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;

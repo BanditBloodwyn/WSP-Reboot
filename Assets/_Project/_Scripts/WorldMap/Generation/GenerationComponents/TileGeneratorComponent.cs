@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assets._Project._Scripts.WorldMap.ECS.Components;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;

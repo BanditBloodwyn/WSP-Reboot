@@ -4,6 +4,7 @@ using Assets._Project._Scripts.UI;
 using Assets._Project._Scripts.UI.DataContainer;
 using Assets._Project._Scripts.WorldMap;
 using Assets._Project._Scripts.WorldMap.Generation;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline;
 using UnityEngine;
 using UnityEngine.Assertions;
 using TileAspect = Assets._Project._Scripts.WorldMap.ECS.Aspects.TileAspect;

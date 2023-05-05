@@ -1,6 +1,5 @@
-﻿using Assets._Project._Scripts.WorldMap.Generation;
-using Assets._Project._Scripts.WorldMap.Generation.Settings;
-using Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.Chunks;
+﻿using Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.Chunks;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings;
 using System;
 using System.Collections;
 using System.Collections.Generic;

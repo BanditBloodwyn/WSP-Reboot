@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets._Project._Scripts.WorldMap.Generation;
-using Assets._Project._Scripts.WorldMap.Generation.GenerationComponents.Mesh;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -23,9 +21,9 @@ namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.M
             float2 chunkOffset = new float2(chunk.Size * chunk.Coordinates.x, chunk.Size * chunk.Coordinates.y);
 
             for (int x = -chunk.Size / 2; x < chunk.Size / 2; x++)
-            for (int z = -chunk.Size / 2; z < chunk.Size / 2; z++)
-            for (int facenum = 0; facenum < 5; facenum++)
-                QuadBuilder.AddQuad(chunkOffset, Verticies, voxelDictionary, x, z, facenum, triangles, uv);
+                for (int z = -chunk.Size / 2; z < chunk.Size / 2; z++)
+                    for (int facenum = 0; facenum < 5; facenum++)
+                        QuadBuilder.AddQuad(chunkOffset, Verticies, voxelDictionary, x, z, facenum, triangles, uv);
 
 
             UnityEngine.Mesh mesh = new();

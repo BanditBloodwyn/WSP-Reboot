@@ -1,6 +1,7 @@
 ﻿using Assets._Project._Scripts.WorldMap.Data.Enums;
-using Assets._Project._Scripts.WorldMap.Generation.Settings;
 using System.Linq;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.WorldMap.Generation.GenerationComponents
