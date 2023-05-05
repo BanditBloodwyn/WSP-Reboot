@@ -3,7 +3,6 @@ using Assets._Project._Scripts.Gameplay.Systems.TileSelection.Settings;
 using Assets._Project._Scripts.UI;
 using Assets._Project._Scripts.UI.DataContainer;
 using Assets._Project._Scripts.WorldMap;
-using Assets._Project._Scripts.WorldMap.Generation;
 using Assets._Project._Scripts.WorldMap.GenerationPipeline;
 using UnityEngine;
 using UnityEngine.Assertions;
