@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShotDuration: 20
   MaximumShotDistance: 20
+  MinimumHeight: 60
+  MaximumHeight: 60
