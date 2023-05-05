@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e6b171debd9e54ebe5f54d84a1979e, type: 3}
   m_Name: WorldCreationParameters
   m_EditorClassIdentifier: 
-  ChunkCountPerAxis: 4
+  ChunkCountPerAxis: 5
   TileAmountPerAxis: 64
+  ChunkParent: {fileID: 0}
+  DefaultWorldMaterial: {fileID: 2100000, guid: 16c81ca37932fb94082c49f92581abbe,
+    type: 2}
+  VegetationZoneSettings: {fileID: 11400000, guid: ab265ad2426712c42a22992e47e60d37,
+    type: 2}
   GenerationComponents:
   - rid: 6809958863656976384
   - rid: 6809958863656976385

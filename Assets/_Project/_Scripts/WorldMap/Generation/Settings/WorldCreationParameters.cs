@@ -16,6 +16,13 @@ namespace Assets._Project._Scripts.WorldMap.Generation.Settings
         [Range(1, 64)]
         public int TileAmountPerAxis;
 
+        [PropertyTooltip("The transform in the hierarchy all chunk-GameObjects will be spawned in.")]
+        public Transform ChunkParent;
+
+        public Material DefaultWorldMaterial;
+
+        public VegetationZoneSettings VegetationZoneSettings;
+
         [SerializeReference]
         public IGenerationComponent[] GenerationComponents;
     }
