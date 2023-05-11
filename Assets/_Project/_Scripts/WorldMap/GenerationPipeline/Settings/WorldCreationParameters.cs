@@ -21,5 +21,7 @@ namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings
         public Material DefaultWorldMaterial;
 
         public VegetationZoneSettings VegetationZoneSettings;
+
+        public TextAsset NoiseSettingJSON;
     }
 }

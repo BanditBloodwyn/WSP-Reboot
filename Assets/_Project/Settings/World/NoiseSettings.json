@@ -1,0 +1,46 @@
+[
+{
+Type : "Standard",
+NumberOfLayers : 6,
+CenterX : 0,
+CenterY : 0,
+CenterZ : 0,
+Minimum : 2.7561436,
+Maximum : 100,
+Strength : 3,
+BaseRoughness : 0.0014744801,
+Roughness : 1,
+Persistance : 0.4725898
+}
+,
+{
+Type : "Rigid",
+NumberOfLayers : 6,
+CenterX : 0,
+CenterY : 0,
+CenterZ : 0,
+Minimum : 0,
+Maximum : 100,
+Strength : 5.0888467,
+BaseRoughness : 0.0021739132,
+Roughness : 2.3988657,
+Persistance : 1.8279773,
+WeightMultiplier : 0.51039696
+}
+,
+{
+Type : "Standard",
+NumberOfLayers : 8,
+CenterX : 0,
+CenterY : 0,
+CenterZ : 0,
+Minimum : 0,
+Maximum : 100,
+Strength : 0.60491496,
+BaseRoughness : 0.0025330812,
+Roughness : 0.6143667,
+Persistance : 0.4725898
+}
+,
+
+]

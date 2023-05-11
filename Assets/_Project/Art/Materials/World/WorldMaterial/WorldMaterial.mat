@@ -78,25 +78,25 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpine_BushesHeight: 16
-    - _Alpine_TreesHeight: 14
-    - _KollineHeight: 2.69
-    - _MontaneHeight: 5.59
+    - _Alpine_BushesHeight: 22
+    - _Alpine_TreesHeight: 18
+    - _KollineHeight: 3
+    - _MontaneHeight: 6
     - _NivaleHeight: 100
     - _NormalStrength: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Selected: 0
-    - _Sharpness: 0.583
-    - _SubalpineHeight: 11
-    - _SubnivaleHeight: 18
+    - _Sharpness: 0.417
+    - _SubalpineHeight: 14
+    - _SubnivaleHeight: 30
     - _TileHeight: 0
     - _WaterHeight: 0
     m_Colors:
     - _Alpine_BushesTiling: {r: 2, g: 2, b: 0, a: 0}
     - _Alpine_BushesTint: {r: 0.8938178, g: 1, b: 0.8915094, a: 0}
     - _Alpine_TreesTiling: {r: 1, g: 1, b: 0, a: 0}
-    - _Alpine_TreesTint: {r: 0.64764154, g: 1, b: 0.6084906, a: 0}
+    - _Alpine_TreesTint: {r: 0.51761746, g: 0.8207547, b: 0.48393556, a: 0}
     - _KollineTiling: {r: 2, g: 2, b: 0, a: 0}
     - _KollineTint: {r: 0.5613208, g: 1, b: 0.5613208, a: 1}
     - _MontaneTiling: {r: 2, g: 2, b: 0, a: 0}

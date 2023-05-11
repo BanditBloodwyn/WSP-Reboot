@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1712cd4906c7a5143afe785c7117fae6, type: 3}
   m_Name: WorldCreationParameters
   m_EditorClassIdentifier: 
-  ChunkCountPerAxis: 5
+  ChunkCountPerAxis: 14
   TileAmountPerAxis: 64
   ChunkParent: {fileID: 0}
   DefaultWorldMaterial: {fileID: 2100000, guid: 16c81ca37932fb94082c49f92581abbe,
     type: 2}
   VegetationZoneSettings: {fileID: 11400000, guid: ab265ad2426712c42a22992e47e60d37,
     type: 2}
+  NoiseSettingJSON: {fileID: 4900000, guid: fd6340e90f33db746a3b8bd8ff109016, type: 3}

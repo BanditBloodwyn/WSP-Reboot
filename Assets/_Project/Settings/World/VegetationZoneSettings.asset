@@ -16,16 +16,16 @@ MonoBehaviour:
   - VegetationZone: 0
     MaximumHeight: 0
   - VegetationZone: 1
-    MaximumHeight: 2.69
+    MaximumHeight: 3
   - VegetationZone: 2
-    MaximumHeight: 5.59
+    MaximumHeight: 6
   - VegetationZone: 3
-    MaximumHeight: 11
-  - VegetationZone: 4
     MaximumHeight: 14
-  - VegetationZone: 5
-    MaximumHeight: 16
-  - VegetationZone: 6
+  - VegetationZone: 4
     MaximumHeight: 18
+  - VegetationZone: 5
+    MaximumHeight: 22
+  - VegetationZone: 6
+    MaximumHeight: 30
   - VegetationZone: 7
     MaximumHeight: 100
