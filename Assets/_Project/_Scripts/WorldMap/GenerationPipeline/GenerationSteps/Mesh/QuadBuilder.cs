@@ -10,8 +10,8 @@ namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.M
         {
             new(-1, 0, -1), new(-1, 0, 1),
             new(1, 0, 1), new(1, 0, -1),
-            new(-1, -5, -1), new(-1, -5, 1),
-            new(1, -5, 1), new(1, -5, -1),
+            new(-1, -7, -1), new(-1, -7, 1),
+            new(1, -7, 1), new(1, -7, -1),
         };
 
         private static readonly int[,] Faces =
