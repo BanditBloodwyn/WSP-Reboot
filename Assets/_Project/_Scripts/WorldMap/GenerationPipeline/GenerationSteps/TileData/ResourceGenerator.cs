@@ -1,15 +1,18 @@
 ﻿using Assets._Project._Scripts.Core.Math.Noise;
 using Assets._Project._Scripts.Core.Math.Noise.NoiseFilters;
-using Assets._Project._Scripts.WorldMap.Data.Structs;
+using Assets._Project._Scripts.WorldMap.Data.Structs.ComponentData;
 using Assets._Project._Scripts.WorldMap.ECS.Components;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings;
 using Unity.Mathematics;
-using UnityEngine;
 
 namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.TileData
 {
     public static class ResourceGenerator
     {
-        public static ResourceValues Generate(TilePropertiesComponentData data, float3 position)
+        public static ResourceValues Generate(
+            TilePropertiesComponentData data, 
+            float3 position, 
+            WorldCreationParameters settings)
         {
             PerlinNoiseEvaluator evaluator = new PerlinNoiseEvaluator();
             StandardNoiseFilter noiseFilter = new StandardNoiseFilter();

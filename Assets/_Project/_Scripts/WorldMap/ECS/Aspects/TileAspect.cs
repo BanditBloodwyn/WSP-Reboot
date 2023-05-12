@@ -36,9 +36,9 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Aspects
             return _tileProperties.ValueRO.FloraValues.EvergreenTrees;
         }
       
-        public float GetVegetables()
+        public float GetHerbs()
         {
-            return _tileProperties.ValueRO.FloraValues.Vegetables;
+            return _tileProperties.ValueRO.FloraValues.Herbs;
         }
        
         public float GetFruits()

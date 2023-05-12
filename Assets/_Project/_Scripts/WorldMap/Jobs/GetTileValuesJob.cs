@@ -38,7 +38,7 @@ namespace Assets._Project._Scripts.WorldMap.Jobs
                 TileProperties.Height => properties.TerrainValues.Height,
                 TileProperties.DedicuousTrees => properties.FloraValues.DeciduousTrees,
                 TileProperties.EvergreenTrees => properties.FloraValues.EvergreenTrees,
-                TileProperties.Vegetables => properties.FloraValues.Vegetables,
+                TileProperties.Herbs => properties.FloraValues.Herbs,
                 TileProperties.Fruits => properties.FloraValues.Fruits,
                 TileProperties.Carnivores => properties.FaunaValues.Carnivores,
                 TileProperties.Herbivores => properties.FaunaValues.Herbivores,

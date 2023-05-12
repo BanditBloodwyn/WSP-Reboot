@@ -1,5 +1,6 @@
 ﻿using Assets._Project._Scripts.WorldMap.Data.Enums;
 using Assets._Project._Scripts.WorldMap.Data.Structs;
+using Assets._Project._Scripts.WorldMap.Data.Structs.ComponentData;
 using Assets._Project._Scripts.WorldMap.ECS.Aspects;
 using Assets._Project._Scripts.WorldMap.ECS.Components;
 using Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings;
@@ -30,7 +31,7 @@ namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.T
 
             data.FloraValues = FloraGenerator.Generate(data, tileAspect.Position, settings);
             data.FaunaValues = FaunaGenerator.Generate(data);
-            data.ResourceValues = ResourceGenerator.Generate(data, tileAspect.Position);
+            data.ResourceValues = ResourceGenerator.Generate(data, tileAspect.Position, settings);
             data.PopulationValues = new PopulationValues();
 
             return data;

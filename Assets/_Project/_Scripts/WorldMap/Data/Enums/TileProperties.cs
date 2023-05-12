@@ -8,7 +8,7 @@
 
         DedicuousTrees,
         EvergreenTrees,
-        Vegetables,
+        Herbs,
         Fruits,
 
         Carnivores,

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f80d26b709a86c499584753ad43cfcf, type: 3}
   m_Name: StrategicCameraSettings
   m_EditorClassIdentifier: 
-  PanningSpeed: 2.4
+  PanningSpeed: 4
   YawSpeed: 4.89
   PitchSpeed: 4.94
-  ZoomSpeed: 100
+  ZoomSpeed: 199.7
   PanningSpeedCurve:
     serializedVersion: 2
     m_Curve:

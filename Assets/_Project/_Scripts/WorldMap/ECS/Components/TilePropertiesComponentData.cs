@@ -1,5 +1,5 @@
 ﻿using Assets._Project._Scripts.WorldMap.Data.Enums;
-using Assets._Project._Scripts.WorldMap.Data.Structs;
+using Assets._Project._Scripts.WorldMap.Data.Structs.ComponentData;
 using Unity.Entities;
 
 namespace Assets._Project._Scripts.WorldMap.ECS.Components

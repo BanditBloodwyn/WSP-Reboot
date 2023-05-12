@@ -1,12 +1,10 @@
-﻿using Assets._Project._Scripts.Core.Math;
-using Assets._Project._Scripts.Core.Math.Noise;
-using Assets._Project._Scripts.Core.Math.Noise.NoiseFilters;
-using Assets._Project._Scripts.WorldMap.Data.Enums;
+﻿using Assets._Project._Scripts.WorldMap.Data.Enums;
 using Assets._Project._Scripts.WorldMap.Data.Structs;
+using Assets._Project._Scripts.WorldMap.Data.Structs.ComponentData;
 using Assets._Project._Scripts.WorldMap.ECS.Components;
 using Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings;
+using System.Linq;
 using Unity.Mathematics;
-using UnityEngine;
 
 namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.TileData
 {
@@ -20,88 +18,25 @@ namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.T
             if (data.VegetationZone is VegetationZones.Water or VegetationZones.Subnivale or VegetationZones.Nivale)
                 return default;
 
-            PerlinNoiseEvaluator evaluator = new PerlinNoiseEvaluator();
-            StandardNoiseFilter noiseFilter = new StandardNoiseFilter();
-
             FloraValues floraValues = new FloraValues();
-            floraValues.DeciduousTrees = GenerateDeciduoudTrees(position, evaluator, noiseFilter);
-            floraValues.EvergreenTrees = GenerateEvergreenTrees(position, evaluator, noiseFilter, settings);
-            floraValues.Vegetables = GenerateVegetables(position, evaluator, noiseFilter);
-            floraValues.Fruits = GenerateFruits(position, evaluator, noiseFilter, settings);
+            floraValues.DeciduousTrees = GenerateResource(position, settings.ResourceSettings.ResourceProperties, "Dedicuous Trees");
+            floraValues.EvergreenTrees = GenerateResource(position, settings.ResourceSettings.ResourceProperties, "Evergreen Trees");
+            floraValues.Herbs = GenerateResource(position, settings.ResourceSettings.ResourceProperties, "Herbs");
+            floraValues.Fruits = GenerateResource(position, settings.ResourceSettings.ResourceProperties, "Fruits");
 
             return floraValues;
         }
 
-        private static float GenerateDeciduoudTrees(
+
+        private static float GenerateResource(
             float3 position,
-            PerlinNoiseEvaluator evaluator,
-            StandardNoiseFilter noiseFilter)
+            ResourceProperties[] resourceProperties,
+            string name)
         {
-            DefaultNoiseFilterSettings deciduousTreesFilterSettings = new DefaultNoiseFilterSettings
-            {
-                NumberOfLayers = 4,
-                Strength = 72,
-                MinValue = 0,
-                MaxValue = 100,
-                BaseRoughness = MathFunctions.Bump(position.y, 100, 20, 20, 5)
-            };
-           
-            return noiseFilter.Evaluate(position, evaluator, deciduousTreesFilterSettings);
-        }
+            ResourceProperties property = resourceProperties.First(prop => prop.ResourceName == name);
 
-        private static float GenerateEvergreenTrees(
-            float3 position,
-            PerlinNoiseEvaluator evaluator,
-            StandardNoiseFilter noiseFilter,
-            WorldCreationParameters worldCreationParameters)
-        {
-            DefaultNoiseFilterSettings evergreenTreesFilterSettings = new DefaultNoiseFilterSettings
-            {
-                NumberOfLayers = 4,
-                Strength = 72,
-                MinValue = 0,
-                MaxValue = 100,
-                Center = new Vector3(0, 0, worldCreationParameters.ChunkCountPerAxis / 2f),
-                BaseRoughness = MathFunctions.Bump(position.y, 100, 15, 50, 5)
-            };
-
-            return noiseFilter.Evaluate(position, evaluator, evergreenTreesFilterSettings);
-        }
-
-        private static float GenerateVegetables(
-            float3 position, 
-            PerlinNoiseEvaluator evaluator, 
-            StandardNoiseFilter noiseFilter)
-        {
-            DefaultNoiseFilterSettings vegetablesFilterSettings = new DefaultNoiseFilterSettings
-            {
-                NumberOfLayers = 2,
-                Strength = 200,
-                MinValue = 0.5f,
-                MaxValue = 100,
-                BaseRoughness = MathFunctions.Bump(position.y, 50, 45, 10, 5)
-            };
-
-            return noiseFilter.Evaluate(position, evaluator, vegetablesFilterSettings);
-        }
-     
-        private static float GenerateFruits(
-            float3 position, 
-            PerlinNoiseEvaluator evaluator, 
-            StandardNoiseFilter noiseFilter, 
-            WorldCreationParameters worldCreationParameters)
-        {
-            DefaultNoiseFilterSettings fruitsFilterSettings = new DefaultNoiseFilterSettings
-            {
-                NumberOfLayers = 2,
-                Strength = 200,
-                MinValue = 0.5f,
-                MaxValue = 100,
-                Center = new Vector3(0, worldCreationParameters.ChunkCountPerAxis / 2f, 0),
-                BaseRoughness = MathFunctions.Bump(position.y, 30, 25, 10, 5)
-            };
-
-            return noiseFilter.Evaluate(position, evaluator, fruitsFilterSettings);
+            float value = property.NoiseFilter.Evaluate(position, property.Seed);
+            return value * property.Distribution.Evaluate(position.y);
         }
     }
 }

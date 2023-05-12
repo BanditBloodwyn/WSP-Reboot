@@ -24,6 +24,7 @@ namespace Assets._Project._Scripts.WorldMap
         private void Awake()
         {
             Assert.IsNotNull(_worldCreationParameters);
+            _worldCreationParameters.Init();
         }
 
         private IEnumerator Start()

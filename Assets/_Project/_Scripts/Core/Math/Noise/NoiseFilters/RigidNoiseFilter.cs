@@ -18,24 +18,11 @@ namespace Assets._Project._Scripts.Core.Math.Noise.NoiseFilters
         [SerializeField, Range(0, 10)] private float _roughness;
         [SerializeField, Range(0, 5)] private float _persistance;
         [SerializeField, Range(0, 10)] private float _weightMultiplier;
-       
-        public float Evaluate(float3 point, PerlinNoiseEvaluator noiseEvaluator, DefaultNoiseFilterSettings settings)
+        
+        public float Evaluate(float3 point, int seed)
         {
-            _numberOfLayers = settings.NumberOfLayers;
-            _strength = settings.Strength;
-            _minValue = settings.MinValue;
-            _maxValue = settings.MaxValue;
-            _center = settings.Center;
-            _baseRoughness = settings.BaseRoughness;
-            _roughness = settings.Roughness;
-            _persistance = settings.Persistance;
-            _weightMultiplier = 1;
+            PerlinNoiseEvaluator noiseEvaluator = new(seed);
 
-            return Evaluate(point, noiseEvaluator);
-        }
-
-        public float Evaluate(float3 point, PerlinNoiseEvaluator noiseEvaluator)
-        {
             float noiseValue = 0;
             float frequency = _baseRoughness;
             float amplitude = 1;
