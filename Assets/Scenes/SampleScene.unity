@@ -1003,8 +1003,8 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_VertexColorAlwaysGammaSpace: 1
+  m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1913,7 +1913,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -2370,8 +2370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26bb743e7bc01c64e84b195f2b9f765b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movablePopupParent: {fileID: 1476515568}
-  _popupOffset: {x: 20, y: -20}
   uiSystems:
   - {fileID: 2109862056}
   - {fileID: 1245121475}
