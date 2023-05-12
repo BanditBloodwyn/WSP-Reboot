@@ -1,4 +1,6 @@
 using Assets._Project._Scripts.UI.Core;
+using Assets._Project._Scripts.UI.Managers;
+using Assets._Project._Scripts.UI.Managers.Popups;
 using TMPro;
 using UnityEngine;
 
@@ -11,7 +13,7 @@ namespace Assets._Project._Scripts.UI.Controls
 
         public string ContentIdentifier => _header.text;
 
-        public void ApplyData(IUIDataContainer data)
+        public void ApplyData(IPopupDataContainer data)
         {
             data.ApplyHeader(_header);
             data.ApplyContent(_contentPanel);
@@ -19,7 +21,7 @@ namespace Assets._Project._Scripts.UI.Controls
 
         public void Close()
         {
-            UIManager.Instance.ClosePopup(this);
+            UIManager.Instance.RaiseEvent(PopupEvent.ClosePopup, this);
         }
     }
 }

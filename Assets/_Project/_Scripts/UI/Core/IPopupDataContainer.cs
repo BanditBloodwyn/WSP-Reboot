@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets._Project._Scripts.UI.Core
 {
-    public interface IUIDataContainer
+    public interface IPopupDataContainer
     {
         public string ContentIdentifier { get; }
         

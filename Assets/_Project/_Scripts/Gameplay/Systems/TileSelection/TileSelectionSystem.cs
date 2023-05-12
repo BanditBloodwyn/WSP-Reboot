@@ -1,7 +1,8 @@
 ﻿using Assets._Project._Scripts.Gameplay.Helper;
 using Assets._Project._Scripts.Gameplay.Systems.TileSelection.Settings;
-using Assets._Project._Scripts.UI;
 using Assets._Project._Scripts.UI.DataContainer;
+using Assets._Project._Scripts.UI.Managers;
+using Assets._Project._Scripts.UI.Managers.Popups;
 using Assets._Project._Scripts.WorldMap;
 using Assets._Project._Scripts.WorldMap.GenerationPipeline;
 using UnityEngine;
@@ -83,7 +84,7 @@ namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection
                 if (!UpdateTilePointingAt())
                     return;
 
-            UIManager.Instance.OpenMovablePopup(new TileSelectionDataContainer(_currentPointedTile));
+            UIManager.Instance.RaiseEvent(PopupEvent.OpenMovablePopup , new TileSelectionDataContainer(_currentPointedTile));
         }
 
         #endregion

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets._Project._Scripts.UI.DataContainer
 {
-    public class TileSelectionDataContainer : IUIDataContainer
+    public class TileSelectionDataContainer : IPopupDataContainer
     {
         private readonly TileAspect _tile;
 
