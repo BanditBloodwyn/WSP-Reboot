@@ -27,15 +27,21 @@ namespace Assets._Project._Scripts.UI.DataContainer
         {
             if (!UIPrefabs.Instance.TryGetPrefab(UIPrefabNames.EntryPanel, out GameObject prefab))
                 return;
+            if (!UIPrefabs.Instance.TryGetPrefab(UIPrefabNames.EntryPanelSeperator, out GameObject seperator))
+                return;
 
             Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Vegetation zone", _tile.GetVegetationZone());
             Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Height", _tile.Position.y.ToString("F2"));
             
+            Object.Instantiate(seperator, contentPanel.transform);
+
             Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Deciduous trees", _tile.GetDeciduousTrees().ToString("F2"));
             Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Evergreen trees", _tile.GetEvergreenTrees().ToString("F2"));
             Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Herbs", _tile.GetHerbs().ToString("F2"));
             Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Fruits", _tile.GetFruits().ToString("F2"));
            
+            Object.Instantiate(seperator, contentPanel.transform);
+
             Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Oil", _tile.GetOil().ToString("F2"));
             Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Gas", _tile.GetGas().ToString("F2"));
         }

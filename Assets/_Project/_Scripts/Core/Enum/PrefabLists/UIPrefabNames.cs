@@ -3,6 +3,7 @@
     public enum UIPrefabNames
     {
         EntryPanel,
+        EntryPanelSeperator,
         Icon,
         MovablePopup,
         IconGroup
