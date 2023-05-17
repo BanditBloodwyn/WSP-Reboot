@@ -30,7 +30,7 @@ namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.T
             data.VegetationZone = GetVegetationZoneByHeight(height, settings);
 
             data.FloraValues = FloraGenerator.Generate(data, tileAspect.Position, settings);
-            data.FaunaValues = FaunaGenerator.Generate(data);
+            data.FaunaValues = FaunaGenerator.Generate(data, tileAspect.Position, settings);
             data.ResourceValues = ResourceGenerator.Generate(data, tileAspect.Position, settings);
             data.PopulationValues = new PopulationValues();
 

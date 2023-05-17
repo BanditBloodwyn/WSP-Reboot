@@ -16,11 +16,6 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Aspects
 
         public float3 Position => _localTransform.ValueRO.Position;
 
-        public TilePropertiesComponentData GetData()
-        {
-            return _tileProperties.ValueRO;
-        }
-
         public string GetVegetationZone()
         {
             return _tileProperties.ValueRO.VegetationZone.ToString();
@@ -54,6 +49,31 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Aspects
         public float GetGas()
         {
             return _tileProperties.ValueRO.ResourceValues.Gas;
+        }
+
+        public float GetCoal()
+        {
+            return _tileProperties.ValueRO.ResourceValues.Coal;
+        }
+
+        public float GetIron()
+        {
+            return _tileProperties.ValueRO.ResourceValues.IronOre;
+        }
+
+        public float GetGold()
+        {
+            return _tileProperties.ValueRO.ResourceValues.GoldOre;
+        }
+
+        public float GetHerbivores()
+        {
+            return _tileProperties.ValueRO.FaunaValues.Herbivores;
+        }
+
+        public float GetCarnivores()
+        {
+            return _tileProperties.ValueRO.FaunaValues.Carnivores;
         }
     }
 }

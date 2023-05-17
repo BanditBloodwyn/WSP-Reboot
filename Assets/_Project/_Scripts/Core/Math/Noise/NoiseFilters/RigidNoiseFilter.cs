@@ -50,7 +50,7 @@ namespace Assets._Project._Scripts.Core.Math.Noise.NoiseFilters
             noiseValue = noiseValue <= _maxValue
                 ? noiseValue
                 : _maxValue;
-
+            
             return noiseValue - _minValue;
         }
     }

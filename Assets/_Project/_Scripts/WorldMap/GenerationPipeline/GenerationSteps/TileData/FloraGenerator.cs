@@ -18,7 +18,7 @@ namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.T
             if (data.VegetationZone is VegetationZones.Water or VegetationZones.Subnivale or VegetationZones.Nivale)
                 return default;
 
-            FloraValues floraValues = new FloraValues();
+            FloraValues floraValues = new();
             floraValues.DeciduousTrees = GenerateResource(position, settings.ResourceSettings.ResourceProperties, "Dedicuous Trees");
             floraValues.EvergreenTrees = GenerateResource(position, settings.ResourceSettings.ResourceProperties, "Evergreen Trees");
             floraValues.Herbs = GenerateResource(position, settings.ResourceSettings.ResourceProperties, "Herbs");

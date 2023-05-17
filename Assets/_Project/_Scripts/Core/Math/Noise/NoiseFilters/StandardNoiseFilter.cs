@@ -9,7 +9,7 @@ namespace Assets._Project._Scripts.Core.Math.Noise.NoiseFilters
     {
         [SerializeField, Range(0, 8)] private int _numberOfLayers;
 
-        [SerializeField, Range(0, 100)] private float _strength;
+        [SerializeField, Range(0, 200)] private float _strength;
         [SerializeField, Min(0)] private float _minValue;
         [SerializeField, Min(0)] private float _maxValue;
         [SerializeField] private float3 _center;
@@ -17,6 +17,7 @@ namespace Assets._Project._Scripts.Core.Math.Noise.NoiseFilters
         [SerializeField, Range(0, 1f)] private float _baseRoughness;
         [SerializeField, Range(0, 10)] private float _roughness;
         [SerializeField, Range(0, 5)] private float _persistance;
+        [SerializeField] private bool _rescale;
 
         public float Evaluate(float3 point, int seed)
         {
@@ -43,6 +44,15 @@ namespace Assets._Project._Scripts.Core.Math.Noise.NoiseFilters
             noiseValue = noiseValue <= _maxValue
                 ? noiseValue
                 : _maxValue;
+
+            if(_rescale)
+            {
+                noiseValue -= _minValue;
+
+                float span = _maxValue - _minValue;
+                float rescaled = noiseValue / span * 100;
+                noiseValue = rescaled;
+            }
 
             return noiseValue;
         }

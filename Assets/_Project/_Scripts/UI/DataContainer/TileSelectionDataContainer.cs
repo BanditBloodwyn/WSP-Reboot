@@ -39,11 +39,19 @@ namespace Assets._Project._Scripts.UI.DataContainer
             Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Evergreen trees", _tile.GetEvergreenTrees().ToString("F2"));
             Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Herbs", _tile.GetHerbs().ToString("F2"));
             Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Fruits", _tile.GetFruits().ToString("F2"));
-           
+
+            Object.Instantiate(seperator, contentPanel.transform);
+
+            Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Herbivores", _tile.GetHerbivores().ToString("F2"));
+            Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Carnivores", _tile.GetCarnivores().ToString("F2"));
+            
             Object.Instantiate(seperator, contentPanel.transform);
 
             Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Oil", _tile.GetOil().ToString("F2"));
             Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Gas", _tile.GetGas().ToString("F2"));
+            Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Coal", _tile.GetCoal().ToString("F2"));
+            Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Iron", _tile.GetIron().ToString("F2"));
+            Object.Instantiate(prefab, contentPanel.transform).GetComponent<EntryPanel>().Set("Gold", _tile.GetGold().ToString("F2"));
         }
     }
 }

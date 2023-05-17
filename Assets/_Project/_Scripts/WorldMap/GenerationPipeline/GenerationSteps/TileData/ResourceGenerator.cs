@@ -1,8 +1,8 @@
-﻿using Assets._Project._Scripts.Core.Math.Noise;
-using Assets._Project._Scripts.Core.Math.Noise.NoiseFilters;
+﻿using Assets._Project._Scripts.WorldMap.Data.Structs;
 using Assets._Project._Scripts.WorldMap.Data.Structs.ComponentData;
 using Assets._Project._Scripts.WorldMap.ECS.Components;
 using Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings;
+using System.Linq;
 using Unity.Mathematics;
 
 namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.TileData
@@ -10,55 +10,29 @@ namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.T
     public static class ResourceGenerator
     {
         public static ResourceValues Generate(
-            TilePropertiesComponentData data, 
-            float3 position, 
+            TilePropertiesComponentData data,
+            float3 position,
             WorldCreationParameters settings)
         {
-            PerlinNoiseEvaluator evaluator = new PerlinNoiseEvaluator();
-            StandardNoiseFilter noiseFilter = new StandardNoiseFilter();
-
             ResourceValues resourceValues = new ResourceValues();
-            resourceValues.Coal = GenerateCoal(position, evaluator, noiseFilter);
-            resourceValues.IronOre = GenerateIronOre(position, evaluator, noiseFilter);
-            resourceValues.GoldOre = GenerateGoldOre(position, evaluator, noiseFilter);
-            resourceValues.Oil = GenerateOil(position);
-            resourceValues.Gas = GenerateGas(position);
+            resourceValues.Coal = GenerateResource(position, settings.ResourceSettings.ResourceProperties, "Coal");
+            resourceValues.IronOre = GenerateResource(position, settings.ResourceSettings.ResourceProperties, "Iron");
+            resourceValues.GoldOre = GenerateResource(position, settings.ResourceSettings.ResourceProperties, "Gold");
+            resourceValues.Oil = GenerateResource(position, settings.ResourceSettings.ResourceProperties, "Oil");
+            resourceValues.Gas = GenerateResource(position, settings.ResourceSettings.ResourceProperties, "Gas");
 
             return resourceValues;
         }
 
-        private static float GenerateCoal(
+        private static float GenerateResource(
             float3 position,
-            PerlinNoiseEvaluator evaluator,
-            StandardNoiseFilter noiseFilter)
+            ResourceProperties[] resourceProperties,
+            string name)
         {
-            return 0;
-        }
+            ResourceProperties property = resourceProperties.First(prop => prop.ResourceName == name);
 
-        private static float GenerateIronOre(
-            float3 position,
-            PerlinNoiseEvaluator evaluator,
-            StandardNoiseFilter noiseFilter)
-        {
-            return 0;
-        }
-
-        private static float GenerateGoldOre(
-            float3 position,
-            PerlinNoiseEvaluator evaluator,
-            StandardNoiseFilter noiseFilter)
-        {
-            return 0;
-        }
-
-        private static float GenerateOil(float3 position)
-        {
-            return 0;
-        }
-
-        private static float GenerateGas(float3 position)
-        {
-            return 0;
+            float value = property.NoiseFilter.Evaluate(position, property.Seed);
+            return value * property.Distribution.Evaluate(position.y);
         }
     }
 }
