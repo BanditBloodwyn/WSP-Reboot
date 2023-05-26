@@ -4,8 +4,9 @@
     {
         EntryPanel,
         EntryPanelSeperator,
-        Icon,
+        IconButton,
         MovablePopup,
-        IconGroup
+        IconButtonGroup,
+        TabControl,
     }
 }

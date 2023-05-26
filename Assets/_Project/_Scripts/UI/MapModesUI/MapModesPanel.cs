@@ -70,8 +70,8 @@ namespace Assets._Project._Scripts.UI.MapModesUI
 
         private void CreateButtonGroups(IGrouping<MapModeCategory, MapMode>[] mapModeGroups)
         {
-            if (!UIPrefabs.Instance.TryGetPrefab(UIPrefabNames.IconGroup, out GameObject buttonGroupPrefab) ||
-                !UIPrefabs.Instance.TryGetPrefab(UIPrefabNames.Icon, out GameObject buttonPrefab))
+            if (!UIPrefabs.Instance.TryGetPrefab(UIPrefabNames.IconButtonGroup, out GameObject buttonGroupPrefab) ||
+                !UIPrefabs.Instance.TryGetPrefab(UIPrefabNames.IconButton, out GameObject buttonPrefab))
             {
                 Debug.LogError("Prefabs not found!");
                 return;

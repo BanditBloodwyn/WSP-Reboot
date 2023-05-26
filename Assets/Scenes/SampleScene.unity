@@ -408,6 +408,7 @@ MonoBehaviour:
   m_Dithering: 0
   m_ClearDepth: 1
   m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
   m_UseScreenCoordOverride: 0
   m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
   m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
@@ -1717,6 +1718,9 @@ MonoBehaviour:
   - Name: 3
     Prefab: {fileID: 6850863166080452848, guid: bc83bf018846dea4886c86d65c0b4b02,
       type: 3}
+  - Name: 5
+    Prefab: {fileID: 6147934946009326995, guid: 011f4c546bfcb3c4e9d07a1064589d57,
+      type: 3}
 --- !u!1 &1475758192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1917,7 +1921,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0

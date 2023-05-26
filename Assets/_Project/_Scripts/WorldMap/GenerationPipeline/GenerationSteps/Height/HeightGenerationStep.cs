@@ -5,7 +5,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using AdvancedNoiseLib;
-using AdvancedNoiseLib.Math.Noise;
 using Unity.Entities;
 using Unity.Mathematics;
 
@@ -24,7 +23,6 @@ namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.H
                 .WithSettings(settings.NoiseSettingJSON.text)
                 .ToUseFirstFilterLayerAsMask(true)
                 .Build();
-            PerlinNoiseEvaluator evaluator = new PerlinNoiseEvaluator();
 
             foreach (Chunk chunk in context.Chunks)
             {
@@ -32,7 +30,7 @@ namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.H
                 {
                     EmptyTileAspect tileAspect = tileEntity.GetEmptyTileAspect();
 
-                    float height = noiseEvaluator.Evaluate2D(tileAspect.Position.x, tileAspect.Position.z, evaluator);
+                    float height = noiseEvaluator.Evaluate2D(tileAspect.Position.x, tileAspect.Position.z);
                     tileAspect.Entity.SetTilePosition(new float3(tileAspect.Position.x, height, tileAspect.Position.z));
                 }
 

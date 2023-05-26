@@ -75,5 +75,15 @@ namespace Assets._Project._Scripts.WorldMap.ECS.Aspects
         {
             return _tileProperties.ValueRO.FaunaValues.Carnivores;
         }
+
+        public float GetUrbanization()
+        {
+            return _tileProperties.ValueRO.PopulationValues.Urbanization;
+        }
+
+        public float GetLifeStandard()
+        {
+            return _tileProperties.ValueRO.PopulationValues.LifeStandard;
+        }
     }
 }

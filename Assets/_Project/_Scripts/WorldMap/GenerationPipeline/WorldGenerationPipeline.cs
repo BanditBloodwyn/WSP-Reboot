@@ -25,22 +25,27 @@ namespace Assets._Project._Scripts.WorldMap.GenerationPipeline
 
         public IEnumerator Execute(WorldContext context, WorldCreationParameters settings)
         {
+            DateTime totalNow = DateTime.Now;
+
             HashSet<Type> executedSteps = new();
 
             foreach (IWorldGenerationStep step in _steps)
             {
+                DateTime partialNow = DateTime.Now;
                 List<Type> dependencies = step.RequiredDependencies;
 
                 if (dependencies == null || dependencies.All(dep => executedSteps.Contains(dep)))
                 {
-                    Debug.Log($"Process <b><i>{step.GetType().Name}</i></b>");
-
                     yield return step.Process(context, settings);
                     executedSteps.Add(step.GetType());
                 }
                 else
                     ThrowMissingDependencyException(step);
+
+                Debug.Log($"Process time <b><i>{step.GetType().Name}</i></b>: {(DateTime.Now - partialNow).TotalMilliseconds} ms");
             }
+            
+            Debug.Log($"Total world generation duration: {(DateTime.Now - totalNow).TotalMilliseconds:N} ms");
         }
 
         private static void ThrowMissingDependencyException(IWorldGenerationStep step)
