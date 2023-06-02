@@ -36,49 +36,65 @@ namespace Assets._Project._Scripts.UI.DataContainer
             GameObject tabControlInstance = Object.Instantiate(tabControlPrefab, contentPanel.transform);
             TabGroup tabGroup = tabControlInstance.GetComponentInChildren<TabGroup>();
 
-            BuildInfoTab(tabGroup, entryPanelPrefab, seperatorPrefab);
-            BuildInteractionTab(tabGroup, entryPanelPrefab, seperatorPrefab);
+            BuildOverviewTab(tabGroup, seperatorPrefab);
+            BuildBuildingsTab(tabGroup, seperatorPrefab);
+            BuildDetailsTab(tabGroup, entryPanelPrefab, seperatorPrefab);
+
             tabGroup.SelectTabByIndex(0);
         }
 
-        private void BuildInfoTab(TabGroup tabGroup, GameObject entryPanelPrefab, GameObject seperatorPrefab)
+        private void BuildOverviewTab(TabGroup tabGroup, GameObject seperatorPrefab)
         {
-            tabGroup.SetTabHeader(0, "Info");
+            tabGroup.SetTabHeader(0, "Overview");
 
-            Transform infoTab = tabGroup.GetTabPageTransform(0);
-
-            Object.Instantiate(entryPanelPrefab, infoTab).GetComponent<EntryPanel>().Set("Vegetation zone", _tile.GetVegetationZone());
-            Object.Instantiate(entryPanelPrefab, infoTab).GetComponent<EntryPanel>().Set("Height", _tile.Position.y.ToString("F2"));
-
-            Object.Instantiate(seperatorPrefab, infoTab);
-
-            Object.Instantiate(entryPanelPrefab, infoTab).GetComponent<EntryPanel>().Set("Deciduous trees", _tile.GetDeciduousTrees().ToString("F2"));
-            Object.Instantiate(entryPanelPrefab, infoTab).GetComponent<EntryPanel>().Set("Evergreen trees", _tile.GetEvergreenTrees().ToString("F2"));
-            Object.Instantiate(entryPanelPrefab, infoTab).GetComponent<EntryPanel>().Set("Herbs", _tile.GetHerbs().ToString("F2"));
-            Object.Instantiate(entryPanelPrefab, infoTab).GetComponent<EntryPanel>().Set("Fruits", _tile.GetFruits().ToString("F2"));
-
-            Object.Instantiate(seperatorPrefab, infoTab);
-
-            Object.Instantiate(entryPanelPrefab, infoTab).GetComponent<EntryPanel>().Set("Herbivores", _tile.GetHerbivores().ToString("F2"));
-            Object.Instantiate(entryPanelPrefab, infoTab).GetComponent<EntryPanel>().Set("Carnivores", _tile.GetCarnivores().ToString("F2"));
-
-            Object.Instantiate(seperatorPrefab, infoTab);
-
-            Object.Instantiate(entryPanelPrefab, infoTab).GetComponent<EntryPanel>().Set("Oil", _tile.GetOil().ToString("F2"));
-            Object.Instantiate(entryPanelPrefab, infoTab).GetComponent<EntryPanel>().Set("Gas", _tile.GetGas().ToString("F2"));
-            Object.Instantiate(entryPanelPrefab, infoTab).GetComponent<EntryPanel>().Set("Coal", _tile.GetCoal().ToString("F2"));
-            Object.Instantiate(entryPanelPrefab, infoTab).GetComponent<EntryPanel>().Set("Iron", _tile.GetIron().ToString("F2"));
-            Object.Instantiate(entryPanelPrefab, infoTab).GetComponent<EntryPanel>().Set("Gold", _tile.GetGold().ToString("F2"));
-           
-            Object.Instantiate(seperatorPrefab, infoTab);
-           
-            Object.Instantiate(entryPanelPrefab, infoTab).GetComponent<EntryPanel>().Set("Urbanization", _tile.GetUrbanization().ToString("F2"));
-            Object.Instantiate(entryPanelPrefab, infoTab).GetComponent<EntryPanel>().Set("Life standard", _tile.GetLifeStandard().ToString("F2"));
         }
 
-        private void BuildInteractionTab(TabGroup tabGroup, GameObject entryPanelPrefab, GameObject seperatorPrefab)
+        private void BuildBuildingsTab(TabGroup tabGroup, GameObject seperatorPrefab)
         {
-            tabGroup.SetTabHeader(1, "Interaction");
+            if (!UIPrefabs.Instance.TryGetPrefab(UIPrefabNames.TextButton, out GameObject textButtonPrefab))
+                return;
+
+            tabGroup.SetTabHeader(1, "Buildings");
+
+            Transform buildingsTab = tabGroup.GetTabPageTransform(1);
+            
+            Object.Instantiate(textButtonPrefab, buildingsTab).GetComponentInChildren<TMP_Text>().text = "Build";
+            Object.Instantiate(seperatorPrefab, buildingsTab);
+        }
+
+        private void BuildDetailsTab(TabGroup tabGroup, GameObject entryPanelPrefab, GameObject seperatorPrefab)
+        {
+            tabGroup.SetTabHeader(2, "Info");
+
+            Transform detailsTab = tabGroup.GetTabPageTransform(2);
+
+            Object.Instantiate(entryPanelPrefab, detailsTab).GetComponent<EntryPanel>().Set("Vegetation zone", _tile.GetVegetationZone());
+            Object.Instantiate(entryPanelPrefab, detailsTab).GetComponent<EntryPanel>().Set("Height", _tile.Position.y.ToString("F2"));
+
+            Object.Instantiate(seperatorPrefab, detailsTab);
+
+            Object.Instantiate(entryPanelPrefab, detailsTab).GetComponent<EntryPanel>().Set("Deciduous trees", _tile.GetDeciduousTrees().ToString("F2"));
+            Object.Instantiate(entryPanelPrefab, detailsTab).GetComponent<EntryPanel>().Set("Evergreen trees", _tile.GetEvergreenTrees().ToString("F2"));
+            Object.Instantiate(entryPanelPrefab, detailsTab).GetComponent<EntryPanel>().Set("Herbs", _tile.GetHerbs().ToString("F2"));
+            Object.Instantiate(entryPanelPrefab, detailsTab).GetComponent<EntryPanel>().Set("Fruits", _tile.GetFruits().ToString("F2"));
+
+            Object.Instantiate(seperatorPrefab, detailsTab);
+
+            Object.Instantiate(entryPanelPrefab, detailsTab).GetComponent<EntryPanel>().Set("Herbivores", _tile.GetHerbivores().ToString("F2"));
+            Object.Instantiate(entryPanelPrefab, detailsTab).GetComponent<EntryPanel>().Set("Carnivores", _tile.GetCarnivores().ToString("F2"));
+
+            Object.Instantiate(seperatorPrefab, detailsTab);
+
+            Object.Instantiate(entryPanelPrefab, detailsTab).GetComponent<EntryPanel>().Set("Oil", _tile.GetOil().ToString("F2"));
+            Object.Instantiate(entryPanelPrefab, detailsTab).GetComponent<EntryPanel>().Set("Gas", _tile.GetGas().ToString("F2"));
+            Object.Instantiate(entryPanelPrefab, detailsTab).GetComponent<EntryPanel>().Set("Coal", _tile.GetCoal().ToString("F2"));
+            Object.Instantiate(entryPanelPrefab, detailsTab).GetComponent<EntryPanel>().Set("Iron", _tile.GetIron().ToString("F2"));
+            Object.Instantiate(entryPanelPrefab, detailsTab).GetComponent<EntryPanel>().Set("Gold", _tile.GetGold().ToString("F2"));
+
+            Object.Instantiate(seperatorPrefab, detailsTab);
+
+            Object.Instantiate(entryPanelPrefab, detailsTab).GetComponent<EntryPanel>().Set("Urbanization", _tile.GetUrbanization().ToString("F2"));
+            Object.Instantiate(entryPanelPrefab, detailsTab).GetComponent<EntryPanel>().Set("Life standard", _tile.GetLifeStandard().ToString("F2"));
         }
     }
 }

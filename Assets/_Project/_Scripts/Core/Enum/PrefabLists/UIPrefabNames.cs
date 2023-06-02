@@ -8,5 +8,6 @@
         MovablePopup,
         IconButtonGroup,
         TabControl,
+        TextButton
     }
 }
