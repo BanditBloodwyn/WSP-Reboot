@@ -462,7 +462,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 330585543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2ff4c54d707b7e4ebd7f67c54c21253, type: 3}
+  m_Script: {fileID: 11500000, guid: ae2d19fccf9457242abff17942ddc172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraType: {fileID: 11400000, guid: d89bdf248a17e964792f8583589d2a33, type: 2}
@@ -926,8 +926,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 330585548}
-        m_TargetAssemblyTypeName: Assets._Project._Scripts.Gameplay.Controls.Camera.CameraHandler,
-          Assembly-CSharp
+        m_TargetAssemblyTypeName: Assets._Project._Scripts.Features.CameraSystem.CameraHandler,
+          CameraSystem
         m_MethodName: Activate
         m_Mode: 1
         m_Arguments:

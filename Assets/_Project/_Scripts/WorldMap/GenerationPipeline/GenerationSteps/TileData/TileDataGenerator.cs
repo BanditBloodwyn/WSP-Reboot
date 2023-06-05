@@ -24,7 +24,7 @@ namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.T
             data.X = (int)tileAspect.Position.x;
             data.Z = (int)tileAspect.Position.z;
 
-            int size = settings.TileAmountPerAxis * settings.ChunkCountPerAxis;
+            int size = settings.WorldSize.TileAmountPerAxis * settings.WorldSize.ChunkCountPerAxis;
 
             // build
             data.VegetationZone = GetVegetationZoneByHeight(height, settings);

@@ -1,24 +1,24 @@
 ﻿using Assets._Project._Scripts.Core.Extentions;
-using Assets._Project._Scripts.Gameplay.Helper;
-using Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings;
+using Assets._Project._Scripts.GlobalSettings;
 using NUnit.Framework;
 using Sirenix.Utilities;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-namespace Assets._Project._Scripts.Gameplay.Controls.Camera
+namespace Assets._Project._Scripts.Features.CameraSystem
 {
     [CreateAssetMenu(fileName = "StrategicCamera", menuName = "ScriptableObjects/Cameras/Strategic Camera")]
     public class StrategicCamera : ScriptableObject, ICameraController
     {
         [SerializeField] private StrategicCameraSettings _settings;
-        [SerializeField] private WorldCreationParameters _worldParameters;
+        [SerializeField] private WorldSize _worldSize;
 
         private Transform _cameraTransform;
 
         private void Awake()
         {
             Assert.IsNotNull(_settings);
-            Assert.IsNotNull(_worldParameters);
+            Assert.IsNotNull(_worldSize);
         }
 
         public void ResetController(CameraHandler cameraHandler)
@@ -49,11 +49,11 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
             if (_settings.InverseYaw)
                 yaw *= -1;
 
-            _cameraTransform.RotateAround(PointerHelper.GetCurrentViewPosition(), Vector3.up, yaw);
-           
+            _cameraTransform.RotateAround(GetCurrentViewPosition(), Vector3.up, yaw);
+
             float pitch = _cameraTransform.rotation.eulerAngles.x;
 
-            if((pitch > 20 || pitchDelta > 0) && (pitch < 80 || pitchDelta < 0)) 
+            if ((pitch > 20 || pitchDelta > 0) && (pitch < 80 || pitchDelta < 0))
                 _cameraTransform.Rotate(Vector3.right, pitchDelta);
         }
 
@@ -69,13 +69,12 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
 
             float speedFromHeight = _settings.PanningSpeedCurve.Evaluate(_cameraTransform.position.y);
 
-            float chunkCountPerAxis = _worldParameters.ChunkCountPerAxis;
-            float tileAmountPerAxis = _worldParameters.TileAmountPerAxis;
-
             _cameraTransform.position += _settings.PanningSpeed * speedFromHeight * Time.deltaTime * translation;
+            int tileAmountPerAxis = _worldSize.TileAmountPerAxis;
+            int chunkCountPerAxis = _worldSize.ChunkCountPerAxis;
             _cameraTransform.position = _cameraTransform.position.Clamp(
                 new Vector3(-tileAmountPerAxis / 2.0f, 3, -tileAmountPerAxis / 2.0f),
-                new Vector3(chunkCountPerAxis * tileAmountPerAxis - tileAmountPerAxis / 2, 1000, chunkCountPerAxis * tileAmountPerAxis - tileAmountPerAxis / 2));
+                new Vector3(chunkCountPerAxis * tileAmountPerAxis - tileAmountPerAxis / 2f, 1000, chunkCountPerAxis * tileAmountPerAxis - tileAmountPerAxis / 2f));
         }
 
         private void HandleZoom()
@@ -92,5 +91,18 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
             if (Input.mouseScrollDelta.y < 0)
                 _cameraTransform.position -= zoomDirection;
         }
+
+        public static Vector3 GetCurrentViewPosition()
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return Vector3.zero;
+
+            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+
+            return Physics.Raycast(ray, out RaycastHit hit)
+                ? hit.point
+                : Vector3.zero;
+        }
+
     }
 }

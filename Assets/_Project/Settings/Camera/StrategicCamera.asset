@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69f19f88704c14f4cb671458cc077b2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 29c8b914343696a47be50fca2ad888f2, type: 3}
   m_Name: StrategicCamera
   m_EditorClassIdentifier: 
-  _cameraTransform: {fileID: 0}
   _settings: {fileID: 11400000, guid: 93a195b02762ac4478a2892f2db95ee0, type: 2}
-  _worldParameters: {fileID: 11400000, guid: d8346ac90e2dd4145af23eadd759070e, type: 2}
+  _worldSize: {fileID: 11400000, guid: e81068164ee576449b46cbbb0a07cb23, type: 2}

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Assets._Project._Scripts.Gameplay.Controls.Camera
+namespace Assets._Project._Scripts.Features.CameraSystem
 {
     public class CameraHandler : MonoBehaviour
     {

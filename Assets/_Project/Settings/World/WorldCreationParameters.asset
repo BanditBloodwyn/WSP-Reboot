@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1712cd4906c7a5143afe785c7117fae6, type: 3}
   m_Name: WorldCreationParameters
   m_EditorClassIdentifier: 
-  ChunkCountPerAxis: 2
-  TileAmountPerAxis: 64
+  WorldSize: {fileID: 11400000, guid: e81068164ee576449b46cbbb0a07cb23, type: 2}
   ChunkParent: {fileID: 0}
   DefaultWorldMaterial: {fileID: 2100000, guid: 16c81ca37932fb94082c49f92581abbe,
     type: 2}

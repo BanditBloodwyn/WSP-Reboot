@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project._Scripts.Gameplay.Controls.Camera
+namespace Assets._Project._Scripts.Features.CameraSystem
 {
     [CreateAssetMenu(fileName = "StrategicCameraSettings", menuName = "ScriptableObjects/Settings/Camera/Strategic Camera Settings")]
     public class StrategicCameraSettings : ScriptableObject

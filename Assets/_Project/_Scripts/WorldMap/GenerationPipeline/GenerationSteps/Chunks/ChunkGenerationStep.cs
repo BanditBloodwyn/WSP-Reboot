@@ -14,14 +14,14 @@ namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.C
         {
             Landscape.Instance.Chunks.Clear();
 
-            for (int x = 0; x < settings.ChunkCountPerAxis; x++)
+            for (int x = 0; x < settings.WorldSize.ChunkCountPerAxis; x++)
             {
-                for (int y = 0; y < settings.ChunkCountPerAxis; y++)
+                for (int y = 0; y < settings.WorldSize.ChunkCountPerAxis; y++)
                 {
                     Chunk chunk = new();
-                    chunk.ID = y * settings.ChunkCountPerAxis + x;
+                    chunk.ID = y * settings.WorldSize.ChunkCountPerAxis + x;
                     chunk.Coordinates = new Vector2Int(x, y);
-                    chunk.Size = settings.TileAmountPerAxis;
+                    chunk.Size = settings.WorldSize.TileAmountPerAxis;
 
                     Landscape.Instance.Chunks.Add(chunk);
                     context.Chunks.Add(chunk);

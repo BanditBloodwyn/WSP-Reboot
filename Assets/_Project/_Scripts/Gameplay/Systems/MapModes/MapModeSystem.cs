@@ -44,7 +44,7 @@ namespace Assets._Project._Scripts.Gameplay.Systems.MapModes
             if (chunkTileValues == null || chunkTileValues.Length == 0)
                 return;
 
-            int textureDimensions = _worldCreationParameters.ChunkCountPerAxis * _worldCreationParameters.TileAmountPerAxis;
+            int textureDimensions = _worldCreationParameters.WorldSize.ChunkCountPerAxis * _worldCreationParameters.WorldSize.TileAmountPerAxis;
             Texture2D bufferTexture = CreateBufferTexture(chunkTileValues, textureDimensions, mapMode.Colors);
 
             mapMode.WorldMapMaterial.SetTexture("_ValueTexture", bufferTexture);

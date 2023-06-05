@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f00a03bdf84e4f40a422efffd5f3e9e, type: 3}
-  m_Name: CinematicCameraSettings
+  m_Script: {fileID: 11500000, guid: bd6256236a04fdb4ab5adf790de6ec02, type: 3}
+  m_Name: WorldSize
   m_EditorClassIdentifier: 
-  ShotDuration: 10
-  MaximumShotDistance: 20
-  MinimumHeight: 16.8
-  MaximumHeight: 26.1
+  ChunkCountPerAxis: 2
+  TileAmountPerAxis: 64

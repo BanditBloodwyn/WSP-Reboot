@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 960879ca7ffc8944da2a4a88fc75ff0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 27e0c5999fde6704d9fbf160e07e8fbb, type: 3}
   m_Name: CinematicCamera
   m_EditorClassIdentifier: 
-  _cameraTransform: {fileID: 0}
-  _cameraHandler: {fileID: 0}
   _settings: {fileID: 11400000, guid: 4200624158c225f42b57281a3362f186, type: 2}
-  _worldParameters: {fileID: 11400000, guid: d8346ac90e2dd4145af23eadd759070e, type: 2}
+  _worldSize: {fileID: 11400000, guid: e81068164ee576449b46cbbb0a07cb23, type: 2}

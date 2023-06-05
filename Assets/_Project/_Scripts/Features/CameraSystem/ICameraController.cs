@@ -1,4 +1,4 @@
-﻿namespace Assets._Project._Scripts.Gameplay.Controls.Camera
+﻿namespace Assets._Project._Scripts.Features.CameraSystem
 {
     public interface ICameraController
     {

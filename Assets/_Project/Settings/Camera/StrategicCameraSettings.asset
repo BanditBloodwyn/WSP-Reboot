@@ -9,43 +9,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f80d26b709a86c499584753ad43cfcf, type: 3}
+  m_Script: {fileID: 11500000, guid: 800fc8aeecd4c874daf836e0ed75ca59, type: 3}
   m_Name: StrategicCameraSettings
   m_EditorClassIdentifier: 
-  PanningSpeed: 4
-  YawSpeed: 4.89
-  PitchSpeed: 4.94
-  ZoomSpeed: 199.7
+  PanningSpeed: 2
+  YawSpeed: 5
+  PitchSpeed: 5
+  ZoomSpeed: 64.5
   PanningSpeedCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 0.025
-      outSlope: 0.025
+      value: 1
+      inSlope: 0.06
+      outSlope: 0.06
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 12
-      value: 0.3
-      inSlope: 0.024307575
-      outSlope: 0.036241975
-      tangentMode: 1
-      weightedMode: 0
-      inWeight: 0.5531749
-      outWeight: 0.055296745
-    - serializedVersion: 3
-      time: 150
-      value: 6
-      inSlope: 0.041304346
-      outSlope: 0.041304346
+      time: 100
+      value: 7
+      inSlope: 0.06
+      outSlope: 0.06
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -55,26 +46,17 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.04
-      outSlope: 0.04
+      inSlope: 0.33333334
+      outSlope: 0.33333334
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 20
-      value: 0.8
-      inSlope: 0.05153846
-      outSlope: 0.05153846
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 150
-      value: 9
-      inSlope: 0.06307692
-      outSlope: 0.06307692
+      time: 30
+      value: 10
+      inSlope: 0.33333334
+      outSlope: 0.33333334
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

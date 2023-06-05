@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings;
+﻿using Assets._Project._Scripts.GlobalSettings;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Assets._Project._Scripts.Gameplay.Controls.Camera
+namespace Assets._Project._Scripts.Features.CameraSystem
 {
     [CreateAssetMenu(fileName = "CinematicCamera", menuName = "ScriptableObjects/Cameras/Cinematic Camera")]
     public class CinematicCamera : ScriptableObject, ICameraController
     {
         [SerializeField] private CinematicCameraSettings _settings;
-        [SerializeField] private WorldCreationParameters _worldParameters;
-        
+        [SerializeField] private WorldSize _worldSize;
+
         private Transform _cameraTransform;
         private CameraHandler _cameraHandler;
 
@@ -21,7 +21,7 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
         {
             _started = false;
             Assert.IsNotNull(_settings);
-            Assert.IsNotNull(_worldParameters);
+            Assert.IsNotNull(_worldSize);
         }
 
         public void ResetController(CameraHandler cameraHandler)
@@ -82,17 +82,17 @@ namespace Assets._Project._Scripts.Gameplay.Controls.Camera
         private Vector3 CalculateStartPosition()
         {
             return new Vector3(
-                Random.Range(0, (_worldParameters.ChunkCountPerAxis - 1) * _worldParameters.TileAmountPerAxis),
+                Random.Range(0, (_worldSize.ChunkCountPerAxis - 1) * _worldSize.TileAmountPerAxis),
                 Random.Range(_settings.MinimumHeight, _settings.MaximumHeight),
-                Random.Range(0, (_worldParameters.ChunkCountPerAxis - 1) * _worldParameters.TileAmountPerAxis));
+                Random.Range(0, (_worldSize.ChunkCountPerAxis - 1) * _worldSize.TileAmountPerAxis));
         }
 
         private Vector3 CalculateEndPosition(Vector3 startPosition)
         {
             Vector3 potentialEndPosition = new Vector3(
-                Random.Range(0, (_worldParameters.ChunkCountPerAxis - 1) * _worldParameters.TileAmountPerAxis),
+                Random.Range(0, (_worldSize.ChunkCountPerAxis - 1) * _worldSize.TileAmountPerAxis),
                 Random.Range(_settings.MinimumHeight, _settings.MaximumHeight),
-                Random.Range(0, (_worldParameters.ChunkCountPerAxis - 1) * _worldParameters.TileAmountPerAxis));
+                Random.Range(0, (_worldSize.ChunkCountPerAxis - 1) * _worldSize.TileAmountPerAxis));
 
             if (Vector3.Distance(startPosition, potentialEndPosition) > _settings.MaximumShotDistance)
             {

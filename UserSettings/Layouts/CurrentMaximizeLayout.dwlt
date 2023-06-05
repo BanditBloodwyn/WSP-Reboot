@@ -188,9 +188,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: f27d0000
+      m_SelectedIDs: 187e0000
       m_LastClickedID: 0
-      m_ExpandedIDs: b8bdfdffecbdfdff08fbffff7e7e0000b07e0000be7e0000da7e0000f27e0000007f0000
+      m_ExpandedIDs: 90faffffee7e00002e7f0000487f00004c7f0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -574,6 +574,19 @@ MonoBehaviour:
       layout: 4
       size: {x: 0, y: 0}
       sizeOverriden: 0
+    - dockPosition: 1
+      containerId: overlay-container--right
+      floating: 0
+      collapsed: 0
+      displayed: 1
+      snapOffset: {x: 48, y: 10}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 0
+      id: UnityEditor.SceneViewCameraOverlay
+      index: 10
+      layout: 4
+      size: {x: 0, y: 0}
+      sizeOverriden: 0
     m_OverlaysVisible: 1
   m_WindowGUID: 12397f3b77910b74caad6bbc6ec9d1cb
   m_Gizmos: 1
@@ -585,9 +598,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 2211.3726, y: 1155.5409, z: 0}
+    m_Target: {x: 1315.2227, y: 670.6358, z: -6.1248336}
     speed: 2
-    m_Value: {x: 2211.3726, y: 1155.5409, z: 0}
+    m_Value: {x: 1315.2227, y: 670.6358, z: -6.1248336}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -637,9 +650,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 654.0069
+    m_Target: 890.01306
     speed: 2
-    m_Value: 654.0069
+    m_Value: 890.01306
   m_Ortho:
     m_Target: 1
     speed: 2
