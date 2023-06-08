@@ -1,9 +1,9 @@
-using Assets._Project._Scripts.Core.Types;
 using System;
 using System.Collections.Generic;
+using Assets._Project._Scripts.Core.Types;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.UI.Managers
+namespace Assets._Project._Scripts.UIManagement.Managers
 {
     public class UIManager : Singleton<UIManager>
     {

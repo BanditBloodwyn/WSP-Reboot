@@ -1,13 +1,12 @@
-﻿using Assets._Project._Scripts.UI.UICore;
+﻿using System;
+using System.Collections.Generic;
 using Assets._Project._Scripts.UI.UICore.Controls;
 using Assets._Project._Scripts.UI.UICore.Interfaces;
-using System;
-using System.Collections.Generic;
-using Assets._Project._Scripts.UI.Prefabs;
+using Assets._Project._Scripts.UIManagement.Prefabs;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Assets._Project._Scripts.UI.Managers.Popups
+namespace Assets._Project._Scripts.UIManagement.Managers.Popups
 {
     public class PopupManager : UISystem
     {

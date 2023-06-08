@@ -3,7 +3,7 @@ using System.Linq;
 using Assets._Project._Scripts.Core.Types;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.UI.Prefabs
+namespace Assets._Project._Scripts.UIManagement.Prefabs
 {
     public class UIPrefabs : PersistentSingleton<UIPrefabs>
     {

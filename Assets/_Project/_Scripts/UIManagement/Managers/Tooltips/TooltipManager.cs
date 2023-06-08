@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assets._Project._Scripts.UI.Managers.Tooltips
+namespace Assets._Project._Scripts.UIManagement.Managers.Tooltips
 {
     public class TooltipManager : UISystem
     {
