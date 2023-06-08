@@ -1,4 +1,6 @@
-﻿using Assets._Project._Scripts.WorldMap.GenerationPipeline;
+﻿using Assets._Project._Scripts.Features.WorldMap.WorldMapCore;
+using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.Types;
+using Assets._Project._Scripts.WorldMap.GenerationPipeline;
 using Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.ChunkObject;
 using Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.Chunks;
 using Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.Height;
@@ -50,7 +52,7 @@ namespace Assets._Project._Scripts.WorldMap
 
         private void OnDrawGizmos()
         {
-            foreach (Chunk chunk in Landscape.Instance.Chunks)
+            foreach (Chunk chunk in WorldInterface.Instance.Chunks)
                 Gizmos.DrawWireCube(new Vector3(chunk.Size * chunk.Coordinates.x, 0, chunk.Size * chunk.Coordinates.y), new Vector3(chunk.Size, 0, chunk.Size));
 
             EntityQuery entityQuery = World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntityQuery(typeof(LocalTransform));

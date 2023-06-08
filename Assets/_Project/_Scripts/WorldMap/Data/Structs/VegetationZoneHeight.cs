@@ -1,5 +1,5 @@
 ﻿using System;
-using Assets._Project._Scripts.WorldMap.Data.Enums;
+using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.Enums;
 
 namespace Assets._Project._Scripts.WorldMap.Data.Structs
 {

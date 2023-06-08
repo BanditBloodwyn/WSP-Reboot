@@ -1,13 +1,13 @@
-﻿using Assets._Project._Scripts.Gameplay.Helper;
+﻿using Assets._Project._Scripts.Features.WorldMap.WorldMapCore;
+using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.ECS.Aspects;
+using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.Types;
+using Assets._Project._Scripts.Gameplay.Helper;
 using Assets._Project._Scripts.Gameplay.Systems.TileSelection.Settings;
 using Assets._Project._Scripts.UI.DataContainer;
 using Assets._Project._Scripts.UI.Managers;
 using Assets._Project._Scripts.UI.Managers.Popups;
-using Assets._Project._Scripts.WorldMap;
-using Assets._Project._Scripts.WorldMap.GenerationPipeline;
 using UnityEngine;
 using UnityEngine.Assertions;
-using TileAspect = Assets._Project._Scripts.WorldMap.ECS.Aspects.TileAspect;
 
 namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection
 {
@@ -38,8 +38,8 @@ namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection
 
         private void Update()
         {
-            if(_settings.RealTimeSelectorMovement) 
-                if (!UpdateTilePointingAt()) 
+            if (_settings.RealTimeSelectorMovement)
+                if (!UpdateTilePointingAt())
                     return;
 
             if (Input.GetMouseButtonUp(0))
@@ -58,7 +58,7 @@ namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection
             if (currentSelectionPosition == Vector3.zero)
                 return false;
 
-            if (!Landscape.Instance.TryGetTileFromChunkAndPosition(chunk, currentSelectionPosition, out _currentPointedTile))
+            if (!WorldInterface.Instance.TryGetTileFromChunkAndPosition(chunk, currentSelectionPosition, out _currentPointedTile))
                 return false;
 
             UpdateSelectorPosition((Vector3)_currentPointedTile.Position + Vector3.up * 0.01f);
@@ -67,7 +67,7 @@ namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection
 
         private void UpdateSelectorPosition(Vector3 currentSelectionTilePosition)
         {
-            if(_currentPointedPosition == currentSelectionTilePosition)
+            if (_currentPointedPosition == currentSelectionTilePosition)
                 return;
 
             _currentPointedPosition = currentSelectionTilePosition;
@@ -84,7 +84,7 @@ namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection
                 if (!UpdateTilePointingAt())
                     return;
 
-            UIManager.Instance.RaiseEvent(PopupEvent.OpenMovablePopup , new TileSelectionDataContainer(_currentPointedTile));
+            UIManager.Instance.RaiseEvent(PopupEvent.OpenMovablePopup, new TileSelectionDataContainer(_currentPointedTile));
         }
 
         #endregion

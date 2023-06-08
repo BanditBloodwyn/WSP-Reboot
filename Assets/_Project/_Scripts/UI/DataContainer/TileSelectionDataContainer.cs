@@ -1,8 +1,8 @@
-﻿using Assets._Project._Scripts.Core.Enum.PrefabLists;
-using Assets._Project._Scripts.UI.Controls;
-using Assets._Project._Scripts.UI.Core;
-using Assets._Project._Scripts.UI.Core.TabControl;
-using Assets._Project._Scripts.WorldMap.ECS.Aspects;
+﻿using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.ECS.Aspects;
+using Assets._Project._Scripts.UI.UICore;
+using Assets._Project._Scripts.UI.UICore.Controls;
+using Assets._Project._Scripts.UI.UICore.Controls.TabControl;
+using Assets._Project._Scripts.UI.UICore.Interfaces;
 using TMPro;
 using UnityEngine;
 
@@ -57,7 +57,7 @@ namespace Assets._Project._Scripts.UI.DataContainer
             tabGroup.SetTabHeader(1, "Buildings");
 
             Transform buildingsTab = tabGroup.GetTabPageTransform(1);
-            
+
             Object.Instantiate(textButtonPrefab, buildingsTab).GetComponentInChildren<TMP_Text>().text = "Build";
             Object.Instantiate(seperatorPrefab, buildingsTab);
         }

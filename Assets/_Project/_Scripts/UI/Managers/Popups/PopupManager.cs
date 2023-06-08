@@ -1,6 +1,6 @@
-﻿using Assets._Project._Scripts.Core.Enum.PrefabLists;
-using Assets._Project._Scripts.UI.Controls;
-using Assets._Project._Scripts.UI.Core;
+﻿using Assets._Project._Scripts.UI.UICore;
+using Assets._Project._Scripts.UI.UICore.Controls;
+using Assets._Project._Scripts.UI.UICore.Interfaces;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +12,7 @@ namespace Assets._Project._Scripts.UI.Managers.Popups
     {
         [SerializeField] private Transform _movablePopupParent;
         [SerializeField] private Vector2 _popupOffset;
-        
+
         private readonly Dictionary<string, Popup> _openPopups = new();
 
         protected override void Awake()
@@ -24,7 +24,7 @@ namespace Assets._Project._Scripts.UI.Managers.Popups
 
         public override void HandleEvent(Enum eventType, object eventData)
         {
-            if(eventType is not PopupEvent popupEvent)
+            if (eventType is not PopupEvent popupEvent)
                 return;
 
             switch (popupEvent)
@@ -56,6 +56,7 @@ namespace Assets._Project._Scripts.UI.Managers.Popups
 
             Popup component = popup.GetComponent<Popup>();
             component.ApplyData(dataContainer);
+            component.ClosePopup.AddListener(delegate { ClosePopup(component); });
 
             _openPopups.Add(component.ContentIdentifier, component);
         }

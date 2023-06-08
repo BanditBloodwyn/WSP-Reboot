@@ -2,6 +2,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets._Project._Scripts.Features.WorldMap.WorldMapCore;
+using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.Types;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.Chunks
@@ -12,7 +14,7 @@ namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.C
 
         public IEnumerator Process(WorldContext context, WorldCreationParameters settings)
         {
-            Landscape.Instance.Chunks.Clear();
+            WorldInterface.Instance.Chunks.Clear();
 
             for (int x = 0; x < settings.WorldSize.ChunkCountPerAxis; x++)
             {
@@ -23,7 +25,7 @@ namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.C
                     chunk.Coordinates = new Vector2Int(x, y);
                     chunk.Size = settings.WorldSize.TileAmountPerAxis;
 
-                    Landscape.Instance.Chunks.Add(chunk);
+                    WorldInterface.Instance.Chunks.Add(chunk);
                     context.Chunks.Add(chunk);
 
                     yield return null;

@@ -1,9 +1,9 @@
-﻿using Assets._Project._Scripts.WorldMap.Data.Enums;
-using Assets._Project._Scripts.WorldMap.Data.Structs;
-using Assets._Project._Scripts.WorldMap.Data.Structs.ComponentData;
-using Assets._Project._Scripts.WorldMap.ECS.Components;
+﻿using Assets._Project._Scripts.WorldMap.Data.Structs;
 using Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings;
 using System.Linq;
+using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.ECS.Components;
+using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.Enums;
+using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.Structs;
 using Unity.Mathematics;
 
 namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.TileData

@@ -824,7 +824,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 500255933}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ca8e2b8c2602224bbf248c564f0e01e, type: 3}
+  m_Script: {fileID: 11500000, guid: 07524e8b0c47b2d499e7932a3ac5d1d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 1995114629}
@@ -1036,7 +1036,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1176,18 +1176,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 772021241}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c02ee44c100342458c7b8d8f90b6016, type: 3}
+  m_Script: {fileID: 11500000, guid: 269044104b99fd74483cf0ab0ff6af4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _worldCreationParameters: {fileID: 11400000, guid: d8346ac90e2dd4145af23eadd759070e,
-    type: 2}
+  _worldSize: {fileID: 11400000, guid: e81068164ee576449b46cbbb0a07cb23, type: 2}
   _chunkParent: {fileID: 574594724}
   _mapModeChosen:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1012438536}
-        m_TargetAssemblyTypeName: Assets._Project._Scripts.UI.MapModesUI.MapModesUI,
-          UI
+      - m_Target: {fileID: 1012438537}
+        m_TargetAssemblyTypeName: Assets._Project._Scripts.Features.MapModes.UI.MapModesUI,
+          MapModes
         m_MethodName: ClosePanel
         m_Mode: 1
         m_Arguments:
@@ -1382,7 +1381,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1012438535}
-  - component: {fileID: 1012438536}
+  - component: {fileID: 1012438537}
   m_Layer: 5
   m_Name: HUD_MapModes
   m_TagString: Untagged
@@ -1412,7 +1411,7 @@ RectTransform:
   m_AnchoredPosition: {x: -120, y: 200}
   m_SizeDelta: {x: 300, y: 530}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1012438536
+--- !u!114 &1012438537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1421,18 +1420,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1012438534}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d43782b5ac8ed964889824626387e1aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c6dc8d69802b844d8dac343b1a47cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _togglePanel: {fileID: 1391256910}
-  _contentPanel: {fileID: 1475758192}
+  _contentPanel: {fileID: 500255933}
   _button: {fileID: 1995114629}
   _requestSwitchMapMode:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 772021243}
-        m_TargetAssemblyTypeName: Assets._Project._Scripts.Gameplay.Systems.MapModes.MapModeSystem,
-          Gameplay
+        m_TargetAssemblyTypeName: Assets._Project._Scripts.Features.MapModes.MapModeSystem,
+          MapModes
         m_MethodName: ChangeMapMode
         m_Mode: 0
         m_Arguments:
@@ -1731,7 +1730,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1396113312}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8491723a362d714f80c5fdd1a354b06, type: 3}
+  m_Script: {fileID: 11500000, guid: b3ab863104371a84080a5cb535a096ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _catalog:
@@ -1973,7 +1972,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1012438536}
+      objectReference: {fileID: 1012438537}
     - target: {fileID: 3018697820856837226, guid: dc1e7dea2aafcd0468fe01d0f0b9d628,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -1982,7 +1981,7 @@ PrefabInstance:
     - target: {fileID: 3018697820856837226, guid: dc1e7dea2aafcd0468fe01d0f0b9d628,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Assets._Project._Scripts.UI.MapModesUI.MapModesUI, UI
+      value: Assets._Project._Scripts.Features.MapModes.UI.MapModesUI, MapModes
       objectReference: {fileID: 0}
     - target: {fileID: 3441513880647905630, guid: dc1e7dea2aafcd0468fe01d0f0b9d628,
         type: 3}
@@ -2532,7 +2531,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc912dee63b280e45a2d7a1dd8fcda02, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c89047e8e3ac8d4e826afb6a8b6038c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2009917811

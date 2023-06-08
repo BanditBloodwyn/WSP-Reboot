@@ -1,4 +1,4 @@
-﻿using Assets._Project._Scripts.WorldMap.GenerationPipeline;
+﻿using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.Types;
 using UnityEngine;
 using UnityEngine.EventSystems;
 

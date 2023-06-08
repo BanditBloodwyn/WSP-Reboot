@@ -1,8 +1,8 @@
-﻿using Assets._Project._Scripts.WorldMap.ECS.Aspects;
-using Assets._Project._Scripts.WorldMap.ECS.Components;
+﻿using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.ECS.Components;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
+using EmptyTileAspect = Assets._Project._Scripts.Features.WorldMap.WorldMapCore.ECS.Aspects.EmptyTileAspect;
 
 namespace Assets._Project._Scripts.WorldMap
 {

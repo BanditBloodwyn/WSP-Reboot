@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0e705fa21e017149b7a469151524732, type: 3}
+  m_Script: {fileID: 11500000, guid: 909c29583c3ebb541bad68a3d24b42fc, type: 3}
   m_Name: IronMapMode
   m_EditorClassIdentifier: 
-  DisplayName: Iron
+  DisplayName: Iron ore
   Description: 
   Category: 3
   Colors:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 0, b: 0, a: 1}
+    key1: {r: 0.6792453, g: 0.24491741, b: 0.21466713, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -50,4 +50,4 @@ MonoBehaviour:
   CalculateShaderBuffer: 1
   Property: 9
   DrawWaterAsBlue: 0
-  WaterColor: {r: 0.3529412, g: 0.54901963, b: 1, a: 0}
+  WaterColor: {r: 0.4575472, g: 0.77748114, b: 1, a: 0}

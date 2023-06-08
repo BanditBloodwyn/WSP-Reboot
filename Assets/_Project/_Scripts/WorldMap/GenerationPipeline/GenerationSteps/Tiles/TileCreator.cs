@@ -1,4 +1,4 @@
-﻿using Assets._Project._Scripts.WorldMap.ECS.Components;
+﻿using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.ECS.Components;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;

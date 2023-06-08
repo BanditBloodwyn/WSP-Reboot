@@ -1,10 +1,10 @@
-﻿using Assets._Project._Scripts.WorldMap.Data.Enums;
+﻿using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.ECS.Components;
+using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.Enums;
+using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.Structs;
 using Assets._Project._Scripts.WorldMap.Data.Structs;
-using Assets._Project._Scripts.WorldMap.Data.Structs.ComponentData;
-using Assets._Project._Scripts.WorldMap.ECS.Aspects;
-using Assets._Project._Scripts.WorldMap.ECS.Components;
 using Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings;
 using Unity.Entities;
+using EmptyTileAspect = Assets._Project._Scripts.Features.WorldMap.WorldMapCore.ECS.Aspects.EmptyTileAspect;
 
 namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.TileData
 {

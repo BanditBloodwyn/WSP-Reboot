@@ -1,4 +1,4 @@
-﻿using Assets._Project._Scripts.WorldMap.ECS.Aspects;
+﻿using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.Types;
 using Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.Height;
 using Assets._Project._Scripts.WorldMap.GenerationPipeline.Settings;
 using System;
@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
+using EmptyTileAspect = Assets._Project._Scripts.Features.WorldMap.WorldMapCore.ECS.Aspects.EmptyTileAspect;
 
 namespace Assets._Project._Scripts.WorldMap.GenerationPipeline.GenerationSteps.Mesh
 {
