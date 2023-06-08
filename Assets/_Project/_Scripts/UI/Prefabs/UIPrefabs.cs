@@ -1,9 +1,9 @@
-﻿using Assets._Project._Scripts.Core.Types;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Assets._Project._Scripts.Core.Types;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.UI.UICore
+namespace Assets._Project._Scripts.UI.Prefabs
 {
     public class UIPrefabs : PersistentSingleton<UIPrefabs>
     {

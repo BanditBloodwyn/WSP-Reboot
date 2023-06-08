@@ -1,8 +1,8 @@
-﻿using Assets._Project._Scripts.Gameplay.Systems.TileSelection.Settings;
-using System.Collections;
+﻿using System.Collections;
+using Assets._Project._Scripts.Features.SelectionSystem.Settings;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection
+namespace Assets._Project._Scripts.Features.SelectionSystem
 {
     public class TileSelector : MonoBehaviour
     {

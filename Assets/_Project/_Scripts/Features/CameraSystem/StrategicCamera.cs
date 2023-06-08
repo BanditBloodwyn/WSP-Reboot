@@ -14,11 +14,17 @@ namespace Assets._Project._Scripts.Features.CameraSystem
         [SerializeField] private WorldSize _worldSize;
 
         private Transform _cameraTransform;
+       
+        private int _chunkCountPerAxis;
+        private int _tileAmountPerAxis;
 
         private void Awake()
         {
             Assert.IsNotNull(_settings);
             Assert.IsNotNull(_worldSize);
+            
+            _chunkCountPerAxis = _worldSize.ChunkCountPerAxis;
+            _tileAmountPerAxis = _worldSize.TileAmountPerAxis;
         }
 
         public void ResetController(CameraHandler cameraHandler)
@@ -70,8 +76,8 @@ namespace Assets._Project._Scripts.Features.CameraSystem
             float speedFromHeight = _settings.PanningSpeedCurve.Evaluate(_cameraTransform.position.y);
 
             _cameraTransform.position += _settings.PanningSpeed * speedFromHeight * Time.deltaTime * translation;
-            int tileAmountPerAxis = _worldSize.TileAmountPerAxis;
-            int chunkCountPerAxis = _worldSize.ChunkCountPerAxis;
+            int tileAmountPerAxis = _tileAmountPerAxis;
+            int chunkCountPerAxis = _chunkCountPerAxis;
             _cameraTransform.position = _cameraTransform.position.Clamp(
                 new Vector3(-tileAmountPerAxis / 2.0f, 3, -tileAmountPerAxis / 2.0f),
                 new Vector3(chunkCountPerAxis * tileAmountPerAxis - tileAmountPerAxis / 2f, 1000, chunkCountPerAxis * tileAmountPerAxis - tileAmountPerAxis / 2f));

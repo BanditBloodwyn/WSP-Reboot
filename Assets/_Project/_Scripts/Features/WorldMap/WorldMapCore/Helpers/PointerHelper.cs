@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Assets._Project._Scripts.Gameplay.Helper
+namespace Assets._Project._Scripts.Features.WorldMap.WorldMapCore.Helpers
 {
     public static class PointerHelper
     {

@@ -14,6 +14,8 @@ namespace Assets._Project._Scripts.Features.CameraSystem
         private Transform _cameraTransform;
         private CameraHandler _cameraHandler;
 
+        private int _chunkCountPerAxis;
+        private int _tileAmountPerAxis;
         private float _elapsedTime;
         private bool _started;
       
@@ -22,6 +24,9 @@ namespace Assets._Project._Scripts.Features.CameraSystem
             _started = false;
             Assert.IsNotNull(_settings);
             Assert.IsNotNull(_worldSize);
+
+            _chunkCountPerAxis = _worldSize.ChunkCountPerAxis;
+            _tileAmountPerAxis = _worldSize.TileAmountPerAxis;
         }
 
         public void ResetController(CameraHandler cameraHandler)
@@ -82,17 +87,17 @@ namespace Assets._Project._Scripts.Features.CameraSystem
         private Vector3 CalculateStartPosition()
         {
             return new Vector3(
-                Random.Range(0, (_worldSize.ChunkCountPerAxis - 1) * _worldSize.TileAmountPerAxis),
+                Random.Range(0, (_chunkCountPerAxis - 1) * _tileAmountPerAxis),
                 Random.Range(_settings.MinimumHeight, _settings.MaximumHeight),
-                Random.Range(0, (_worldSize.ChunkCountPerAxis - 1) * _worldSize.TileAmountPerAxis));
+                Random.Range(0, (_chunkCountPerAxis - 1) * _tileAmountPerAxis));
         }
 
         private Vector3 CalculateEndPosition(Vector3 startPosition)
         {
             Vector3 potentialEndPosition = new Vector3(
-                Random.Range(0, (_worldSize.ChunkCountPerAxis - 1) * _worldSize.TileAmountPerAxis),
+                Random.Range(0, (_chunkCountPerAxis - 1) * _tileAmountPerAxis),
                 Random.Range(_settings.MinimumHeight, _settings.MaximumHeight),
-                Random.Range(0, (_worldSize.ChunkCountPerAxis - 1) * _worldSize.TileAmountPerAxis));
+                Random.Range(0, (_chunkCountPerAxis - 1) * _tileAmountPerAxis));
 
             if (Vector3.Distance(startPosition, potentialEndPosition) > _settings.MaximumShotDistance)
             {

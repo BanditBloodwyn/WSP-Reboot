@@ -1,7 +1,7 @@
 using Assets._Project._Scripts.UI.UICore.Controls;
-using NUnit.Framework;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Events;
 
 namespace Assets._Project._Scripts.Features.MapModes.UI

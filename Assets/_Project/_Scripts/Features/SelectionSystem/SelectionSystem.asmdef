@@ -1,3 +1,21 @@
 {
-	"name": "SelectionSystem"
+    "name": "SelectionSystem",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6d8941a2081aeab4cb523103e619684a",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:9a5f98f9ca0129a4994fe655a364aafc",
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:ec112708d316c2540b1c1ee4fbc486ea",
+        "GUID:f983520fd62a3274fa07460a4e8a7198"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

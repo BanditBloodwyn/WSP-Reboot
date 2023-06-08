@@ -1483,10 +1483,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1114837214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b38e949875f99e47bca579129617cca, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ce7f38e9877c0d4c8d8db8372220ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _settings: {fileID: 11400000, guid: 44cd956ddf56bfd4084290dca56ba3c6, type: 2}
+  _openMovablePopup:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1164425132}
+        m_TargetAssemblyTypeName: Assets._Project._Scripts.UI.Managers.Popups.PopupManager,
+          UI
+        m_MethodName: OpenMovablePopup
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1164425130
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,7 +1746,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1396113312}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3ab863104371a84080a5cb535a096ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 919d3c180c45f8e4b8ad6653cb2eaeeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _catalog:

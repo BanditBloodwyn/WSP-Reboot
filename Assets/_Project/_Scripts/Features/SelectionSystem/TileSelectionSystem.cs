@@ -1,29 +1,32 @@
-﻿using Assets._Project._Scripts.Features.WorldMap.WorldMapCore;
+﻿using Assets._Project._Scripts.Features.SelectionSystem.Settings;
+using Assets._Project._Scripts.Features.SelectionSystem.UI;
+using Assets._Project._Scripts.Features.WorldMap.WorldMapCore;
 using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.ECS.Aspects;
+using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.Helpers;
 using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.Types;
-using Assets._Project._Scripts.Gameplay.Helper;
-using Assets._Project._Scripts.Gameplay.Systems.TileSelection.Settings;
-using Assets._Project._Scripts.UI.DataContainer;
-using Assets._Project._Scripts.UI.Managers;
-using Assets._Project._Scripts.UI.Managers.Popups;
+using Assets._Project._Scripts.UI.UICore.Interfaces;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 
-namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection
+namespace Assets._Project._Scripts.Features.SelectionSystem
 {
     public class TileSelectionSystem : MonoBehaviour
     {
         [SerializeField] private TileSelectionSystemSettings _settings;
+        [SerializeField] private UnityEvent<IPopupDataContainer> _openMovablePopup;
+
 
         private TileSelector _selector;
         private Vector3 _currentPointedPosition;
         private TileAspect _currentPointedTile;
-
+        
         #region Unity
 
         private void Awake()
         {
             Assert.IsNotNull(_settings);
+            Assert.IsNotNull(_openMovablePopup);
         }
 
         private void Start()
@@ -84,7 +87,7 @@ namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection
                 if (!UpdateTilePointingAt())
                     return;
 
-            UIManager.Instance.RaiseEvent(PopupEvent.OpenMovablePopup, new TileSelectionDataContainer(_currentPointedTile));
+            _openMovablePopup?.Invoke(new TileSelectionPopupDataContainer(_currentPointedTile));
         }
 
         #endregion

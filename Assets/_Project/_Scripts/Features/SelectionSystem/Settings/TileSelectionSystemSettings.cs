@@ -1,7 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.Gameplay.Systems.TileSelection.Settings
+namespace Assets._Project._Scripts.Features.SelectionSystem.Settings
 {
     [CreateAssetMenu(fileName = "TileSelectionSystemSettings", menuName = "ScriptableObjects/Settings/Systems/Tile Selection/Settings")]
     public class TileSelectionSystemSettings : ScriptableObject

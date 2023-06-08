@@ -1,20 +1,20 @@
 ﻿using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.ECS.Aspects;
-using Assets._Project._Scripts.UI.UICore;
+using Assets._Project._Scripts.UI.Prefabs;
 using Assets._Project._Scripts.UI.UICore.Controls;
 using Assets._Project._Scripts.UI.UICore.Controls.TabControl;
 using Assets._Project._Scripts.UI.UICore.Interfaces;
 using TMPro;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.UI.DataContainer
+namespace Assets._Project._Scripts.Features.SelectionSystem.UI
 {
-    public class TileSelectionDataContainer : IPopupDataContainer
+    public class TileSelectionPopupDataContainer : IPopupDataContainer
     {
         private readonly TileAspect _tile;
 
         public string ContentIdentifier => $"Tile - {_tile.Position.x}, {_tile.Position.z}";
 
-        public TileSelectionDataContainer(TileAspect tile)
+        public TileSelectionPopupDataContainer(TileAspect tile)
         {
             _tile = tile;
         }
