@@ -1,10 +1,10 @@
-﻿using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.ECS.Aspects;
-using Assets._Project._Scripts.UI.Prefabs;
+﻿using Assets._Project._Scripts.UI.Prefabs;
 using Assets._Project._Scripts.UI.UICore.Controls;
 using Assets._Project._Scripts.UI.UICore.Controls.TabControl;
 using Assets._Project._Scripts.UI.UICore.Interfaces;
 using TMPro;
 using UnityEngine;
+using TileAspect = Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Aspects.TileAspect;
 
 namespace Assets._Project._Scripts.Features.SelectionSystem.UI
 {

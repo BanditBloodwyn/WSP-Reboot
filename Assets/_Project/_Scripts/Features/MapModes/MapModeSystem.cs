@@ -1,6 +1,6 @@
-using Assets._Project._Scripts.Features.WorldMap.WorldMapCore;
-using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.Structs;
 using Assets._Project._Scripts.GlobalSettings;
+using Assets._Project._Scripts.WorldMap.WorldMapCore.Structs;
+using Assets._Project._Scripts.WorldMap.WorldMapManagement;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Events;

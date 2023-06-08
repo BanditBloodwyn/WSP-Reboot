@@ -1,5 +1,5 @@
-﻿using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.Enums;
-using Assets._Project._Scripts.UI.UICore.Interfaces;
+﻿using Assets._Project._Scripts.UI.UICore.Interfaces;
+using Assets._Project._Scripts.WorldMap.WorldMapCore.Enums;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.Features.MapModes

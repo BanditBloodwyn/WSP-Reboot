@@ -1,13 +1,13 @@
 ﻿using Assets._Project._Scripts.Features.SelectionSystem.Settings;
 using Assets._Project._Scripts.Features.SelectionSystem.UI;
-using Assets._Project._Scripts.Features.WorldMap.WorldMapCore;
-using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.ECS.Aspects;
-using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.Helpers;
-using Assets._Project._Scripts.Features.WorldMap.WorldMapCore.Types;
 using Assets._Project._Scripts.UI.UICore.Interfaces;
+using Assets._Project._Scripts.WorldMap.WorldMapCore.Helpers;
+using Assets._Project._Scripts.WorldMap.WorldMapCore.Types;
+using Assets._Project._Scripts.WorldMap.WorldMapManagement;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
+using TileAspect = Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Aspects.TileAspect;
 
 namespace Assets._Project._Scripts.Features.SelectionSystem
 {

@@ -22,13 +22,13 @@ namespace Assets._Project._Scripts.Features.CameraSystem
         {
             Assert.IsNotNull(_settings);
             Assert.IsNotNull(_worldSize);
-            
-            _chunkCountPerAxis = _worldSize.ChunkCountPerAxis;
-            _tileAmountPerAxis = _worldSize.TileAmountPerAxis;
         }
 
         public void ResetController(CameraHandler cameraHandler)
         {
+            _chunkCountPerAxis = _worldSize.ChunkCountPerAxis;
+            _tileAmountPerAxis = _worldSize.TileAmountPerAxis;
+
             _cameraTransform = cameraHandler.transform;
             Assert.IsNotNull(_cameraTransform);
         }
