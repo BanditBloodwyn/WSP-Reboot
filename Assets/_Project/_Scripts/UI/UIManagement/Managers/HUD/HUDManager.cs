@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assets._Project._Scripts.UIManagement.Managers.HUD
+namespace Assets._Project._Scripts.UI.UIManagement.Managers.HUD
 {
     public class HUDManager : UISystem
     {

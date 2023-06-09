@@ -1,4 +1,4 @@
-﻿namespace Assets._Project._Scripts.UIManagement.Managers.Popups
+﻿namespace Assets._Project._Scripts.UI.UIManagement.Managers.Popups
 {
     public enum PopupEvent
     {

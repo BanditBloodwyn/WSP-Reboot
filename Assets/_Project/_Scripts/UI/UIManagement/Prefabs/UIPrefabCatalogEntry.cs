@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.UIManagement.Prefabs
+namespace Assets._Project._Scripts.UI.UIManagement.Prefabs
 {
     [Serializable]
     public struct UIPrefabCatalogEntry

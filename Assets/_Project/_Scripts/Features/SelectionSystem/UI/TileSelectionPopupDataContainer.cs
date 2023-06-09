@@ -1,7 +1,7 @@
 ﻿using Assets._Project._Scripts.UI.UICore.Controls;
 using Assets._Project._Scripts.UI.UICore.Controls.TabControl;
 using Assets._Project._Scripts.UI.UICore.Interfaces;
-using Assets._Project._Scripts.UIManagement.Prefabs;
+using Assets._Project._Scripts.UI.UIManagement.Prefabs;
 using TMPro;
 using UnityEngine;
 using TileAspect = Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Aspects.TileAspect;

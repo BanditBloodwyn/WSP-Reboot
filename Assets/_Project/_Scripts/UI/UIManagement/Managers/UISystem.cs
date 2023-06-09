@@ -1,8 +1,8 @@
 ﻿using System;
 using Assets._Project._Scripts.Core.Types;
-using Assets._Project._Scripts.UIManagement.Managers.HUD;
+using Assets._Project._Scripts.UI.UIManagement.Managers.HUD;
 
-namespace Assets._Project._Scripts.UIManagement.Managers
+namespace Assets._Project._Scripts.UI.UIManagement.Managers
 {
     public abstract class UISystem : Singleton<HUDManager>
     {

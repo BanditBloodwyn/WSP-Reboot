@@ -1,4 +1,4 @@
-﻿namespace Assets._Project._Scripts.UIManagement.Prefabs
+﻿namespace Assets._Project._Scripts.UI.UIManagement.Prefabs
 {
     public enum UIPrefabNames
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assets._Project._Scripts.UIManagement.Managers.Menus
+namespace Assets._Project._Scripts.UI.UIManagement.Managers.Menus
 {
     public class MenuManager : UISystem
     {
