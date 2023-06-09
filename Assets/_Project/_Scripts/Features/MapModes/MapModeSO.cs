@@ -1,11 +1,10 @@
-﻿using Assets._Project._Scripts.UI.UICore.Interfaces;
-using Assets._Project._Scripts.WorldMap.WorldMapCore.Enums;
+﻿using Assets._Project._Scripts.WorldMap.WorldMapCore.Enums;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.Features.MapModes
 {
     [CreateAssetMenu(fileName = "MapMode", menuName = "ScriptableObjects/Settings/UI/Map Mode")]
-    public class MapModeSO : ScriptableObject, IButtonCreatable
+    public class MapModeSO : ScriptableObject
     {
         public string DisplayName;
         public string Description;
@@ -17,8 +16,5 @@ namespace Assets._Project._Scripts.Features.MapModes
         public TileProperties Property;
         public bool DrawWaterAsBlue;
         public Color WaterColor;
-
-        public string ButtonName => DisplayName;
-        public Sprite ButtonIcon => UIIcon;
     }
 }

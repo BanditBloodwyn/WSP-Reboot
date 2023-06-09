@@ -1,4 +1,4 @@
-using Assets._Project._Scripts.UI.UICore.Controls;
+using Assets._Project._Scripts.UI.UIPrefabs.Controls;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Assertions;

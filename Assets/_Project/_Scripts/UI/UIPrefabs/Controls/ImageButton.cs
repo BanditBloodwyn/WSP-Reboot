@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets._Project._Scripts.UI.UICore.Controls
+namespace Assets._Project._Scripts.UI.UIPrefabs.Controls
 {
     public class ImageButton : MonoBehaviour
     { 

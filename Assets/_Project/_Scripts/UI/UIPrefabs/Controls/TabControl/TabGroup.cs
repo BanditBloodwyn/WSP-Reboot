@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.UI.UICore.Controls.TabControl
+namespace Assets._Project._Scripts.UI.UIPrefabs.Controls.TabControl
 {
     public class TabGroup : MonoBehaviour
     {

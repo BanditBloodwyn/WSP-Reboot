@@ -8,10 +8,10 @@ namespace Assets._Project._Scripts.Core.EventSystem
     {
         private readonly List<GameEventListener> _listeners = new();
 
-        public void Raise()
+        public void Raise(Component sender, object data)
         {
             foreach (GameEventListener listener in _listeners)
-                listener.OnEventRaised();
+                listener.OnEventRaised(sender, data);
         }
 
         public void RegisterListener(GameEventListener listener)

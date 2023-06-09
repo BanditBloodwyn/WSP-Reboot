@@ -1,13 +1,8 @@
-﻿using System;
+﻿using Assets._Project._Scripts.Core.Data.Types;
 
 namespace Assets._Project._Scripts.UI.UIManagement.Managers.Tooltips
 {
-    public class TooltipManager : UISystem
+    public class TooltipManager : Singleton<TooltipManager>
     {
-        public override void HandleEvent(Enum eventType, object eventData)
-        {
-            if (eventType is not TooltipEvent tooltipEvent)
-                return;
-        }
     }
 }

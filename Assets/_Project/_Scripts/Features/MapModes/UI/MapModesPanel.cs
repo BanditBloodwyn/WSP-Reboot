@@ -1,7 +1,7 @@
 ﻿using Assets._Project._Scripts.Core.Data.Types;
-using Assets._Project._Scripts.UI.UICore.Controls;
-using Assets._Project._Scripts.UI.UIManagement.Prefabs;
 using System.Linq;
+using Assets._Project._Scripts.UI.UIPrefabs;
+using Assets._Project._Scripts.UI.UIPrefabs.Controls;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
@@ -90,7 +90,7 @@ namespace Assets._Project._Scripts.Features.MapModes.UI
                     buttonGroup.AddButton(instance);
 
                     ImageButton imageButton = instance.GetComponent<ImageButton>();
-                    imageButton.SetImage(mapMode.ButtonIcon);
+                    imageButton.SetImage(mapMode.UIIcon);
 
                     Button button = instance.GetComponentInChildren<Button>();
                     button.onClick.AddListener(delegate { OnClick(mapMode); });
@@ -102,7 +102,7 @@ namespace Assets._Project._Scripts.Features.MapModes.UI
         private void OnClick(MapModeSO mapMode)
         {
             _requestSwitchMapMode?.Invoke(mapMode);
-            _button.SetImage(mapMode.ButtonIcon);
+            _button.SetImage(mapMode.UIIcon);
         }
     }
 }

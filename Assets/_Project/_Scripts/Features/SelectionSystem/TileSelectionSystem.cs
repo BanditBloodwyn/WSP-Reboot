@@ -1,12 +1,12 @@
-﻿using Assets._Project._Scripts.Features.SelectionSystem.Settings;
+﻿using Assets._Project._Scripts.Core.EventSystem;
+using Assets._Project._Scripts.Features.SelectionSystem.Settings;
 using Assets._Project._Scripts.Features.SelectionSystem.UI;
-using Assets._Project._Scripts.UI.UICore.Interfaces;
 using Assets._Project._Scripts.WorldMap.WorldMapCore.Helpers;
 using Assets._Project._Scripts.WorldMap.WorldMapCore.Types;
 using Assets._Project._Scripts.WorldMap.WorldMapManagement;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.Events;
 using TileAspect = Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Aspects.TileAspect;
 
 namespace Assets._Project._Scripts.Features.SelectionSystem
@@ -14,19 +14,19 @@ namespace Assets._Project._Scripts.Features.SelectionSystem
     public class TileSelectionSystem : MonoBehaviour
     {
         [SerializeField] private TileSelectionSystemSettings _settings;
-        [SerializeField] private UnityEvent<IPopupDataContainer> _openMovablePopup;
 
+        [TitleGroup("Events")]
+        [SerializeField] private GameEventSO _onTileSelected;
 
         private TileSelector _selector;
         private Vector3 _currentPointedPosition;
         private TileAspect _currentPointedTile;
-        
+
         #region Unity
 
         private void Awake()
         {
             Assert.IsNotNull(_settings);
-            Assert.IsNotNull(_openMovablePopup);
         }
 
         private void Start()
@@ -87,7 +87,7 @@ namespace Assets._Project._Scripts.Features.SelectionSystem
                 if (!UpdateTilePointingAt())
                     return;
 
-            _openMovablePopup?.Invoke(new TileSelectionPopupDataContainer(_currentPointedTile));
+            _onTileSelected?.Raise(this, new TileSelectionPopupDataContainer(_currentPointedTile));
         }
 
         #endregion

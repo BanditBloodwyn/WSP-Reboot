@@ -1,12 +1,11 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Assets._Project._Scripts.Core.EventSystem
 {
     public class GameEventListener : MonoBehaviour
     {
         [SerializeField] private GameEventSO _gameEvent;
-        [SerializeField] private UnityEvent _response;
+        [SerializeField] private CustomGameEvent _response;
 
         private void OnEnable()
         {
@@ -18,9 +17,9 @@ namespace Assets._Project._Scripts.Core.EventSystem
             _gameEvent.UnregisterListener(this);
         }
 
-        public void OnEventRaised()
+        public void OnEventRaised(Component sender, object data)
         {
-            _response.Invoke();
+            _response.Invoke(sender, data);
         }
     }
 }

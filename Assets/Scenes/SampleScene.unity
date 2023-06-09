@@ -1364,7 +1364,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1857002737}
   - {fileID: 2109862055}
   - {fileID: 1245121474}
   - {fileID: 1164425131}
@@ -1489,20 +1488,8 @@ MonoBehaviour:
   _settings: {fileID: 11400000, guid: 44cd956ddf56bfd4084290dca56ba3c6, type: 2}
   _openMovablePopup:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1164425132}
-        m_TargetAssemblyTypeName: Assets._Project._Scripts.UI.Managers.Popups.PopupManager,
-          UI
-        m_MethodName: OpenMovablePopup
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  _onTileSelected: {fileID: 11400000, guid: bba71b92456004a4c8749d0475020bea, type: 2}
 --- !u!1 &1164425130
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,6 +1500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1164425131}
   - component: {fileID: 1164425132}
+  - component: {fileID: 1164425133}
   m_Layer: 5
   m_Name: PopupManager
   m_TagString: Untagged
@@ -1549,6 +1537,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movablePopupParent: {fileID: 1476515568}
   _popupOffset: {x: 20, y: -20}
+--- !u!114 &1164425133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164425130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc5f5f76bb439ae4fa5504e2fde267d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: bba71b92456004a4c8749d0475020bea, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1164425132}
+        m_TargetAssemblyTypeName: Assets._Project._Scripts.UI.UIManagement.Managers.Popups.PopupManager,
+          UIManagement
+        m_MethodName: OpenMovablePopup
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1224687513
 GameObject:
   m_ObjectHideFlags: 0
@@ -2383,55 +2400,6 @@ Transform:
   m_Father: {fileID: 2072920206}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1857002736
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1857002737}
-  - component: {fileID: 1857002738}
-  m_Layer: 5
-  m_Name: UIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1857002737
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1857002736}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 930923973}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1857002738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1857002736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26bb743e7bc01c64e84b195f2b9f765b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiSystems:
-  - {fileID: 2109862056}
-  - {fileID: 1245121475}
-  - {fileID: 1164425132}
-  - {fileID: 1903818603}
 --- !u!1 &1903818601
 GameObject:
   m_ObjectHideFlags: 0

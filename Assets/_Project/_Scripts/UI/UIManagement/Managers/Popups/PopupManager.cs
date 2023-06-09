@@ -1,46 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using Assets._Project._Scripts.UI.UICore.Controls;
+﻿using Assets._Project._Scripts.Core.Data.Types;
 using Assets._Project._Scripts.UI.UICore.Interfaces;
-using Assets._Project._Scripts.UI.UIManagement.Prefabs;
+using System.Collections.Generic;
+using Assets._Project._Scripts.UI.UIPrefabs;
+using Assets._Project._Scripts.UI.UIPrefabs.Controls;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Assets._Project._Scripts.UI.UIManagement.Managers.Popups
 {
-    public class PopupManager : UISystem
+    public class PopupManager : Singleton<PopupManager>
     {
         [SerializeField] private Transform _movablePopupParent;
         [SerializeField] private Vector2 _popupOffset;
 
         private readonly Dictionary<string, Popup> _openPopups = new();
 
-        protected override void Awake()
-        {
-            base.Awake();
-
-            Assert.IsNotNull(_movablePopupParent);
-        }
-
-        public override void HandleEvent(Enum eventType, object eventData)
-        {
-            if (eventType is not PopupEvent popupEvent)
-                return;
-
-            switch (popupEvent)
-            {
-                case PopupEvent.OpenMovablePopup:
-                    OpenMovablePopup(eventData);
-                    break;
-                case PopupEvent.ClosePopup:
-                    ClosePopup(eventData);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
-        public void OpenMovablePopup(object eventData)
+        public void OpenMovablePopup(Component sender, object eventData)
         {
             if (eventData is not IPopupDataContainer dataContainer)
                 return;
@@ -48,7 +22,7 @@ namespace Assets._Project._Scripts.UI.UIManagement.Managers.Popups
             if (_openPopups.ContainsKey(dataContainer.ContentIdentifier))
                 return;
 
-            if (!UIPrefabs.Instance.TryGetPrefab(UIPrefabNames.MovablePopup, out GameObject prefab))
+            if (!UIPrefabs.UIPrefabs.Instance.TryGetPrefab(UIPrefabNames.MovablePopup, out GameObject prefab))
                 return;
 
             GameObject popup = Instantiate(prefab, _movablePopupParent);
@@ -69,6 +43,5 @@ namespace Assets._Project._Scripts.UI.UIManagement.Managers.Popups
             Destroy(popupToClose.gameObject);
             _openPopups.Remove(popupToClose.ContentIdentifier);
         }
-
     }
 }

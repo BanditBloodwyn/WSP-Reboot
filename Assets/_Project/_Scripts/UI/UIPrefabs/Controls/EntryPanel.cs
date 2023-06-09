@@ -2,7 +2,7 @@ using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.UI.UICore.Controls
+namespace Assets._Project._Scripts.UI.UIPrefabs.Controls
 {
     public class EntryPanel : MonoBehaviour
     {

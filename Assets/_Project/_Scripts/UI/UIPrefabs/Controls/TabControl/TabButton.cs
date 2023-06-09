@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Assets._Project._Scripts.UI.UICore.Controls.TabControl
+namespace Assets._Project._Scripts.UI.UIPrefabs.Controls.TabControl
 {
     [RequireComponent(typeof(Image))]
     public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
@@ -39,7 +39,7 @@ namespace Assets._Project._Scripts.UI.UICore.Controls.TabControl
         public void SetTabHeader(string text)
         {
             TMP_Text tmpText = GetComponentInChildren<TMP_Text>();
-            if(tmpText != null)
+            if (tmpText != null)
                 tmpText.text = text;
         }
     }

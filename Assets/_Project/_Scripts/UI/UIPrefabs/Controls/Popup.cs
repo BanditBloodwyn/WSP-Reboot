@@ -3,13 +3,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets._Project._Scripts.UI.UICore.Controls
+namespace Assets._Project._Scripts.UI.UIPrefabs.Controls
 {
     public class Popup : MonoBehaviour
     {
         [SerializeField] private TMP_Text _header;
         [SerializeField] private Transform _contentPanel;
-        
+
         public UnityEvent<Popup> ClosePopup;
 
         public string ContentIdentifier => _header.text;

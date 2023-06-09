@@ -1,13 +1,8 @@
-﻿using System;
+﻿using Assets._Project._Scripts.Core.Data.Types;
 
 namespace Assets._Project._Scripts.UI.UIManagement.Managers.HUD
 {
-    public class HUDManager : UISystem
+    public class HUDManager : Singleton<HUDManager>
     {
-        public override void HandleEvent(Enum eventType, object eventData)
-        {
-            if (eventType is not HUDEvent hudEvent)
-                return;
-        }
     }
 }
