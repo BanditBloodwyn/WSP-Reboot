@@ -2,7 +2,7 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.Core.Math.Noise.NoiseFilters
+namespace Assets._Project._Scripts.Core.Data.Math.Noise.NoiseFilters
 {
     [Serializable]
     public class StandardNoiseFilter : INoiseFilter

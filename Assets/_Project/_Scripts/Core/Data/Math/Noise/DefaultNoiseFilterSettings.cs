@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project._Scripts.Core.Math.Noise
+namespace Assets._Project._Scripts.Core.Data.Math.Noise
 {
     public struct DefaultNoiseFilterSettings
     {

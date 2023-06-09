@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Assets._Project._Scripts.Core.Data.Types;
+using System.Collections.Generic;
 using System.Linq;
-using Assets._Project._Scripts.Core.Types;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.UI.UIManagement.Prefabs

@@ -1,6 +1,6 @@
-﻿using System;
-using Assets._Project._Scripts.Core.Types;
+﻿using Assets._Project._Scripts.Core.Data.Types;
 using Assets._Project._Scripts.UI.UIManagement.Managers.HUD;
+using System;
 
 namespace Assets._Project._Scripts.UI.UIManagement.Managers
 {

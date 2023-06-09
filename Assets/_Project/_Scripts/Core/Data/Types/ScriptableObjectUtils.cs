@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.Core.Types
+namespace Assets._Project._Scripts.Core.Data.Types
 {
     public static class ScriptableObjectUtils
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets._Project._Scripts.Core.Types
+namespace Assets._Project._Scripts.Core.Data.Types
 {
     public class StaticInstance<T> : MonoBehaviour where T : MonoBehaviour
     {

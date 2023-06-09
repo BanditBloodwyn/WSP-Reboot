@@ -1,6 +1,6 @@
-﻿using System;
-using Assets._Project._Scripts.Core.Math.Noise.NoiseFilters;
+﻿using Assets._Project._Scripts.Core.Data.Math.Noise.NoiseFilters;
 using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.WorldMap.WorldMapCreation.Settings

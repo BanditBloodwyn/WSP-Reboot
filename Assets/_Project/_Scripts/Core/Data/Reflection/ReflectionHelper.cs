@@ -1,7 +1,7 @@
-﻿using System.Reflection;
-using System;
+﻿using System;
+using System.Reflection;
 
-namespace Assets._Project._Scripts.Core.Reflection
+namespace Assets._Project._Scripts.Core.Data.Reflection
 {
     public static class ReflectionHelper
     {

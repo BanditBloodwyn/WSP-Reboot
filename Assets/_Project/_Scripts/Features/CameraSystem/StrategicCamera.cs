@@ -1,4 +1,4 @@
-﻿using Assets._Project._Scripts.Core.Extentions;
+﻿using Assets._Project._Scripts.Core.Data.Extentions;
 using Assets._Project._Scripts.GlobalSettings;
 using NUnit.Framework;
 using Sirenix.Utilities;
@@ -14,7 +14,7 @@ namespace Assets._Project._Scripts.Features.CameraSystem
         [SerializeField] private WorldSize _worldSize;
 
         private Transform _cameraTransform;
-       
+
         private int _chunkCountPerAxis;
         private int _tileAmountPerAxis;
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assets._Project._Scripts.Core.Math
+namespace Assets._Project._Scripts.Core.Data.Math
 {
     public static class MathFunctions
     {
