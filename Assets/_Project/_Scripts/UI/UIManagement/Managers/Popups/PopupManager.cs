@@ -1,8 +1,8 @@
 ﻿using Assets._Project._Scripts.Core.Data.Types;
 using Assets._Project._Scripts.UI.UICore.Interfaces;
-using System.Collections.Generic;
 using Assets._Project._Scripts.UI.UIPrefabs;
 using Assets._Project._Scripts.UI.UIPrefabs.Controls;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.UI.UIManagement.Managers.Popups
@@ -35,11 +35,8 @@ namespace Assets._Project._Scripts.UI.UIManagement.Managers.Popups
             _openPopups.Add(component.ContentIdentifier, component);
         }
 
-        public void ClosePopup(object eventData)
+        private void ClosePopup(Popup popupToClose)
         {
-            if (eventData is not Popup popupToClose)
-                return;
-
             Destroy(popupToClose.gameObject);
             _openPopups.Remove(popupToClose.ContentIdentifier);
         }
