@@ -1,72 +1,30 @@
 ﻿using Assets._Project._Scripts.UI.UICore.Interfaces;
 using Assets._Project._Scripts.UI.UIPrefabs;
 using Assets._Project._Scripts.UI.UIPrefabs.Controls;
-using Assets._Project._Scripts.UI.UIPrefabs.Controls.TabControl;
-using TMPro;
+using Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Aspects;
 using UnityEngine;
-using TileAspect = Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Aspects.TileAspect;
 
 namespace Assets._Project._Scripts.Features.SelectionSystem.UI
 {
-    public class TileSelectionPopupDataContainer : IPopupDataContainer
+    public class TileSelectionUIData : IPopupDataContainer
     {
         private readonly TileAspect _tile;
 
-        public string ContentIdentifier => $"Tile - {_tile.Position.x}, {_tile.Position.z}";
+        public string Title => "Details";
 
-        public TileSelectionPopupDataContainer(TileAspect tile)
+        public TileSelectionUIData(TileAspect tile)
         {
             _tile = tile;
         }
 
-        public void ApplyHeader(TMP_Text header)
-        {
-            header.text = ContentIdentifier;
-        }
-
         public void ApplyContent(Transform contentPanel)
         {
-            if (!UIPrefabs.Instance.TryGetPrefab(UIPrefabNames.TabControl, out GameObject tabControlPrefab))
-                return;
             if (!UIPrefabs.Instance.TryGetPrefab(UIPrefabNames.EntryPanel, out GameObject entryPanelPrefab))
                 return;
             if (!UIPrefabs.Instance.TryGetPrefab(UIPrefabNames.EntryPanelSeperator, out GameObject seperatorPrefab))
                 return;
 
-            GameObject tabControlInstance = Object.Instantiate(tabControlPrefab, contentPanel.transform);
-            TabGroup tabGroup = tabControlInstance.GetComponentInChildren<TabGroup>();
-
-            BuildOverviewTab(tabGroup, seperatorPrefab);
-            BuildBuildingsTab(tabGroup, seperatorPrefab);
-            BuildDetailsTab(tabGroup, entryPanelPrefab, seperatorPrefab);
-
-            tabGroup.SelectTabByIndex(0);
-        }
-
-        private void BuildOverviewTab(TabGroup tabGroup, GameObject seperatorPrefab)
-        {
-            tabGroup.SetTabHeader(0, "Overview");
-
-        }
-
-        private void BuildBuildingsTab(TabGroup tabGroup, GameObject seperatorPrefab)
-        {
-            if (!UIPrefabs.Instance.TryGetPrefab(UIPrefabNames.TextButton, out GameObject textButtonPrefab))
-                return;
-
-            tabGroup.SetTabHeader(1, "Buildings");
-
-            Transform buildingsTab = tabGroup.GetTabPageTransform(1);
-
-            Object.Instantiate(textButtonPrefab, buildingsTab).GetComponentInChildren<TMP_Text>().text = "Build";
-            Object.Instantiate(seperatorPrefab, buildingsTab);
-        }
-
-        private void BuildDetailsTab(TabGroup tabGroup, GameObject entryPanelPrefab, GameObject seperatorPrefab)
-        {
-            tabGroup.SetTabHeader(2, "Info");
-
-            Transform detailsTab = tabGroup.GetTabPageTransform(2);
+            Transform detailsTab = contentPanel.transform;
 
             Object.Instantiate(entryPanelPrefab, detailsTab).GetComponent<EntryPanel>().Set("Vegetation zone", _tile.GetVegetationZone());
             Object.Instantiate(entryPanelPrefab, detailsTab).GetComponent<EntryPanel>().Set("Height", _tile.Position.y.ToString("F2"));

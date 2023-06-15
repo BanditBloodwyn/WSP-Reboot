@@ -1,11 +1,12 @@
-﻿using Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Components;
+﻿using Assets._Project._Scripts.Core.Data.Interfaces;
+using Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Components;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
 namespace Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Aspects
 {
-    public readonly partial struct TileAspect : IAspect
+    public readonly partial struct TileAspect : IAspect, INamedObject
     {
         public readonly Entity Entity;
 
@@ -15,6 +16,8 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Aspects
         private readonly RefRW<TilePropertiesComponentData> _tileProperties;
 
         public float3 Position => _localTransform.ValueRO.Position;
+        
+        public string Name => $"Tile - {Position.x}, {Position.z}";
 
         public string GetVegetationZone()
         {

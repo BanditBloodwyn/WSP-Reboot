@@ -1,10 +1,9 @@
-﻿using Assets._Project._Scripts.Core.EventSystem;
+﻿using Assets._Project._Scripts.Core.EventSystem.v2;
 using Assets._Project._Scripts.Features.SelectionSystem.Settings;
 using Assets._Project._Scripts.Features.SelectionSystem.UI;
 using Assets._Project._Scripts.WorldMap.WorldMapCore.Helpers;
 using Assets._Project._Scripts.WorldMap.WorldMapCore.Types;
 using Assets._Project._Scripts.WorldMap.WorldMapManagement;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Assertions;
 using TileAspect = Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Aspects.TileAspect;
@@ -15,14 +14,22 @@ namespace Assets._Project._Scripts.Features.SelectionSystem
     {
         [SerializeField] private TileSelectionSystemSettings _settings;
 
-        [TitleGroup("Events")]
-        [SerializeField] private GameEventSO _onTileSelected;
-
         private TileSelector _selector;
         private Vector3 _currentPointedPosition;
         private TileAspect _currentPointedTile;
 
+
         #region Unity
+
+        private void OnEnable()
+        {
+            Events.OnAskForTileSelectionPopupContent.AddListener(GetTileSelectionUIData);
+        }
+
+        private void OnDisable()
+        {
+            Events.OnAskForTileSelectionPopupContent.RemoveListener(GetTileSelectionUIData);
+        }
 
         private void Awake()
         {
@@ -53,6 +60,7 @@ namespace Assets._Project._Scripts.Features.SelectionSystem
 
         #endregion
 
+
         #region Pointing
 
         private bool UpdateTilePointingAt()
@@ -79,6 +87,7 @@ namespace Assets._Project._Scripts.Features.SelectionSystem
 
         #endregion
 
+
         #region Selecting
 
         private void SelectTile()
@@ -87,9 +96,14 @@ namespace Assets._Project._Scripts.Features.SelectionSystem
                 if (!UpdateTilePointingAt())
                     return;
 
-            _onTileSelected?.Raise(this, new TileSelectionPopupDataContainer(_currentPointedTile));
+            Events.OnTileSelected.Invoke(this, _currentPointedTile);
         }
 
         #endregion
+
+        private object GetTileSelectionUIData(Component sender, object _)
+        {
+            return new TileSelectionUIData(_currentPointedTile);
+        }
     }
 }

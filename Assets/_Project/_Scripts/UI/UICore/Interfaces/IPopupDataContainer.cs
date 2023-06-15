@@ -1,13 +1,11 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets._Project._Scripts.UI.UICore.Interfaces
 {
     public interface IPopupDataContainer
     {
-        public string ContentIdentifier { get; }
-        
-        void ApplyHeader(TMP_Text header);
+        public string Title { get; }
+
         void ApplyContent(Transform contentPanel);
     }
 }

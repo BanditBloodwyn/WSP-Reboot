@@ -1,6 +1,7 @@
-﻿using Assets._Project._Scripts.Core.Data.Types;
-using Assets._Project._Scripts.UI.UICore.Interfaces;
-using Assets._Project._Scripts.UI.UIPrefabs;
+﻿using Assets._Project._Scripts.Core.Data.Interfaces;
+using Assets._Project._Scripts.Core.Data.Types;
+using Assets._Project._Scripts.Core.EventSystem.v2;
+using Assets._Project._Scripts.UI.UIManagement.Builders;
 using Assets._Project._Scripts.UI.UIPrefabs.Controls;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,25 +15,52 @@ namespace Assets._Project._Scripts.UI.UIManagement.Managers.Popups
 
         private readonly Dictionary<string, Popup> _openPopups = new();
 
-        public void OpenMovablePopup(Component sender, object eventData)
+        #region Unity
+
+        private void OnEnable()
         {
-            if (eventData is not IPopupDataContainer dataContainer)
-                return;
+            Events.OnTileSelected.AddListener(OpenMovablePopup);
+        }
 
-            if (_openPopups.ContainsKey(dataContainer.ContentIdentifier))
-                return;
+        private void OnDisable()
+        {
+            Events.OnTileSelected.RemoveListener(OpenMovablePopup);
+        }
 
-            if (!UIPrefabs.UIPrefabs.Instance.TryGetPrefab(UIPrefabNames.MovablePopup, out GameObject prefab))
-                return;
+        #endregion
 
-            GameObject popup = Instantiate(prefab, _movablePopupParent);
+        private object OpenMovablePopup(Component sender, object eventData)
+        {
+            if (eventData is not INamedObject namedObject)
+                return null;
+
+            if (_openPopups.ContainsKey(namedObject.Name))
+                return null;
+
+            Popup popup = CreatePopup(eventData, namedObject.Name);
+            if (popup == null)
+                return null;
+
+            _openPopups.Add(namedObject.Name, popup);
+
+            return null;
+        }
+
+        private Popup CreatePopup(object content, string title)
+        {
+            Popup popup = new PopupBuilder()
+                .SetParent(_movablePopupParent)
+                .SetTitle(title)
+                .AddTabContent(Events.OnAskForTileSelectionPopupContent.Invoke(this, content))
+                .Build();
+
+            if (popup == null)
+                return null;
+
+            popup.ClosePopup.AddListener(delegate { ClosePopup(popup); });
             popup.transform.position += _openPopups.Count * new Vector3(_popupOffset.x, _popupOffset.y, 0);
 
-            Popup component = popup.GetComponent<Popup>();
-            component.ApplyData(dataContainer);
-            component.ClosePopup.AddListener(delegate { ClosePopup(component); });
-
-            _openPopups.Add(component.ContentIdentifier, component);
+            return popup;
         }
 
         private void ClosePopup(Popup popupToClose)
