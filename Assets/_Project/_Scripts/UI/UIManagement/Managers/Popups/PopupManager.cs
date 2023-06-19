@@ -1,6 +1,6 @@
 ﻿using Assets._Project._Scripts.Core.Data.Interfaces;
 using Assets._Project._Scripts.Core.Data.Types;
-using Assets._Project._Scripts.Core.EventSystem.v2;
+using Assets._Project._Scripts.Core.EventSystem;
 using Assets._Project._Scripts.UI.UIManagement.Builders;
 using Assets._Project._Scripts.UI.UIPrefabs.Controls;
 using System.Collections.Generic;

@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Assets._Project._Scripts.Core.EventSystem.v2
+namespace Assets._Project._Scripts.Core.EventSystem
 {
     public class GameEvent
     {
@@ -16,10 +16,9 @@ namespace Assets._Project._Scripts.Core.EventSystem.v2
             Debug.Log(logMessage);
 
             List<object> results = new List<object>();
+           
             foreach (Func<Component, object, object> action in _actions)
-            {
                 results.Add(action.Invoke(sender, inputData));
-            }
 
             return results.ToArray();
         }
