@@ -1,0 +1,16 @@
+{
+    "name": "WorldPrefabs",
+    "rootNamespace": "",
+    "references": [
+        "GUID:835bf8e6f0fdb8343be1435e4caedeb0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
