@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Assets.Plugins.Enhanced_Hierarchy.Editor.Icons;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace EnhancedHierarchy {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor {
     public static partial class Preferences {
 
         public const string DEVELOPER_EMAIL = "samuelschultze@gmail.com";

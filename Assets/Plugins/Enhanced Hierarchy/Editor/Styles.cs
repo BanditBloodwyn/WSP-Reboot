@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace EnhancedHierarchy {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor {
     /// <summary>
     /// All the styles, icons, colors and contents used in hierarchy
     /// </summary>

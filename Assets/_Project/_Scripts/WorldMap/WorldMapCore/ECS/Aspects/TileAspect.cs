@@ -88,5 +88,10 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Aspects
         {
             return _tileProperties.ValueRO.PopulationValues.LifeStandard;
         }
+
+        public void AddUrbanization(int value)
+        {
+            _tileProperties.ValueRW.PopulationValues.Urbanization += value;
+        }
     }
 }

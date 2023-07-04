@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace EnhancedHierarchy {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor.MiniLabels {
     public abstract class MiniLabelProvider {
 
         private readonly GUIContent content = new GUIContent();

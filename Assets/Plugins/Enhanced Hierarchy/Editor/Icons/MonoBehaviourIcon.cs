@@ -4,7 +4,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace EnhancedHierarchy.Icons {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor.Icons {
     public sealed class MonoBehaviourIcon : IconBase {
 
         private static readonly Dictionary<Type, string> monoBehaviourNames = new Dictionary<Type, string>();

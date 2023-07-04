@@ -1,10 +1,10 @@
 using System;
-using System.Linq;
 using System.Text;
+using Assets.Plugins.Enhanced_Hierarchy.Editor.Icons;
 using UnityEditor;
 using UnityEngine;
 
-namespace EnhancedHierarchy {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor {
     /// <summary>
     /// Misc utilities for Enhanced Hierarchy.
     /// </summary>

@@ -2,7 +2,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace EnhancedHierarchy.Icons {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor.Icons {
     public sealed class RendererToggle : IconBase {
 
         private Renderer renderer;

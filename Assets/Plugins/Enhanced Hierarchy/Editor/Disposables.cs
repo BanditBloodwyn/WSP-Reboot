@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditor.AnimatedValues;
 using UnityEngine;
 
-namespace EnhancedHierarchy {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor {
 
     public struct GUIBackgroundColor : IDisposable {
         private readonly Color before;

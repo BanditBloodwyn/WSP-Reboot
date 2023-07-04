@@ -1,12 +1,12 @@
-using System;
 #if HIERARCHY_PROFILING
 using System.Diagnostics;
 using System.Text;
 using UnityEngine.Profiling;
 #endif
+using System;
 using Object = UnityEngine.Object;
 
-namespace EnhancedHierarchy {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor {
     /// <summary>
     /// Prevents wrong profiler samples count.
     /// Very useful for things other than Enhanced Hierarchy, Unity could implement this on its API, just saying :).

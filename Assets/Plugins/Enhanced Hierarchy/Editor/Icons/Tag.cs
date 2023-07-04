@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace EnhancedHierarchy.Icons {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor.Icons {
     public sealed class Tag : IconBase {
 
         public override IconPosition Side { get { return IconPosition.All; } }

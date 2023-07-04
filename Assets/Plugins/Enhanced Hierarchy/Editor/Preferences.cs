@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Assets.Plugins.Enhanced_Hierarchy.Editor.Icons;
+using Assets.Plugins.Enhanced_Hierarchy.Editor.MiniLabels;
 using UnityEditor;
 using UnityEngine;
 
-namespace EnhancedHierarchy {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor {
 
     public enum TintMode {
         Flat = 0,

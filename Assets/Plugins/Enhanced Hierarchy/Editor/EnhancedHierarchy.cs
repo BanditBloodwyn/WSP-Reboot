@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Assets.Plugins.Enhanced_Hierarchy.Editor.MiniLabels;
 using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace EnhancedHierarchy {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor {
     /// <summary>
     /// Main class, draws hierarchy items.
     /// </summary>

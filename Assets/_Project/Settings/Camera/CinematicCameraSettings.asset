@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f00a03bdf84e4f40a422efffd5f3e9e, type: 3}
   m_Name: CinematicCameraSettings
   m_EditorClassIdentifier: 
-  ShotDuration: 10
+  ShotDuration: 20
   MaximumShotDistance: 20
   MinimumHeight: 16.8
-  MaximumHeight: 26.1
+  MaximumHeight: 66.6

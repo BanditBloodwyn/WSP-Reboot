@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace EnhancedHierarchy {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor.Icons {
     [Serializable]
     public class IconData : ISerializationCallbackReceiver {
 

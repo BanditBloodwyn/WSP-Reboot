@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using UnityEditor;
 using UnityEngine;
 
-namespace EnhancedHierarchy {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor {
     /// <summary>
     /// Class containing method extensions for getting private and internal members.
     /// </summary>
@@ -26,7 +25,7 @@ namespace EnhancedHierarchy {
             if (cachedTypes.TryGetValue(name, out result))
                 return result;
 
-            result = FindTypeInAssembly(name, typeof(Editor).Assembly);
+            result = FindTypeInAssembly(name, typeof(UnityEditor.Editor).Assembly);
 
             if (result == null) {
                 if (cachedAssemblies == null)

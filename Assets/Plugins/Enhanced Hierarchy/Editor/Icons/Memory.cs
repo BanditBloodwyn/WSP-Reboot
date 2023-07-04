@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Profiling;
 
-namespace EnhancedHierarchy.Icons {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor.Icons {
     public sealed class Memory : IconBase {
 
         private float m_width = 0f;

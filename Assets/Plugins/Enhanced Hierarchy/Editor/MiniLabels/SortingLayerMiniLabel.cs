@@ -1,10 +1,9 @@
 using System;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace EnhancedHierarchy {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor.MiniLabels {
     public class SortingLayerMiniLabel : MiniLabelProvider {
 
         private const string DEFAULT_SORTING_LAYER = "Default";

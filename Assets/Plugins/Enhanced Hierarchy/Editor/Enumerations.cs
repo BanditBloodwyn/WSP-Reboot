@@ -1,6 +1,6 @@
 using System;
 
-namespace EnhancedHierarchy {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor {
 
     [Flags]
     public enum EntryMode {

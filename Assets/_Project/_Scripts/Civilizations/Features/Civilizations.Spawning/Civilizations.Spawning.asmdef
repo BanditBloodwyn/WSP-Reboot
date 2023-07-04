@@ -1,0 +1,16 @@
+{
+    "name": "Civilizations.Spawning",
+    "rootNamespace": "",
+    "references": [
+        "GUID:fa061ece07a285a4691a47690eb89d49"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

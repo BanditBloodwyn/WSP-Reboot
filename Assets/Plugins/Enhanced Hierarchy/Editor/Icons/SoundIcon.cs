@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditor.AnimatedValues;
 using UnityEngine;
 
-namespace EnhancedHierarchy.Icons {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor.Icons {
     public sealed class SoundIcon : IconBase {
 
         private static AudioSource audioSource;

@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using UnityEditor;
 
-namespace EnhancedHierarchy {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor {
     /// <summary>Utility class for running async tasks within the main thread.</summary>
     public static class After {
 

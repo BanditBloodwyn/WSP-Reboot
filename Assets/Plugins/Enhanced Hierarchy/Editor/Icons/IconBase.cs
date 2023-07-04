@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using EnhancedHierarchy.Icons;
 using UnityEditor;
 using UnityEngine;
 
-namespace EnhancedHierarchy {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor.Icons {
 
     public enum IconPosition {
         AfterObjectName = 1,

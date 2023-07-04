@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EnhancedHierarchy.Icons {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor.Icons {
     public sealed class None : IconBase {
         public override float Width { get { return 0f; } }
         public override string Name { get { return "None"; } }

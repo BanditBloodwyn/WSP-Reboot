@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace EnhancedHierarchy {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor.MiniLabels {
     public class TagMiniLabel : MiniLabelProvider {
 
         public override void FillContent(GUIContent content) {

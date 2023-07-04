@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EnhancedHierarchy {
+namespace Assets.Plugins.Enhanced_Hierarchy.Editor.Icons {
     [Serializable]
     public sealed class IconList : List<IconBase>, ISerializationCallbackReceiver {
 
