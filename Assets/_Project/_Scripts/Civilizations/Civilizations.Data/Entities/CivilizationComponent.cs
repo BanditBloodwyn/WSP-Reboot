@@ -9,6 +9,6 @@ namespace Assets._Project._Scripts.Civilizations.Civilizations.Data.Entities
     {
         public FixedString64Bytes Name;
         public Color Color;
-        public NativeArray<TileAspect> OwnedTiles;
+        public NativeList<TileAspect> OwnedTiles;
     }
 }

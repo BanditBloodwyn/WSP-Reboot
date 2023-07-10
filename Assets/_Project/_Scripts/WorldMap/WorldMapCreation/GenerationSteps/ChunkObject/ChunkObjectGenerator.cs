@@ -8,7 +8,7 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCreation.GenerationSteps.Chu
 {
     public static class ChunkObjectGenerator
     {
-        public static void Generate(Chunk chunk, WorldCreationParameters settings)
+        public static ChunkComponent Generate(Chunk chunk, WorldCreationParameters settings)
         {
             GameObject chunkObject = new($"Chunk{chunk.ID}");
             chunkObject.transform.position = new Vector3(chunk.Coordinates.x * chunk.Size, 0, chunk.Coordinates.y * chunk.Size);
@@ -30,6 +30,8 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCreation.GenerationSteps.Chu
             chunkComponent.ID = chunk.ID;
 
             AdjustMaterial(renderer.sharedMaterial, settings.VegetationZoneSettings);
+
+            return chunkComponent;
         }
 
         private static void AdjustMaterial(Material material, VegetationZoneSettings settings)

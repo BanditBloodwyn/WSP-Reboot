@@ -6,6 +6,7 @@
         public static readonly GameEvent OnAskForTileSelectionPopupContent = new();
 
         public static readonly GameEvent OnRequestBuildTemplateBuilding = new();
-
+        
+        public static readonly GameEvent OnCreateCivilization = new();
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Assets._Project._Scripts.WorldMap.WorldMapCreation.GenerationSteps;
 using Assets._Project._Scripts.WorldMap.WorldMapCreation.Settings.Scriptables;
-using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace Assets._Project._Scripts.WorldMap.WorldMapCreation
 {
@@ -31,7 +32,7 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCreation
 
             foreach (IWorldGenerationStep step in _steps)
             {
-                DateTime partialNow = DateTime.Now;
+                Stopwatch stopwatch = Stopwatch.StartNew();
                 List<Type> dependencies = step.RequiredDependencies;
 
                 if (dependencies == null || dependencies.All(dep => executedSteps.Contains(dep)))
@@ -42,7 +43,8 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCreation
                 else
                     ThrowMissingDependencyException(step);
 
-                Debug.Log($"Process time <b><i>{step.GetType().Name}</i></b>: {(DateTime.Now - partialNow).TotalMilliseconds} ms");
+                stopwatch.Stop();
+                Debug.Log($"Process time <b><i>{step.GetType().Name}</i></b>: {stopwatch.ElapsedMilliseconds} ms");
             }
 
             Debug.Log($"Total world generation duration: {(DateTime.Now - totalNow).TotalMilliseconds:N} ms");

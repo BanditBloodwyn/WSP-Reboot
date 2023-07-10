@@ -2,7 +2,14 @@
     "name": "Civilizations.Spawning",
     "rootNamespace": "",
     "references": [
-        "GUID:fa061ece07a285a4691a47690eb89d49"
+        "GUID:fa061ece07a285a4691a47690eb89d49",
+        "GUID:208779b36e5a7b14ca3412983f8b473d",
+        "GUID:9a5f98f9ca0129a4994fe655a364aafc",
+        "GUID:6d8941a2081aeab4cb523103e619684a",
+        "GUID:813aca8c3c6cbe647a21409a613a331b",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:835bf8e6f0fdb8343be1435e4caedeb0",
+        "GUID:d8b63aba1907145bea998dd612889d6b"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

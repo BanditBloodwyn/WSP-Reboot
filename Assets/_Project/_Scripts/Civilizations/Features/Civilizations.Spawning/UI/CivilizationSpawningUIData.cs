@@ -6,19 +6,19 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets._Project._Scripts.CoreFeatures.ObjectPlacementSystem.UI
+namespace Assets._Project._Scripts.Civilizations.Features.Civilizations.Spawning.UI
 {
-    public class BuildMenuUIData : IPopupDataContainer
+    public class CivilizationSpawningUIData : IPopupDataContainer
     {
         private readonly TileAspect _tile;
 
-        public string Title => "Building";
-     
-        public BuildMenuUIData(TileAspect tile)
+        public string Title => "Civilization";
+
+        public CivilizationSpawningUIData(TileAspect tile)
         {
             _tile = tile;
         }
-        
+
         public void ApplyContent(Transform contentPanel)
         {
             if (!UIPrefabs.Instance.TryGetPrefab(UIPrefabNames.TextButton, out GameObject textButtonPrefab))
@@ -29,7 +29,7 @@ namespace Assets._Project._Scripts.CoreFeatures.ObjectPlacementSystem.UI
             Transform buildTab = contentPanel.transform;
 
             GameObject buttonObject = Object.Instantiate(textButtonPrefab, buildTab);
-            buttonObject.GetComponentInChildren<TMP_Text>().text = "Build";
+            buttonObject.GetComponentInChildren<TMP_Text>().text = "Create";
             buttonObject.GetComponentInChildren<Button>().onClick.AddListener(delegate { OnClickBuild(buttonObject); });
 
             Object.Instantiate(seperatorPrefab, buildTab);
@@ -37,7 +37,7 @@ namespace Assets._Project._Scripts.CoreFeatures.ObjectPlacementSystem.UI
 
         private void OnClickBuild(GameObject buttonObject)
         {
-            Events.OnRequestBuildTemplateBuilding.Invoke(buttonObject.transform, _tile);
+            Events.OnCreateCivilization.Invoke(buttonObject.transform, _tile);
         }
     }
 }

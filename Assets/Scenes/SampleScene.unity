@@ -2698,6 +2698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1944773006}
   - component: {fileID: 1944773007}
+  - component: {fileID: 1944773008}
   m_Layer: 0
   m_Name: CivilizationSpawner
   m_TagString: Untagged
@@ -2730,6 +2731,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65ec470d06f80874a9a945f42ce40de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1944773008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944773005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4209c07e65ee7fb4fa5d26817c900ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1995114629 stripped

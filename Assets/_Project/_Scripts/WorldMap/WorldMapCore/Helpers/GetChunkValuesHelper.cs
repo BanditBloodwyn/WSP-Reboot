@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Components;
+﻿using Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Components;
 using Assets._Project._Scripts.WorldMap.WorldMapCore.Enums;
 using Assets._Project._Scripts.WorldMap.WorldMapCore.Jobs;
 using Assets._Project._Scripts.WorldMap.WorldMapCore.Structs;
 using Assets._Project._Scripts.WorldMap.WorldMapCore.Types;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;

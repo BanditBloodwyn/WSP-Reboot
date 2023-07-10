@@ -15,7 +15,8 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCreation.GenerationSteps.Chu
         {
             foreach (Chunk chunk in context.Chunks)
             {
-                ChunkObjectGenerator.Generate(chunk, settings);
+                ChunkComponent chunkComponent = ChunkObjectGenerator.Generate(chunk, settings);
+                context.ChunkComponents.Add(chunkComponent);
                 yield return null;
             }
         }

@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace Assets._Project._Scripts.WorldMap.WorldMapManagement
 {
@@ -26,27 +25,28 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapManagement
         private readonly GetChunkValuesHelper _getChunkValuesHelper = new();
 
         public List<Chunk> Chunks = new();
+        public List<ChunkComponent> ChunkComponents = new();
 
-        public bool TryGetTileFromChunkAndPosition(ChunkComponent chunk, Vector3 position, out TileAspect tile)
+        public bool TryGetTileFromChunkAndPosition(ChunkComponent chunk, float3 position, out TileAspect tile)
         {
-            EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+            FindNearestTileOfChunk(chunk, position, out tile, out _);
+            return true;
+        }
 
+        public bool TryGetTileFromPosition(float3 position, out TileAspect tile)
+        {
             float nearestDistance = float.MaxValue;
             tile = new TileAspect();
 
-            foreach (Entity entity in chunk.Tiles)
+            foreach (ChunkComponent chunk in ChunkComponents)
             {
-                if (entityManager.Exists(entity))
-                {
-                    float3 entityPosition = entityManager.GetComponentData<LocalTransform>(entity).Position;
-                    float distance = math.distance(position, entityPosition);
+                FindNearestTileOfChunk(chunk, position, out TileAspect foundTile, out float distance);
 
-                    if (distance < nearestDistance)
-                    {
-                        nearestDistance = distance;
-                        tile = entityManager.GetAspect<TileAspect>(entity);
-                    }
-                }
+                if (!(distance < nearestDistance))
+                    continue;
+
+                nearestDistance = distance;
+                tile = foundTile;
             }
 
             return true;
@@ -55,6 +55,33 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapManagement
         public TileValue[] GetChunkTileValues(TileProperties property)
         {
             return _getChunkValuesHelper.GetChunkTileValues(property, Chunks);
+        }
+
+        private static void FindNearestTileOfChunk(
+            ChunkComponent chunk,
+            float3 searchCenter,
+            out TileAspect tile,
+            out float tileDistance)
+        {
+            tileDistance = float.MaxValue;
+            tile = new TileAspect();
+
+            EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+
+            foreach (Entity entity in chunk.Tiles)
+            {
+                if (!entityManager.Exists(entity))
+                    continue;
+
+                float3 entityPosition = entityManager.GetComponentData<LocalTransform>(entity).Position;
+                float distance = math.distance(searchCenter, entityPosition);
+
+                if (!(distance < tileDistance))
+                    continue;
+
+                tileDistance = distance;
+                tile = entityManager.GetAspect<TileAspect>(entity);
+            }
         }
     }
 }
