@@ -24,15 +24,15 @@ namespace Assets._Project._Scripts.Civilizations.Civilizations.Data
             civilizationComponent.Color = color;
 
             civilizationComponent.OwnedTiles = new NativeList<TileAspect>(Allocator.Persistent);
-            if (TryGetTile(center, out TileAspect tile))
-                civilizationComponent.OwnedTiles.Add(tile);
+            if (TryGetTile(center, out TileAspect? tile))
+                civilizationComponent.OwnedTiles.Add(tile!.Value);
 
             entityManager.SetComponentData(civilization, civilizationComponent);
 
             return true;
         }
 
-        private static bool TryGetTile(float3 centerOfArea, out TileAspect tile)
+        private static bool TryGetTile(float3 centerOfArea, out TileAspect? tile)
         {
             return WorldInterface.Instance.TryGetTileFromPosition(centerOfArea, out tile);
         }

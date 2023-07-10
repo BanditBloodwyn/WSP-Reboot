@@ -58,10 +58,10 @@ namespace Assets._Project._Scripts.CoreFeatures.SelectionSystem
             if (currentSelectionPosition == Vector3.zero)
                 return false;
 
-            if (!WorldInterface.Instance.TryGetTileFromChunkAndPosition(chunk, currentSelectionPosition, out TileAspect currentPointedTile))
+            if (!WorldInterface.Instance.TryGetTileFromChunkAndPosition(chunk, currentSelectionPosition, out TileAspect? currentPointedTile))
                 return false;
 
-            CurrentPointedTile = currentPointedTile;
+            CurrentPointedTile = currentPointedTile!.Value;
             UpdateSelectorPosition((Vector3)CurrentPointedTile.Position + Vector3.up * 0.01f);
             return true;
         }
