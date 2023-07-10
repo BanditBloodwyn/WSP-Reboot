@@ -1,14 +1,14 @@
-﻿using System.Linq;
-using Assets._Project._Scripts.WorldMap.WorldMapCore.Enums;
+﻿using Assets._Project._Scripts.WorldMap.WorldMapCore.Enums;
 using Assets._Project._Scripts.WorldMap.WorldMapCore.Types;
 using Assets._Project._Scripts.WorldMap.WorldMapCreation.Settings.Scriptables;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.WorldMap.WorldMapCreation.GenerationSteps.ChunkObject
 {
     public static class ChunkObjectGenerator
     {
-        public static ChunkComponent Generate(Chunk chunk, WorldCreationParameters settings)
+        public static void Generate(Chunk chunk, WorldCreationParameters settings)
         {
             GameObject chunkObject = new($"Chunk{chunk.ID}");
             chunkObject.transform.position = new Vector3(chunk.Coordinates.x * chunk.Size, 0, chunk.Coordinates.y * chunk.Size);
@@ -30,8 +30,6 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCreation.GenerationSteps.Chu
             chunkComponent.ID = chunk.ID;
 
             AdjustMaterial(renderer.sharedMaterial, settings.VegetationZoneSettings);
-
-            return chunkComponent;
         }
 
         private static void AdjustMaterial(Material material, VegetationZoneSettings settings)

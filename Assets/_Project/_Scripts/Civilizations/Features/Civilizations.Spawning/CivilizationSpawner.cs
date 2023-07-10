@@ -26,12 +26,12 @@ namespace Assets._Project._Scripts.Civilizations.Features.Civilizations.Spawning
             if (data is not TileAspect tile)
                 return null;
 
-            SpawnInternal("testCiv", Color.red, tile.Position);
+            SpawnInternal("testCiv", Color.red, tile);
             
             return null;
         }
 
-        public bool SpawnInternal(string civilizationName, Color color, Vector3 center)
+        public bool SpawnInternal(string civilizationName, Color color, TileAspect center)
         {
             CivilizationECSInterface.CreateCivilization(civilizationName, color, center);
             return true;
