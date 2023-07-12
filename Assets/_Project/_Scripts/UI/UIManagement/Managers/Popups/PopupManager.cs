@@ -57,16 +57,21 @@ namespace Assets._Project._Scripts.UI.UIManagement.Managers.Popups
             if (popup == null)
                 return null;
 
-            popup.ClosePopup.AddListener(delegate { ClosePopup(popup); });
+            Events.OnCloseTileSelectionPopup.AddListener(ClosePopup);
             popup.transform.position += _openPopups.Count * new Vector3(_popupOffset.x, _popupOffset.y, 0);
 
             return popup;
         }
 
-        private void ClosePopup(Popup popupToClose)
+        private object ClosePopup(Component sender, object data)
         {
+            if (!sender.TryGetComponent(out Popup popupToClose))
+                return null;
+
             Destroy(popupToClose.gameObject);
             _openPopups.Remove(popupToClose.ContentIdentifier);
+
+            return null;
         }
     }
 }

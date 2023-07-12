@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets._Project._Scripts.Core.EventSystem;
+using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Assets._Project._Scripts.CoreFeatures.CameraSystem
@@ -11,6 +12,16 @@ namespace Assets._Project._Scripts.CoreFeatures.CameraSystem
 
         #region Unity
 
+        private void OnEnable()
+        {
+            Events.OnWorldCreationFinished.AddListener(Activate);
+        }
+
+        private void OnDisable()
+        {
+            Events.OnWorldCreationFinished.RemoveListener(Activate);
+        }
+
         private void Awake()
         {
             Assert.IsNotNull(_cameraType);
@@ -18,6 +29,7 @@ namespace Assets._Project._Scripts.CoreFeatures.CameraSystem
 
         private void Start()
         {
+
             if (_cameraType is ICameraController cameraController)
                 cameraController.ResetController(this);
         }
@@ -40,11 +52,13 @@ namespace Assets._Project._Scripts.CoreFeatures.CameraSystem
 
         #region EventResponses
 
-        public void Activate()
+        private object Activate(Component component, object o)
         {
             Debug.Log("<color=#73BD73>Camera</color> - <color=#73BD73>Activate</color> StrategicCamera");
 
             _enabled = true;
+
+            return null;
         }
 
         public void Deactivate()

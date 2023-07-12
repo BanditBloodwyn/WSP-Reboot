@@ -1,9 +1,9 @@
+using Assets._Project._Scripts.Core.EventSystem;
 using Assets._Project._Scripts.GlobalSettings;
 using Assets._Project._Scripts.WorldMap.WorldMapCore.Structs;
 using Assets._Project._Scripts.WorldMap.WorldMapManagement;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Assets._Project._Scripts.CoreFeatures.MapModes
 {
@@ -12,7 +12,18 @@ namespace Assets._Project._Scripts.CoreFeatures.MapModes
         [SerializeField] private WorldSize _worldSize;
         [SerializeField] private Transform _chunkParent;
 
-        [SerializeField] private UnityEvent _mapModeChosen;
+
+        #region Unity
+
+        private void OnEnable()
+        {
+            Events.OnRequestSwitchMapMode.AddListener(ChangeMapMode);
+        }
+
+        private void OnDisable()
+        {
+            Events.OnRequestSwitchMapMode.RemoveListener(ChangeMapMode);
+        }
 
         private void Awake()
         {
@@ -20,12 +31,18 @@ namespace Assets._Project._Scripts.CoreFeatures.MapModes
             Assert.IsNotNull(_chunkParent);
         }
 
-        public void ChangeMapMode(MapModeSO mapMode)
+        #endregion
+
+
+        private object ChangeMapMode(Component component, object data)
         {
+            if (data is not MapModeSO mapMode)
+                return null;
+
             if (mapMode.WorldMapMaterial == null)
             {
                 Debug.LogError($"<color=#73BD73>Map mode system</color> - No material set for map mode \"<color=#73BD73>{mapMode.DisplayName}</color>\"");
-                return;
+                return null;
             }
 
             if (mapMode.CalculateShaderBuffer)
@@ -34,7 +51,9 @@ namespace Assets._Project._Scripts.CoreFeatures.MapModes
             for (int i = 0; i < _chunkParent.childCount; i++)
                 _chunkParent.GetChild(i).GetComponent<MeshRenderer>().sharedMaterial = mapMode.WorldMapMaterial;
 
-            _mapModeChosen?.Invoke();
+            Events.OnMapModeChosen.Invoke(this, null);
+
+            return null;
         }
 
         private void CalculateMaterialBuffer(MapModeSO mapMode)

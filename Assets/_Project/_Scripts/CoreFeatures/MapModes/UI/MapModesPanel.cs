@@ -1,10 +1,10 @@
-﻿using System.Linq;
-using Assets._Project._Scripts.Core.Data.Types;
+﻿using Assets._Project._Scripts.Core.Data.Types;
+using Assets._Project._Scripts.Core.EventSystem;
 using Assets._Project._Scripts.UI.UIPrefabs;
 using Assets._Project._Scripts.UI.UIPrefabs.Controls;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Assets._Project._Scripts.CoreFeatures.MapModes.UI
@@ -13,8 +13,6 @@ namespace Assets._Project._Scripts.CoreFeatures.MapModes.UI
     {
         [SerializeField] private ImageButton _button;
         [SerializeField] private GameObject _contentPanel;
-
-        [SerializeField] private UnityEvent<MapModeSO> _requestSwitchMapMode;
 
         #region Unity
 
@@ -101,7 +99,7 @@ namespace Assets._Project._Scripts.CoreFeatures.MapModes.UI
 
         private void OnClick(MapModeSO mapMode)
         {
-            _requestSwitchMapMode?.Invoke(mapMode);
+            Events.OnRequestSwitchMapMode.Invoke(this, mapMode);
             _button.SetImage(mapMode.UIIcon);
         }
     }

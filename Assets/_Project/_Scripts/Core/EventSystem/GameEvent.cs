@@ -8,11 +8,17 @@ namespace Assets._Project._Scripts.Core.EventSystem
 {
     public class GameEvent
     {
+        private readonly string _name;
         private readonly List<Func<Component, object, object>> _actions = new();
+
+        public GameEvent(string name)
+        {
+            _name = name;
+        }
 
         public object[] Invoke(Component sender, object inputData)
         {
-            string logMessage = CreateLogMessage(sender);
+            string logMessage = CreateLogMessage(sender, inputData);
             Debug.Log(logMessage);
 
             List<object> results = new List<object>();
@@ -35,11 +41,12 @@ namespace Assets._Project._Scripts.Core.EventSystem
                 _actions.Remove(listener);
         }
 
-        private string CreateLogMessage(Object sender)
+        private string CreateLogMessage(Object sender, object inputData)
         {
             StringBuilder sb = new();
-            sb.AppendLine("<color=#FF7300>Event sent</color>");
+            sb.AppendLine($"<color=#FF7300>Event <b>\"{_name}\"</b> sent</color>");
             sb.AppendLine($"<b>Sender:</b>    {sender.name}");
+            sb.AppendLine($"<b>Data:</b>      {inputData}");
             sb.AppendLine("<b>Responses:</b>");
 
             foreach (Func<Component, object, object> action in _actions)

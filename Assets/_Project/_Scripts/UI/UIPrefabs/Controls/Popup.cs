@@ -1,8 +1,8 @@
+using Assets._Project._Scripts.Core.EventSystem;
 using Assets._Project._Scripts.UI.UICore.Interfaces;
 using Assets._Project._Scripts.UI.UIPrefabs.Controls.TabControl;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Assets._Project._Scripts.UI.UIPrefabs.Controls
 {
@@ -10,8 +10,6 @@ namespace Assets._Project._Scripts.UI.UIPrefabs.Controls
     {
         [SerializeField] private TMP_Text _header;
         [SerializeField] private Transform _contentPanel;
-
-        public UnityEvent<Popup> ClosePopup;
 
         public string ContentIdentifier => _header.text;
 
@@ -54,7 +52,7 @@ namespace Assets._Project._Scripts.UI.UIPrefabs.Controls
         // Used by the inspector
         public void Close()
         {
-            ClosePopup?.Invoke(this);
+            Events.OnCloseTileSelectionPopup.Invoke(this, null);
         }
     }
-} 
+}

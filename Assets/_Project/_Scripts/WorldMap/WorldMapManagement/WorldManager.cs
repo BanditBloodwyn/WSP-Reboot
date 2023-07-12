@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Assets._Project._Scripts.WorldMap.WorldMapCore;
+﻿using Assets._Project._Scripts.Core.EventSystem;
 using Assets._Project._Scripts.WorldMap.WorldMapCore.Types;
 using Assets._Project._Scripts.WorldMap.WorldMapCreation;
 using Assets._Project._Scripts.WorldMap.WorldMapCreation.GenerationSteps.ChunkObject;
@@ -10,18 +9,17 @@ using Assets._Project._Scripts.WorldMap.WorldMapCreation.GenerationSteps.TileDat
 using Assets._Project._Scripts.WorldMap.WorldMapCreation.GenerationSteps.Tiles;
 using Assets._Project._Scripts.WorldMap.WorldMapCreation.Settings.Scriptables;
 using NUnit.Framework;
+using System.Collections;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Assets._Project._Scripts.WorldMap.WorldMapManagement
 {
     public class WorldManager : MonoBehaviour
     {
         [SerializeField] private WorldCreationParameters _worldCreationParameters;
-        [SerializeField] private UnityEvent _worldGenerationFinished;
 
         private void Awake()
         {
@@ -46,7 +44,7 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapManagement
             WorldInterface.Instance.Chunks.Clear();
             WorldInterface.Instance.Chunks.AddRange(context.Chunks);
 
-            _worldGenerationFinished?.Invoke();
+            Events.OnWorldCreationFinished?.Invoke(this, null);
         }
 
         private void Update()
