@@ -2,7 +2,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.WorldMap.WorldMapCreation.Settings.Scriptables
+namespace Assets._Project._Scripts.WorldMap.WorldMapCore.Settings.Scriptables
 {
     [CreateAssetMenu(fileName = "WorldCreationParameters", menuName = "ScriptableObjects/Settings/World/World Creation Parameters")]
     public class WorldCreationParameters : ScriptableObject

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets._Project._Scripts.WorldMap.WorldMapCreation.Settings.Scriptables
+namespace Assets._Project._Scripts.WorldMap.WorldMapCore.Settings.Scriptables
 {
     [CreateAssetMenu(fileName = "ResourceSettings", menuName = "ScriptableObjects/Settings/World/Resource Settings")]
     public class ResourceSettings : ScriptableObject

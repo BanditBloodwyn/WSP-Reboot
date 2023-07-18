@@ -1,5 +1,5 @@
 ﻿using Assets._Project._Scripts.Core.EventSystem;
-using Assets._Project._Scripts.WorldMap.WorldMapCore.Types;
+using Assets._Project._Scripts.WorldMap.WorldMapCore.Settings.Scriptables;
 using Assets._Project._Scripts.WorldMap.WorldMapCreation;
 using Assets._Project._Scripts.WorldMap.WorldMapCreation.GenerationSteps.ChunkObject;
 using Assets._Project._Scripts.WorldMap.WorldMapCreation.GenerationSteps.Chunks;
@@ -7,13 +7,10 @@ using Assets._Project._Scripts.WorldMap.WorldMapCreation.GenerationSteps.Height;
 using Assets._Project._Scripts.WorldMap.WorldMapCreation.GenerationSteps.Mesh;
 using Assets._Project._Scripts.WorldMap.WorldMapCreation.GenerationSteps.TileData;
 using Assets._Project._Scripts.WorldMap.WorldMapCreation.GenerationSteps.Tiles;
-using Assets._Project._Scripts.WorldMap.WorldMapCreation.Settings.Scriptables;
 using NUnit.Framework;
 using System.Collections;
-using Unity.Collections;
-using Unity.Entities;
-using Unity.Transforms;
 using UnityEngine;
+using ChunkComponent = Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Components.ChunkComponent;
 
 namespace Assets._Project._Scripts.WorldMap.WorldMapManagement
 {
@@ -29,6 +26,7 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapManagement
 
         private IEnumerator Start()
         {
+            yield break;
             WorldGenerationPipeline pipeline = new();
 
             pipeline.AddStep(new ChunkGenerationStep());
@@ -47,22 +45,10 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapManagement
             Events.OnWorldCreationFinished?.Invoke(this, null);
         }
 
-        private void Update()
-        {
-        }
-
         private void OnDrawGizmos()
         {
-            foreach (Chunk chunk in WorldInterface.Instance.Chunks)
-                Gizmos.DrawWireCube(new Vector3(chunk.Size * chunk.Coordinates.x, 0, chunk.Size * chunk.Coordinates.y), new Vector3(chunk.Size, 0, chunk.Size));
-
-            EntityQuery entityQuery = World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntityQuery(typeof(LocalTransform));
-
-            foreach (LocalTransform tile in entityQuery.ToComponentDataArray<LocalTransform>(Allocator.Temp))
-            {
-                Gizmos.color = new Color(1, 1, 1, 0.1f);
-                Gizmos.DrawWireCube(tile.Position, new Vector3(0.9f, 0.1f, 0.9f));
-            }
+            foreach (ChunkComponent chunk in WorldInterface.Instance.GetAllChunks())
+                Gizmos.DrawWireCube(new Vector3(chunk.TileAmountPerAxis * chunk.Coordinates.x, 0, chunk.TileAmountPerAxis * chunk.Coordinates.y), new Vector3(chunk.TileAmountPerAxis, 0, chunk.TileAmountPerAxis));
         }
     }
 }

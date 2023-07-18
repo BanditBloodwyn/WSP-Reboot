@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6256236a04fdb4ab5adf790de6ec02, type: 3}
   m_Name: WorldSize
   m_EditorClassIdentifier: 
-  ChunkCountPerAxis: 2
+  ChunkCountPerAxis: 16
   TileAmountPerAxis: 64

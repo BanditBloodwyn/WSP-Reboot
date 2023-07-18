@@ -1,8 +1,8 @@
 ﻿using Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Components;
 using Assets._Project._Scripts.WorldMap.WorldMapCore.Enums;
+using Assets._Project._Scripts.WorldMap.WorldMapCore.Settings;
+using Assets._Project._Scripts.WorldMap.WorldMapCore.Settings.Scriptables;
 using Assets._Project._Scripts.WorldMap.WorldMapCore.Structs;
-using Assets._Project._Scripts.WorldMap.WorldMapCreation.Settings;
-using Assets._Project._Scripts.WorldMap.WorldMapCreation.Settings.Scriptables;
 using Unity.Entities;
 using EmptyTileAspect = Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Aspects.EmptyTileAspect;
 

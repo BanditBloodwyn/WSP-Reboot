@@ -6,6 +6,7 @@ using Assets._Project._Scripts.WorldMap.WorldMapCore.Types;
 using Assets._Project._Scripts.WorldMap.WorldMapManagement.WorldInterfaceHelper;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using UnityEngine;
 
 namespace Assets._Project._Scripts.WorldMap.WorldMapManagement
 {
@@ -33,6 +34,11 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapManagement
         public TileValue[] GetChunkTileValues(TileProperties property)
         {
             return _getChunkValuesHelper.GetChunkTileValues(property, Chunks);
+        }
+
+        public WorldMapCore.ECS.Components.ChunkComponent[] GetAllChunks()
+        {
+            return ChunkFinder.GetAllChunkComponents();
         }
     }
 }

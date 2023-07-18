@@ -1,9 +1,9 @@
-﻿using Assets._Project._Scripts.Core.Data.Math.Noise.NoiseFilters;
+﻿using System;
+using Assets._Project._Scripts.Core.Data.Math.Noise.NoiseFilters;
 using Sirenix.OdinInspector;
-using System;
 using UnityEngine;
 
-namespace Assets._Project._Scripts.WorldMap.WorldMapCreation.Settings
+namespace Assets._Project._Scripts.WorldMap.WorldMapCore.Settings
 {
     [Serializable]
     public struct ResourceProperties

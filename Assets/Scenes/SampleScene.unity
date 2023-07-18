@@ -919,22 +919,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _button: {fileID: 1995114629}
   _contentPanel: {fileID: 1475758192}
-  _requestSwitchMapMode:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 772021243}
-        m_TargetAssemblyTypeName: Assets._Project._Scripts.Gameplay.Systems.MapModes.MapModeSystem,
-          Gameplay
-        m_MethodName: ChangeMapMode
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &574594723
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,6 +960,7 @@ GameObject:
   m_Component:
   - component: {fileID: 651984814}
   - component: {fileID: 651984815}
+  - component: {fileID: 651984816}
   m_Layer: 0
   m_Name: WorldManager
   m_TagString: Untagged
@@ -1012,22 +997,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _worldCreationParameters: {fileID: 11400000, guid: d8346ac90e2dd4145af23eadd759070e,
     type: 2}
-  _worldGenerationFinished:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 330585548}
-        m_TargetAssemblyTypeName: Assets._Project._Scripts.Features.CameraSystem.CameraHandler,
-          CameraSystem
-        m_MethodName: Activate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+--- !u!114 &651984816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651984813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a56c5e158610bb44bd817238c9399a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _worldCreationParameters: {fileID: 11400000, guid: d8346ac90e2dd4145af23eadd759070e,
+    type: 2}
 --- !u!1 &654798565
 GameObject:
   m_ObjectHideFlags: 0
@@ -1271,22 +1254,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _worldSize: {fileID: 11400000, guid: e81068164ee576449b46cbbb0a07cb23, type: 2}
   _chunkParent: {fileID: 574594724}
-  _mapModeChosen:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1012438537}
-        m_TargetAssemblyTypeName: Assets._Project._Scripts.Features.MapModes.UI.MapModesUI,
-          MapModes
-        m_MethodName: ClosePanel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,22 +1513,6 @@ MonoBehaviour:
   _togglePanel: {fileID: 1391256910}
   _contentPanel: {fileID: 500255933}
   _button: {fileID: 1995114629}
-  _requestSwitchMapMode:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 772021243}
-        m_TargetAssemblyTypeName: Assets._Project._Scripts.Features.MapModes.MapModeSystem,
-          MapModes
-        m_MethodName: ChangeMapMode
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1114837214
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 ﻿using Assets._Project._Scripts.WorldMap.WorldMapCore.Enums;
 using Assets._Project._Scripts.WorldMap.WorldMapCore.Types;
-using Assets._Project._Scripts.WorldMap.WorldMapCreation.Settings.Scriptables;
 using System.Linq;
+using Assets._Project._Scripts.WorldMap.WorldMapCore.Settings.Scriptables;
 using UnityEngine;
 
 namespace Assets._Project._Scripts.WorldMap.WorldMapCreation.GenerationSteps.ChunkObject
