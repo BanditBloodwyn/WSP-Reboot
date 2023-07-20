@@ -35,8 +35,10 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCreation.GenerationSteps.Til
         {
             ResourceProperties property = resourceProperties.First(prop => prop.ResourceName == name);
 
-            float value = property.NoiseFilter.Evaluate(position, property.Seed);
-            return value * property.Distribution.Evaluate(position.y);
+            //float value = property.NoiseFilter.Evaluate(position, property.Seed);
+            //return value * property.Distribution.Evaluate(position.y);
+
+            return 0;
         }
     }
 }

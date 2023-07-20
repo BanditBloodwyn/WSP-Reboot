@@ -55,17 +55,6 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapManagement
             DrawTileGizmos();
         }
 
-        private void DrawTileGizmos()
-        {
-            if (tiles == null || tiles.Length == 0)
-                tiles = WorldInterface.Instance.GetAllEmtpyTilesFromChunkId(0);
-
-            foreach (EmptyTileAspect tile in tiles)
-                Gizmos.DrawCube(
-                    new Vector3(tile.Position.x, tile.Position.y, tile.Position.z),
-                    new Vector3(1, 0, 1));
-        }
-
         private void DrawChunkGizmos()
         {
             if (chunks == null || chunks.Length == 0)
@@ -74,10 +63,21 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapManagement
             foreach (ChunkComponent chunk in chunks)
                 Gizmos.DrawWireCube(
                     new Vector3(
-                        chunk.TileAmountPerAxis * chunk.Coordinates.x,
+                        chunk.TileAmountPerAxis * chunk.Coordinates.x - 0.5f,
                         0,
-                        chunk.TileAmountPerAxis * chunk.Coordinates.y),
+                        chunk.TileAmountPerAxis * chunk.Coordinates.y - 0.5f),
                     new Vector3(chunk.TileAmountPerAxis, 0, chunk.TileAmountPerAxis));
+        }
+
+        private void DrawTileGizmos()
+        {
+            if (tiles == null || tiles.Length == 0)
+                tiles = WorldInterface.Instance.GetAllEmtpyTilesFromChunkId(0, 1, 64);
+
+            foreach (EmptyTileAspect tile in tiles)
+                Gizmos.DrawCube(
+                    new Vector3(tile.Position.x, tile.Position.y, tile.Position.z),
+                    new Vector3(1, 0, 1));
         }
     }
 }

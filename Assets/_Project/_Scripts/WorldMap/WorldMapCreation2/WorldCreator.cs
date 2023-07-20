@@ -1,8 +1,11 @@
+using Assets._Project._Scripts.Core.Data.Math.Noise.NoiseFilters;
 using Assets._Project._Scripts.Core.EventSystem;
 using Assets._Project._Scripts.WorldMap.WorldMapCore.Settings.Scriptables;
 using Assets._Project._Scripts.WorldMap.WorldMapCreation2.Data.Container;
+using Assets._Project._Scripts.WorldMap.WorldMapCreation2.Data.Container.Noise;
 using Assets._Project._Scripts.WorldMap.WorldMapCreation2.Data.DataComponents;
 using Sirenix.OdinInspector;
+using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
@@ -46,6 +49,11 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCreation2
                 {
                     ChunkCountPerAxis = _worldCreationParameters.WorldSize.ChunkCountPerAxis,
                     TileAmountPerAxis = _worldCreationParameters.WorldSize.TileAmountPerAxis
+                },
+                NoiseSettings = new NoiseFilterSettingsContainer
+                {
+                    StandardNoiseFilters = new NativeArray<StandardNoiseFilter>(9, Allocator.Persistent),
+                    RigidNoiseFilters = new NativeArray<RigidNoiseFilter>(9, Allocator.Persistent),
                 }
             };
 

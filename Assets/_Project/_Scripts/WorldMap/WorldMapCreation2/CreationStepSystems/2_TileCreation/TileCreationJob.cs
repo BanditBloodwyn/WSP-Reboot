@@ -26,7 +26,7 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCreation2.CreationStepSystem
                 {
                     SetTileData(
                         chunkIndex,
-                        entities[x * chunk.TileAmountPerAxis + y],
+                        entities[y * chunk.TileAmountPerAxis + x],
                         x + chunk.TileAmountPerAxis * chunk.Coordinates.x - chunk.TileAmountPerAxis / 2,
                         y + chunk.TileAmountPerAxis * chunk.Coordinates.y - chunk.TileAmountPerAxis / 2,
                         chunk.Coordinates.y * chunk.TileAmountPerAxis + chunk.Coordinates.x);
@@ -41,7 +41,7 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCreation2.CreationStepSystem
         private Entity CreateSourceTileEntity(int chunkIndex)
         {
             Entity tileEntity = EntityCommandBuffer.CreateEntity(chunkIndex);
-            EntityCommandBuffer.SetName(chunkIndex, tileEntity, "tileSource");
+            EntityCommandBuffer.SetName(chunkIndex, tileEntity, "tile");
             EntityCommandBuffer.AddComponent<LocalTransform>(chunkIndex, tileEntity);
             EntityCommandBuffer.AddComponent<ChunkAssignmentComponentData>(chunkIndex, tileEntity);
 

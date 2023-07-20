@@ -5,53 +5,53 @@ using UnityEngine;
 namespace Assets._Project._Scripts.Core.Data.Math.Noise.NoiseFilters
 {
     [Serializable]
-    public class RigidNoiseFilter : INoiseFilter
+    public struct RigidNoiseFilter : INoiseFilter
     {
-        [SerializeField, Range(0,8)] private int _numberOfLayers;
+        [Range(0,8)] public int NumberOfLayers;
 
-        [SerializeField, Range(0, 30)] private float _strength;
-        [SerializeField, Min(0)] private float _minValue;
-        [SerializeField, Min(0)] private float _maxValue;
-        [SerializeField] private float3 _center;
+        [Range(0, 30)] public float Strength;
+        [Min(0)] public float MinValue;
+        [Min(0)] public float MaxValue;
+        public float3 Center;
 
-        [SerializeField, Range(0, 0.01f)] private float _baseRoughness;
-        [SerializeField, Range(0, 10)] private float _roughness;
-        [SerializeField, Range(0, 5)] private float _persistance;
-        [SerializeField, Range(0, 10)] private float _weightMultiplier;
+        [Range(0, 0.01f)] public float BaseRoughness;
+        [Range(0, 10)] public float Roughness;
+        [Range(0, 5)] public float Persistance;
+        [Range(0, 10)] public float WeightMultiplier;
         
         public float Evaluate(float3 point, int seed)
         {
             PerlinNoiseEvaluator noiseEvaluator = new(seed);
 
             float noiseValue = 0;
-            float frequency = _baseRoughness;
+            float frequency = BaseRoughness;
             float amplitude = 1;
             float weight = 1;
 
-            for (int i = 0; i < _numberOfLayers; i++)
+            for (int i = 0; i < NumberOfLayers; i++)
             {
-                float v = 1 - Mathf.Abs(noiseEvaluator.Evaluate(point * frequency + _center));
+                float v = 1 - Mathf.Abs(noiseEvaluator.Evaluate(point * frequency + Center));
 
                 v *= v;
                 v *= weight;
-                weight = Mathf.Clamp01(v * _weightMultiplier);
+                weight = Mathf.Clamp01(v * WeightMultiplier);
 
                 noiseValue += v * amplitude;
-                frequency *= _roughness;
-                amplitude *= _persistance;
+                frequency *= Roughness;
+                amplitude *= Persistance;
             }
 
-            noiseValue *= _strength;
+            noiseValue *= Strength;
 
-            noiseValue = noiseValue >= _minValue
+            noiseValue = noiseValue >= MinValue
                 ? noiseValue
-                : _minValue;
+                : MinValue;
 
-            noiseValue = noiseValue <= _maxValue
+            noiseValue = noiseValue <= MaxValue
                 ? noiseValue
-                : _maxValue;
+                : MaxValue;
             
-            return noiseValue - _minValue;
+            return noiseValue - MinValue;
         }
     }
 }

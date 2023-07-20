@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd6256236a04fdb4ab5adf790de6ec02, type: 3}
-  m_Name: WorldSize
+  m_Script: {fileID: 11500000, guid: 45ad8a680b4d92b4eb289ba0e6c5d117, type: 3}
+  m_Name: NoiseParameters
   m_EditorClassIdentifier: 
-  ChunkCountPerAxis: 8
-  TileAmountPerAxis: 64
+  NoiseFilters: []
+  references:
+    version: 2
+    RefIds: []

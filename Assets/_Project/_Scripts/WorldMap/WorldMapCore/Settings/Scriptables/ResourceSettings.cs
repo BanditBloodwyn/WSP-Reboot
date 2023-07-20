@@ -12,7 +12,7 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCore.Settings.Scriptables
             for (int index = 0; index < ResourceProperties.Length; index++)
             {
                 ResourceProperties resourceProperty = ResourceProperties[index];
-                resourceProperty.Seed = (int)(Random.value * int.MaxValue);
+                //resourceProperty.Seed = (int)(Random.value * int.MaxValue);
                 ResourceProperties[index] = resourceProperty;
             }
         }

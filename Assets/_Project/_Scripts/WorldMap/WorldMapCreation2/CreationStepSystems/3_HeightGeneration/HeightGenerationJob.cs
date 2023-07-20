@@ -1,4 +1,5 @@
 ﻿using Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Components;
+using Assets._Project._Scripts.WorldMap.WorldMapCreation2.Data.DataComponents;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -9,14 +10,12 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCreation2.CreationStepSystem
     [BurstCompile]
     public partial struct HeightGenerationJob : IJobEntity
     {
-        public EntityCommandBuffer.ParallelWriter EntityCommandBuffer;
+        public WorldCreationParametersComponent Settings;
 
         [BurstCompile]
         private void Execute([ChunkIndexInQuery] int chunkIndex, ref LocalTransform tileTransform, in ChunkAssignmentComponentData chunkAssignment)
         {
             float noiseValue = noise.snoise(new float2(tileTransform.Position.x, tileTransform.Position.z));
-            if (noiseValue != 0)
-                ;
 
             LocalTransform newLocalTransform = new LocalTransform();
             newLocalTransform.Position = new float3(

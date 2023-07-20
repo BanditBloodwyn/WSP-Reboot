@@ -21,8 +21,13 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCreation2.CreationStepSystem
 
             Stopwatch stopwatch = Stopwatch.StartNew();
 
+            WorldCreationParametersComponent settings = SystemAPI.GetSingleton<WorldCreationParametersComponent>();
+            
             JobHandle job = default;
-            job = new HeightGenerationJob().ScheduleParallel(job);
+            job = new HeightGenerationJob
+            {
+                Settings = settings
+            }.ScheduleParallel(job);
             job.Complete();
 
             stopwatch.Stop();
