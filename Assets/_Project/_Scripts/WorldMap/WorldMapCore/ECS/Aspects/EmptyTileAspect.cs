@@ -14,5 +14,7 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Aspects
         private readonly RefRO<ChunkAssignmentComponentData> _chunkAssignment;
 
         public float3 Position => _localTransform.ValueRO.Position;
+
+        public long ChunkID => _chunkAssignment.ValueRO.ChunkID;
     }
 }

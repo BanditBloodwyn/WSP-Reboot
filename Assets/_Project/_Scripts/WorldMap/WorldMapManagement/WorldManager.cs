@@ -1,4 +1,5 @@
 ﻿using Assets._Project._Scripts.Core.EventSystem;
+using Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Aspects;
 using Assets._Project._Scripts.WorldMap.WorldMapCore.Settings.Scriptables;
 using Assets._Project._Scripts.WorldMap.WorldMapCreation;
 using Assets._Project._Scripts.WorldMap.WorldMapCreation.GenerationSteps.ChunkObject;
@@ -17,6 +18,9 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapManagement
     public class WorldManager : MonoBehaviour
     {
         [SerializeField] private WorldCreationParameters _worldCreationParameters;
+
+        private EmptyTileAspect[] tiles;
+        private ChunkComponent[] chunks;
 
         private void Awake()
         {
@@ -47,8 +51,33 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapManagement
 
         private void OnDrawGizmos()
         {
-            foreach (ChunkComponent chunk in WorldInterface.Instance.GetAllChunks())
-                Gizmos.DrawWireCube(new Vector3(chunk.TileAmountPerAxis * chunk.Coordinates.x, 0, chunk.TileAmountPerAxis * chunk.Coordinates.y), new Vector3(chunk.TileAmountPerAxis, 0, chunk.TileAmountPerAxis));
+            DrawChunkGizmos();
+            DrawTileGizmos();
+        }
+
+        private void DrawTileGizmos()
+        {
+            if (tiles == null || tiles.Length == 0)
+                tiles = WorldInterface.Instance.GetAllEmtpyTilesFromChunkId(0);
+
+            foreach (EmptyTileAspect tile in tiles)
+                Gizmos.DrawCube(
+                    new Vector3(tile.Position.x, tile.Position.y, tile.Position.z),
+                    new Vector3(1, 0, 1));
+        }
+
+        private void DrawChunkGizmos()
+        {
+            if (chunks == null || chunks.Length == 0)
+                chunks = WorldInterface.Instance.GetAllChunks();
+
+            foreach (ChunkComponent chunk in chunks)
+                Gizmos.DrawWireCube(
+                    new Vector3(
+                        chunk.TileAmountPerAxis * chunk.Coordinates.x,
+                        0,
+                        chunk.TileAmountPerAxis * chunk.Coordinates.y),
+                    new Vector3(chunk.TileAmountPerAxis, 0, chunk.TileAmountPerAxis));
         }
     }
 }

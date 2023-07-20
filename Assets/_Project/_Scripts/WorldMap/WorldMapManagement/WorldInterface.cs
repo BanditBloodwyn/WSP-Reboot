@@ -40,5 +40,10 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapManagement
         {
             return ChunkFinder.GetAllChunkComponents();
         }
+
+        public EmptyTileAspect[] GetAllEmtpyTilesFromChunkId(int chunkId)
+        {
+            return TileFinder.GetAllEmtpyTilesFromChunkId(chunkId);
+        }
     }
 }

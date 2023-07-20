@@ -1,8 +1,12 @@
 ﻿using Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Aspects;
-using Assets._Project._Scripts.WorldMap.WorldMapCore.Types;
+using System.Collections.Generic;
+using System.Linq;
+using Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Components;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
+using ChunkComponent = Assets._Project._Scripts.WorldMap.WorldMapCore.Types.ChunkComponent;
 
 namespace Assets._Project._Scripts.WorldMap.WorldMapManagement.WorldInterfaceHelper
 {
@@ -35,6 +39,27 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapManagement.WorldInterfaceHel
             }
 
             return foundTile != null;
+        }
+
+        public static EmptyTileAspect[] GetAllEmtpyTilesFromChunkId(int chunkId)
+        {
+            EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+
+
+            EntityQuery tileQuery = entityManager.CreateEntityQuery(typeof(ChunkAssignmentComponentData));
+
+            NativeArray<Entity> tiles = tileQuery.ToEntityArray(Allocator.Temp);
+
+            List<EmptyTileAspect> tileAspects = new();
+            
+            foreach (Entity entity in tiles)
+            {
+                EmptyTileAspect aspect = entityManager.GetAspect<EmptyTileAspect>(entity);
+                if(aspect.ChunkID == chunkId) 
+                    tileAspects.Add(aspect);
+            }
+
+            return tileAspects.ToArray();
         }
     }
 }
