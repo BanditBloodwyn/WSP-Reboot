@@ -1,9 +1,8 @@
-﻿using Unity.Mathematics;
-
-namespace Assets._Project._Scripts.Core.Data.Math.Noise.NoiseFilters
+﻿namespace Assets._Project._Scripts.Core.Data.Math.Noise.NoiseFilters
 {
+    [PolymorphicStruct]
     public interface INoiseFilter
     {
-        public float Evaluate(float3 point, int seed);
+        public float Evaluate(float x, float y, int seed);
     }
 }

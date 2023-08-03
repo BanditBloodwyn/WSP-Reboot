@@ -1,5 +1,6 @@
-﻿using Assets._Project._Scripts.WorldMap.WorldMapCreation2.Data.Container;
-using Assets._Project._Scripts.WorldMap.WorldMapCreation2.Data.Container.Noise;
+﻿using Assets._Project._Scripts.Core.Data.Math.Noise.NoiseFilters;
+using Assets._Project._Scripts.WorldMap.WorldMapCreation2.Data.Container;
+using Unity.Collections;
 using Unity.Entities;
 
 namespace Assets._Project._Scripts.WorldMap.WorldMapCreation2.Data.DataComponents
@@ -7,6 +8,6 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCreation2.Data.DataComponent
     public struct WorldCreationParametersComponent : IComponentData
     {
         public WorldSizeContainer WorldSize;
-        public NoiseFilterSettingsContainer NoiseSettings;
+        [ReadOnly] public NativeArray<NoiseFilter> NoiseFilters;
     }
 }

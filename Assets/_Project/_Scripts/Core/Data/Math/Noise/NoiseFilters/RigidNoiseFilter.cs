@@ -5,24 +5,22 @@ using UnityEngine;
 namespace Assets._Project._Scripts.Core.Data.Math.Noise.NoiseFilters
 {
     [Serializable]
-    public struct RigidNoiseFilter : INoiseFilter
+    public partial struct RigidNoiseFilter : INoiseFilter
     {
-        [Range(0,8)] public int NumberOfLayers;
+        [Range(0, 8)] public int NumberOfLayers;
 
         [Range(0, 30)] public float Strength;
         [Min(0)] public float MinValue;
         [Min(0)] public float MaxValue;
-        public float3 Center;
+        public float2 Center;
 
         [Range(0, 0.01f)] public float BaseRoughness;
         [Range(0, 10)] public float Roughness;
         [Range(0, 5)] public float Persistance;
         [Range(0, 10)] public float WeightMultiplier;
-        
-        public float Evaluate(float3 point, int seed)
-        {
-            PerlinNoiseEvaluator noiseEvaluator = new(seed);
 
+        public readonly float Evaluate(float x, float y, int seed)
+        {
             float noiseValue = 0;
             float frequency = BaseRoughness;
             float amplitude = 1;
@@ -30,7 +28,7 @@ namespace Assets._Project._Scripts.Core.Data.Math.Noise.NoiseFilters
 
             for (int i = 0; i < NumberOfLayers; i++)
             {
-                float v = 1 - Mathf.Abs(noiseEvaluator.Evaluate(point * frequency + Center));
+                float v = 1 - Mathf.Abs(noise.snoise(new float2(x, y) * frequency + Center));
 
                 v *= v;
                 v *= weight;
@@ -50,7 +48,7 @@ namespace Assets._Project._Scripts.Core.Data.Math.Noise.NoiseFilters
             noiseValue = noiseValue <= MaxValue
                 ? noiseValue
                 : MaxValue;
-            
+
             return noiseValue - MinValue;
         }
     }

@@ -1,11 +1,8 @@
-using Assets._Project._Scripts.Core.Data.Math.Noise.NoiseFilters;
 using Assets._Project._Scripts.Core.EventSystem;
 using Assets._Project._Scripts.WorldMap.WorldMapCore.Settings.Scriptables;
-using Assets._Project._Scripts.WorldMap.WorldMapCreation2.Data.Container;
-using Assets._Project._Scripts.WorldMap.WorldMapCreation2.Data.Container.Noise;
 using Assets._Project._Scripts.WorldMap.WorldMapCreation2.Data.DataComponents;
+using Assets._Project._Scripts.WorldMap.WorldMapCreation2.Helper;
 using Sirenix.OdinInspector;
-using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
@@ -29,11 +26,11 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCreation2
         private object StartWorldGeneration(Component sender, object data)
         {
             EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-            
+
             Entity entity = entityManager.CreateEntity();
             entityManager.SetName(entity, "WorldCreationControlEntity");
             entityManager.AddComponent<WorldCreationControlComponent>(entity);
-            
+
             CreateWorldCreationParametersComponent(ref entityManager, ref entity);
 
             return null;
@@ -42,22 +39,7 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCreation2
         private void CreateWorldCreationParametersComponent(ref EntityManager entityManager, ref Entity entity)
         {
             entityManager.AddComponent<WorldCreationParametersComponent>(entity);
-
-            WorldCreationParametersComponent parameters = new WorldCreationParametersComponent
-            {
-                WorldSize = new WorldSizeContainer
-                {
-                    ChunkCountPerAxis = _worldCreationParameters.WorldSize.ChunkCountPerAxis,
-                    TileAmountPerAxis = _worldCreationParameters.WorldSize.TileAmountPerAxis
-                },
-                NoiseSettings = new NoiseFilterSettingsContainer
-                {
-                    StandardNoiseFilters = new NativeArray<StandardNoiseFilter>(9, Allocator.Persistent),
-                    RigidNoiseFilters = new NativeArray<RigidNoiseFilter>(9, Allocator.Persistent),
-                }
-            };
-
-            entityManager.SetComponentData(entity, parameters);
+            entityManager.SetComponentData(entity, WorldCreationParametersCreator.Create(_worldCreationParameters));
         }
     }
 }

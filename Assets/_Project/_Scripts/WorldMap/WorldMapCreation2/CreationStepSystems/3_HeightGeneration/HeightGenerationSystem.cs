@@ -1,4 +1,5 @@
 ﻿using Assets._Project._Scripts.WorldMap.WorldMapCreation2.CreationStepSystems._2_TileCreation;
+using Assets._Project._Scripts.WorldMap.WorldMapCreation2.CreationStepSystems._3_HeightGeneration.HeightCalculation;
 using Assets._Project._Scripts.WorldMap.WorldMapCreation2.Data.DataComponents;
 using System.Diagnostics;
 using Unity.Entities;
@@ -22,11 +23,11 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapCreation2.CreationStepSystem
             Stopwatch stopwatch = Stopwatch.StartNew();
 
             WorldCreationParametersComponent settings = SystemAPI.GetSingleton<WorldCreationParametersComponent>();
-            
+
             JobHandle job = default;
             job = new HeightGenerationJob
             {
-                Settings = settings
+                HeightCalculator = new HeightCalculator(settings.NoiseFilters)
             }.ScheduleParallel(job);
             job.Complete();
 
