@@ -30,7 +30,7 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapManagement
 
         private IEnumerator Start()
         {
-            yield break;
+            //yield break;
             WorldGenerationPipeline pipeline = new();
 
             pipeline.AddStep(new ChunkGenerationStep());

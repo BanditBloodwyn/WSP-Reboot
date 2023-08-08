@@ -40,7 +40,7 @@ namespace Assets._Project._Scripts.CoreFeatures.ObjectPlacementSystem
             if (!WorldPrefabs.Instance.TryGetPrefab(prefabName, out GameObject cityPrefab))
                 return null;
 
-            Debug.Log($"<color=#00fffb>SpawningSystem</color> - place <b>{prefabName}</b> on tile {tile.Position}");
+            Debug.Log($"<color=#00fffb>SpawningSystem</color> - place <b>{prefabName}</b> on {tile.Name}");
 
             Instantiate(
                 cityPrefab,

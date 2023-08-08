@@ -1,19 +1,18 @@
-﻿using Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Aspects;
+﻿using Assets._Project._Scripts.Core.Data.ECS;
+using Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Aspects;
 using Assets._Project._Scripts.WorldMap.WorldMapCore.ECS.Components;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using ChunkComponent = Assets._Project._Scripts.WorldMap.WorldMapCore.Types.ChunkComponent;
 
 namespace Assets._Project._Scripts.WorldMap.WorldMapManagement.WorldInterfaceHelper
 {
     public static class TileFinder
     {
-        internal static bool FindNearestTileOfChunk(
-            ChunkComponent chunk,
+        internal static bool FindClosestOfTiles(
+            Entity[] tiles,
             float3 searchPosition,
             out TileAspect? foundTile,
             out float tileDistanceFromSearchPosition)
@@ -21,21 +20,16 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapManagement.WorldInterfaceHel
             tileDistanceFromSearchPosition = float.MaxValue;
             foundTile = null;
 
-            EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-
-            foreach (Entity entity in chunk.Tiles)
+            foreach (Entity entity in tiles)
             {
-                if (!entityManager.Exists(entity))
-                    continue;
-
-                float3 entityPosition = entityManager.GetComponentData<LocalTransform>(entity).Position;
+                float3 entityPosition = ComponentAccessor.GetComponentOfEntity<LocalTransform>(entity).Position;
                 float distance = math.distance(searchPosition, entityPosition);
 
                 if (!(distance < tileDistanceFromSearchPosition))
                     continue;
 
                 tileDistanceFromSearchPosition = distance;
-                foundTile = entityManager.GetAspect<TileAspect>(entity);
+                foundTile = AspectAccessor.GetAspectOfEntity<TileAspect>(entity);
             }
 
             return foundTile != null;
@@ -43,18 +37,10 @@ namespace Assets._Project._Scripts.WorldMap.WorldMapManagement.WorldInterfaceHel
 
         public static EmptyTileAspect[] GetAllEmtpyTilesFromChunkId(params long[] chunkIds)
         {
-
-            EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-
-            EntityQuery tileQuery = entityManager.CreateEntityQuery(typeof(ChunkAssignmentComponentData));
-            NativeArray<Entity> tiles = tileQuery.ToEntityArray(Allocator.Temp);
-
             List<EmptyTileAspect> tileAspects = new();
 
-            foreach (Entity entity in tiles)
+            foreach (EmptyTileAspect aspect in AspectAccessor.GetAspectsOfEntitiesWithComponents<EmptyTileAspect>(typeof(ChunkAssignmentComponentData)))
             {
-                EmptyTileAspect aspect = entityManager.GetAspect<EmptyTileAspect>(entity);
-               
                 if (chunkIds.Contains(aspect.ChunkID))
                     tileAspects.Add(aspect);
             }
